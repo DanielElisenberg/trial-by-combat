@@ -19,6 +19,7 @@ func _process(delta):
 func disable():
 	set_deferred("process_mode", PROCESS_MODE_DISABLED)
 	set_deferred("visible", false)
+	timer.stop()
 
 
 func initiate_attack():

@@ -26,5 +26,6 @@ flip_h = true
 visible = false
 
 [node name="HitstunTimer" type="Timer" parent="Hitstun"]
+one_shot = true
 
 [connection signal="timeout" from="Hitstun/HitstunTimer" to="." method="_on_hitstun_timer_timeout"]

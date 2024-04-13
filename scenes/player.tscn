@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://bvrjnipgxn7dt"]
+[gd_scene load_steps=7 format=3 uid="uid://bvrjnipgxn7dt"]
 
 [ext_resource type="PackedScene" uid="uid://b8w3gj2eshog" path="res://scenes/Wrestler.tscn" id="1_hbwpj"]
 [ext_resource type="Script" path="res://scripts/Player.gd" id="2_oisog"]
 [ext_resource type="PackedScene" uid="uid://krgajkm6wgc6" path="res://scenes/attack.tscn" id="3_drh2d"]
 [ext_resource type="Texture2D" uid="uid://brwdto8opucn3" path="res://sprites/muscular man jab.png" id="4_4j0ec"]
+[ext_resource type="Texture2D" uid="uid://k68g51u6w6yd" path="res://sprites/muscular man hit.png" id="5_5jm40"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s7boj"]
 radius = 47.0
@@ -32,5 +33,9 @@ shape = SubResource("CapsuleShape2D_s7boj")
 position = Vector2(44, 0)
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("4_4j0ec")
+
+[node name="Hitstun" parent="." index="3"]
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("5_5jm40")
 
 [connection signal="attack_finished" from="Attacks/Jab" to="." method="_on_attack_finished"]
