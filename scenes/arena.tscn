@@ -1,10 +1,10 @@
 [gd_scene load_steps=9 format=3 uid="uid://nc04gqnj5lct"]
 
 [ext_resource type="Script" path="res://scripts/arena.gd" id="1_okel5"]
-[ext_resource type="PackedScene" uid="uid://bvrjnipgxn7dt" path="res://scenes/player.tscn" id="2_ilcix"]
 [ext_resource type="Texture2D" uid="uid://slnivve5revd" path="res://sprites/backgrounds/fight_bg.png" id="2_sjyxi"]
 [ext_resource type="PackedScene" uid="uid://623vj08xqmg8" path="res://scenes/enemy.tscn" id="2_vucto"]
 [ext_resource type="PackedScene" uid="uid://r5peab67hacc" path="res://scenes/health_bar.tscn" id="3_p5doc"]
+[ext_resource type="PackedScene" uid="uid://dpgss5cyimvpn" path="res://scenes/player_character.tscn" id="4_5tkut"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2jsfy"]
 size = Vector2(1923, 20)
@@ -42,8 +42,9 @@ shape = SubResource("RectangleShape2D_ottia")
 [node name="Enemy" parent="." instance=ExtResource("2_vucto")]
 position = Vector2(1640, 560)
 
-[node name="Player" parent="." instance=ExtResource("2_ilcix")]
-position = Vector2(216, 568)
+[node name="Player" parent="." instance=ExtResource("4_5tkut")]
+position = Vector2(200, 678)
+scale = Vector2(6, 6)
 
 [node name="PlayerHealthBar" parent="." instance=ExtResource("3_p5doc")]
 position = Vector2(2, 0)
@@ -54,3 +55,4 @@ position = Vector2(1456, 0)
 
 [connection signal="damage_taken" from="Enemy" to="." method="_on_enemy_damage_taken"]
 [connection signal="damage_taken" from="Player" to="." method="_on_player_damage_taken"]
+[connection signal="send_projectile" from="Player" to="." method="_on_send_projectile"]

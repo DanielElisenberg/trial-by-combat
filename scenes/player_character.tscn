@@ -1,0 +1,69 @@
+[gd_scene load_steps=8 format=3 uid="uid://dpgss5cyimvpn"]
+
+[ext_resource type="Script" path="res://scripts/PlayerCharacter.gd" id="1_c4xu5"]
+[ext_resource type="SpriteFrames" uid="uid://b7aqpjous2ewb" path="res://sprites/fighters/player.tres" id="2_hteys"]
+[ext_resource type="PackedScene" uid="uid://krgajkm6wgc6" path="res://scenes/attack.tscn" id="3_ovjoi"]
+[ext_resource type="PackedScene" uid="uid://cdgugrkb0ixjg" path="res://scenes/gavel_projectile.tscn" id="4_2c01j"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wbuop"]
+size = Vector2(29, 48)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8tifg"]
+size = Vector2(14, 20)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xja0r"]
+radius = 4.12311
+
+[node name="PlayerCharacter" type="CharacterBody2D"]
+collision_mask = 21
+script = ExtResource("1_c4xu5")
+
+[node name="Animations" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("2_hteys")
+animation = &"throw"
+frame = 1
+frame_progress = 0.754695
+
+[node name="Body" type="CollisionShape2D" parent="."]
+position = Vector2(-2.5, 0)
+shape = SubResource("RectangleShape2D_wbuop")
+
+[node name="Hitstun" type="Timer" parent="."]
+one_shot = true
+
+[node name="Attacks" type="Node2D" parent="."]
+
+[node name="Jab" parent="Attacks" instance=ExtResource("3_ovjoi")]
+visible = false
+collision_layer = 2
+collision_mask = 4
+length = 0.57
+windup = 0.28
+hitbox_time = 0.29
+hitstun_length = 0.3
+damage = 5.0
+
+[node name="HitBox" parent="Attacks/Jab" index="3"]
+position = Vector2(19, -1)
+shape = SubResource("RectangleShape2D_8tifg")
+
+[node name="ThrowGavel" parent="Attacks" instance=ExtResource("3_ovjoi")]
+collision_layer = 0
+collision_mask = 0
+length = 0.75
+windup = 0.25
+hitbox_time = 0.5
+projectile = ExtResource("4_2c01j")
+throw_projectile = true
+
+[node name="HitBox" parent="Attacks/ThrowGavel" index="3"]
+position = Vector2(14, 2)
+shape = SubResource("CircleShape2D_xja0r")
+
+[connection signal="timeout" from="Hitstun" to="." method="_on_hitstun_timeout"]
+[connection signal="attack_finished" from="Attacks/Jab" to="." method="_on_attack_finished"]
+[connection signal="attack_finished" from="Attacks/ThrowGavel" to="." method="_on_attack_finished"]
+[connection signal="send_projectile" from="Attacks/ThrowGavel" to="." method="_on_send_projectile"]
+
+[editable path="Attacks/Jab"]
+[editable path="Attacks/ThrowGavel"]

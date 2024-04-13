@@ -12,14 +12,11 @@ extends Area2D
 @onready var windup_timer = $WindupTimer
 @onready var hitbox_timer = $HitboxTimer
 signal attack_finished
+signal send_projectile(projectile)
 
 
 func _ready():
 	disable()
-
-
-func _process(delta):
-	pass
 
 
 func disable():
@@ -44,7 +41,8 @@ func initiate_attack():
 func enable_hitbox():
 	if throw_projectile:
 		var new_projectile = projectile.instantiate()
-		new_projectile.set_position(hitbox.position)
+		new_projectile.set_position(to_global(hitbox.position))
+		emit_signal("send_projectile", new_projectile)
 	else:
 		hitbox.set_deferred("disabled", false)
 
@@ -53,8 +51,9 @@ func disable_hitbox():
 	hitbox.set_deferred("disabled", true)
 
 func _on_attack_timer_timeout():
-	disable()
+	print("sending 'attack_finished' signal")
 	emit_signal("attack_finished")
+	disable()
 
 
 func _on_body_entered(body):
@@ -62,8 +61,8 @@ func _on_body_entered(body):
 
 
 func _on_windup_timer_timeout():
-	enable_hitbox()
 	if hitbox_time > 0:
+		enable_hitbox()
 		hitbox_timer.start(hitbox_time)
 
 

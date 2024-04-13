@@ -1,55 +1,58 @@
 [gd_scene load_steps=9 format=3 uid="uid://cdgugrkb0ixjg"]
 
 [ext_resource type="PackedScene" uid="uid://o58i8w20fxs7" path="res://scenes/projectile.tscn" id="1_enykf"]
-[ext_resource type="Texture2D" uid="uid://btu5yeln78jix" path="res://sprites/fighters/gavel.png" id="2_r2f5u"]
+[ext_resource type="Texture2D" uid="uid://btu5yeln78jix" path="res://sprites/fighters/gavel.png" id="2_3aqcf"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_t6dah"]
-atlas = ExtResource("2_r2f5u")
+[sub_resource type="AtlasTexture" id="AtlasTexture_px7ly"]
+atlas = ExtResource("2_3aqcf")
 region = Rect2(0, 0, 20, 20)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_epp6n"]
-atlas = ExtResource("2_r2f5u")
+[sub_resource type="AtlasTexture" id="AtlasTexture_bty5m"]
+atlas = ExtResource("2_3aqcf")
 region = Rect2(20, 0, 20, 20)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_pth34"]
-atlas = ExtResource("2_r2f5u")
+[sub_resource type="AtlasTexture" id="AtlasTexture_8bmvb"]
+atlas = ExtResource("2_3aqcf")
 region = Rect2(40, 0, 20, 20)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_nit4x"]
-atlas = ExtResource("2_r2f5u")
+[sub_resource type="AtlasTexture" id="AtlasTexture_hnt2p"]
+atlas = ExtResource("2_3aqcf")
 region = Rect2(60, 0, 20, 20)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_woq21"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_t6dah")
+"texture": SubResource("AtlasTexture_px7ly")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_epp6n")
+"texture": SubResource("AtlasTexture_bty5m")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_pth34")
+"texture": SubResource("AtlasTexture_8bmvb")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_nit4x")
+"texture": SubResource("AtlasTexture_hnt2p")
 }],
 "loop": true,
 "name": &"default",
-"speed": 4.0
+"speed": 10.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gfam2"]
-radius = 15.0
+radius = 9.05539
 
 [node name="GavelProjectile" instance=ExtResource("1_enykf")]
+scale = Vector2(5, 5)
 collision_layer = 2
 collision_mask = 4
+speed = 500.0
+direction = 1
 
 [node name="Animation" parent="." index="0"]
-scale = Vector2(8, 8)
 sprite_frames = SubResource("SpriteFrames_woq21")
-frame_progress = 0.499095
+autoplay = "default"
+frame_progress = 0.119005
 
 [node name="Collision" parent="." index="1"]
 shape = SubResource("CircleShape2D_gfam2")

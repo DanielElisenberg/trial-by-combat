@@ -6,7 +6,7 @@ extends "res://scripts/Wrestler.gd"
 var direction = 0
 
 func _on_attack_timer_timeout():
-	if status != Status.STUNNED:
+	if status != Status.STUNNED and false:
 		attack.initiate_attack()
 		idle.set_deferred("visible", false)
 		status = Status.ATTACKING

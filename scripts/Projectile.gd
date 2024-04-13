@@ -2,7 +2,7 @@ extends Area2D
 
 enum Direction {LEFT = -1, RIGHT = 1}
 
-@export var speed = 400.0
+@export var speed = 300.0
 @export var direction: Direction
 @export var damage = 10.0
 @export var hitstun = 0.1
@@ -19,3 +19,4 @@ func _process(delta):
 
 func _on_body_entered(body):
 	body.hit(hitstun, damage)
+	queue_free()
