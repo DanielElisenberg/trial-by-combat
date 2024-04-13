@@ -6,13 +6,13 @@
 [ext_resource type="PackedScene" uid="uid://r5peab67hacc" path="res://scenes/health_bar.tscn" id="3_p5doc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2jsfy"]
-size = Vector2(1174, 20)
+size = Vector2(1923, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rcbd3"]
-size = Vector2(20, 502)
+size = Vector2(18, 850)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ottia"]
-size = Vector2(20, 501)
+size = Vector2(18, 842.5)
 
 [node name="Arena" type="Node2D"]
 script = ExtResource("1_okel5")
@@ -22,28 +22,29 @@ collision_layer = 16
 collision_mask = 5
 
 [node name="Floor" type="CollisionShape2D" parent="Bounds"]
-position = Vector2(582, 485)
+position = Vector2(958.5, 832)
 shape = SubResource("RectangleShape2D_2jsfy")
 
 [node name="LeftWall" type="CollisionShape2D" parent="Bounds"]
-position = Vector2(0, 241)
+position = Vector2(-1, 415)
 shape = SubResource("RectangleShape2D_rcbd3")
 
 [node name="RightWall" type="CollisionShape2D" parent="Bounds"]
-position = Vector2(1152, 241.5)
+position = Vector2(1919, 418.75)
 shape = SubResource("RectangleShape2D_ottia")
 
 [node name="Enemy" parent="." instance=ExtResource("2_vucto")]
-position = Vector2(916, 353)
+position = Vector2(1640, 560)
 
 [node name="Player" parent="." instance=ExtResource("2_ilcix")]
-position = Vector2(115, 353)
+position = Vector2(216, 568)
 
 [node name="PlayerHealthBar" parent="." instance=ExtResource("3_p5doc")]
 position = Vector2(2, 0)
+flipped = 1
 
 [node name="EnemyHealthBar" parent="." instance=ExtResource("3_p5doc")]
-position = Vector2(692, 0)
+position = Vector2(1456, 0)
 
 [connection signal="damage_taken" from="Enemy" to="." method="_on_enemy_damage_taken"]
 [connection signal="damage_taken" from="Player" to="." method="_on_player_damage_taken"]

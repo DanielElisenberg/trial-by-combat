@@ -1,18 +1,39 @@
-[gd_scene load_steps=4 format=3 uid="uid://623vj08xqmg8"]
+[gd_scene load_steps=8 format=3 uid="uid://623vj08xqmg8"]
 
 [ext_resource type="PackedScene" uid="uid://b8w3gj2eshog" path="res://scenes/Wrestler.tscn" id="1_27u8t"]
 [ext_resource type="Texture2D" uid="uid://doho5ev2h8m70" path="res://sprites/punching bag.png" id="1_lh8sg"]
+[ext_resource type="Script" path="res://scenes/enemy.gd" id="2_l4b6x"]
 [ext_resource type="Texture2D" uid="uid://hg23cca2fi5q" path="res://sprites/punching bag hit.png" id="3_ryk61"]
+[ext_resource type="PackedScene" uid="uid://krgajkm6wgc6" path="res://scenes/attack.tscn" id="4_bhxnr"]
+[ext_resource type="Texture2D" uid="uid://cvekxlwbxi344" path="res://sprites/master hand.png" id="5_pkbvh"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lsn5y"]
+radius = 41.0
+height = 160.0
 
 [node name="Enemy" instance=ExtResource("1_27u8t")]
 collision_layer = 4
 collision_mask = 17
+script = ExtResource("2_l4b6x")
 
 [node name="Idle" parent="." index="1"]
-scale = Vector2(0.6, 0.6)
+scale = Vector2(1.2, 1.2)
 texture = ExtResource("1_lh8sg")
 flip_h = false
 
-[node name="Hitstun" parent="." index="3"]
+[node name="Attack" parent="Attacks" index="0" instance=ExtResource("4_bhxnr")]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Attacks/Attack" index="1"]
+position = Vector2(-139, -50)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_lsn5y")
+
+[node name="Sprite2D" type="Sprite2D" parent="Attacks/Attack" index="2"]
+position = Vector2(-142, -48)
 scale = Vector2(0.6, 0.6)
+texture = ExtResource("5_pkbvh")
+
+[node name="Hitstun" parent="." index="3"]
+scale = Vector2(1.2, 1.2)
 texture = ExtResource("3_ryk61")

@@ -4,8 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://co12twyslgqap" path="res://sprites/muscular man.png" id="2_7cxl3"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vihvu"]
-radius = 65.0
-height = 249.0
+radius = 133.5
+height = 513.0
 
 [node name="Wrestler" type="CharacterBody2D"]
 collision_mask = 3

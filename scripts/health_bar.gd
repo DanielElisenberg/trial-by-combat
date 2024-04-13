@@ -1,6 +1,7 @@
 extends Node2D
 
 @export var health = 100.0
+@export_flags("flipped") var flipped
 var remaining_health
 @onready var missing_health = $BackGround/Bar/MissingHealth
 
@@ -8,6 +9,7 @@ signal health_depleted
 
 func _ready():
 	remaining_health = health
+	missing_health.flipped = flipped
 
 func take_damage(damage: float):
 	if remaining_health - damage <= 0:
