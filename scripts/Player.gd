@@ -1,5 +1,4 @@
-extends "res:///scripts/Wrestler.gd"
-
+extends "res://scripts/Wrestler.gd"
 
 func _process(delta):
 	if Input.is_action_just_pressed("jab") and is_on_floor():

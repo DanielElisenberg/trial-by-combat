@@ -6,18 +6,20 @@ extends Area2D
 @onready var timer = $AttackTimer
 signal attack_finished
 
-# Called when the node enters the scene tree for the first time.
+
 func _ready():
 	disable()
 	timer.wait_time = length
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+
 func _process(delta):
 	pass
+
 
 func disable():
 	set_deferred("process_mode", PROCESS_MODE_DISABLED)
 	set_deferred("visible", false)
+
 
 func initiate_attack():
 	set_deferred("process_mode", PROCESS_MODE_INHERIT)

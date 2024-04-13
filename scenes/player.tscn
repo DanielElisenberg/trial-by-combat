@@ -14,6 +14,7 @@ collision_mask = 20
 script = ExtResource("2_oisog")
 
 [node name="Jab" parent="Attacks" index="0" instance=ExtResource("3_drh2d")]
+visible = false
 collision_layer = 2
 collision_mask = 4
 length = 0.1

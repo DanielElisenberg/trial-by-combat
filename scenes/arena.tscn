@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://nc04gqnj5lct"]
+[gd_scene load_steps=8 format=3 uid="uid://nc04gqnj5lct"]
 
+[ext_resource type="Script" path="res://scenes/arena.gd" id="1_okel5"]
 [ext_resource type="PackedScene" uid="uid://bvrjnipgxn7dt" path="res://scenes/player.tscn" id="2_ilcix"]
 [ext_resource type="PackedScene" uid="uid://623vj08xqmg8" path="res://scenes/enemy.tscn" id="2_vucto"]
+[ext_resource type="PackedScene" uid="uid://r5peab67hacc" path="res://scenes/health_bar.tscn" id="3_p5doc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2jsfy"]
 size = Vector2(1174, 20)
@@ -13,6 +15,7 @@ size = Vector2(20, 502)
 size = Vector2(20, 501)
 
 [node name="Arena" type="Node2D"]
+script = ExtResource("1_okel5")
 
 [node name="Bounds" type="StaticBody2D" parent="."]
 collision_layer = 16
@@ -35,3 +38,12 @@ position = Vector2(916, 353)
 
 [node name="Player" parent="." instance=ExtResource("2_ilcix")]
 position = Vector2(115, 353)
+
+[node name="PlayerHealthBar" parent="." instance=ExtResource("3_p5doc")]
+position = Vector2(2, 0)
+
+[node name="EnemyHealthBar" parent="." instance=ExtResource("3_p5doc")]
+position = Vector2(692, 0)
+
+[connection signal="damage_taken" from="Enemy" to="." method="_on_enemy_damage_taken"]
+[connection signal="damage_taken" from="Player" to="." method="_on_player_damage_taken"]
