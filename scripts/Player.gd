@@ -2,6 +2,7 @@ extends "res://scripts/Wrestler.gd"
 
 @onready var jab = $Attacks/Jab
 @onready var throw_gavel = $Attacks/ThrowGavel
+@onready var animated_sprite = $AnimatedSprite
 
 func _process(delta):
 	if status != Status.STUNNED and status != Status.ATTACKING:
