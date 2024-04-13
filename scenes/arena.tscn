@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://nc04gqnj5lct"]
+
+[ext_resource type="PackedScene" uid="uid://bvrjnipgxn7dt" path="res://scenes/player.tscn" id="2_ilcix"]
+[ext_resource type="PackedScene" uid="uid://623vj08xqmg8" path="res://scenes/enemy.tscn" id="2_vucto"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2jsfy"]
+size = Vector2(1174, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rcbd3"]
+size = Vector2(20, 502)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ottia"]
+size = Vector2(20, 501)
+
+[node name="Arena" type="Node2D"]
+
+[node name="Bounds" type="StaticBody2D" parent="."]
+collision_layer = 16
+collision_mask = 5
+
+[node name="Floor" type="CollisionShape2D" parent="Bounds"]
+position = Vector2(582, 485)
+shape = SubResource("RectangleShape2D_2jsfy")
+
+[node name="LeftWall" type="CollisionShape2D" parent="Bounds"]
+position = Vector2(0, 241)
+shape = SubResource("RectangleShape2D_rcbd3")
+
+[node name="RightWall" type="CollisionShape2D" parent="Bounds"]
+position = Vector2(1152, 241.5)
+shape = SubResource("RectangleShape2D_ottia")
+
+[node name="Enemy" parent="." instance=ExtResource("2_vucto")]
+position = Vector2(916, 353)
+
+[node name="Player" parent="." instance=ExtResource("2_ilcix")]
+position = Vector2(115, 353)

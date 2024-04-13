@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://bvrjnipgxn7dt"]
+
+[ext_resource type="PackedScene" uid="uid://b8w3gj2eshog" path="res://scenes/Wrestler.tscn" id="1_hbwpj"]
+[ext_resource type="Script" path="res://scripts/Player.gd" id="2_oisog"]
+[ext_resource type="PackedScene" uid="uid://krgajkm6wgc6" path="res://scenes/attack.tscn" id="3_drh2d"]
+[ext_resource type="Texture2D" uid="uid://brwdto8opucn3" path="res://sprites/muscular man jab.png" id="4_4j0ec"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s7boj"]
+radius = 19.0
+height = 82.0
+
+[node name="Player" instance=ExtResource("1_hbwpj")]
+collision_mask = 20
+script = ExtResource("2_oisog")
+
+[node name="Jab" parent="Attacks" index="0" instance=ExtResource("3_drh2d")]
+collision_layer = 2
+collision_mask = 4
+length = 0.1
+hitstun_length = 0.09
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Attacks/Jab" index="1"]
+position = Vector2(74, -54)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_s7boj")
+
+[node name="Sprite2D" type="Sprite2D" parent="Attacks/Jab" index="2"]
+position = Vector2(22, 0)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("4_4j0ec")
+
+[connection signal="attack_finished" from="Attacks/Jab" to="." method="_on_attack_finished"]
