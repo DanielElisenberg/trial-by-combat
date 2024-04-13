@@ -6,7 +6,6 @@ const JUMP_VELOCITY = -400.0
 
 enum Status {IDLE, ATTACKING, STUNNED, BLOCKING}
 
-@onready var jab = $Attacks/Jab
 @onready var idle = $Idle
 @onready var blocking_sprite = $Blocking
 @onready var hitstun = $Hitstun

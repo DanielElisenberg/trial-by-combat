@@ -1,12 +1,20 @@
 extends "res://scripts/Wrestler.gd"
 
+@onready var jab = $Attacks/Jab
+@onready var throw_gavel = $Attacks/ThrowGavel
+
 func _process(delta):
-	if status != Status.STUNNED:
+	if status != Status.STUNNED and status != Status.ATTACKING:
 		if Input.is_action_just_pressed("jab") and is_on_floor():
 			jab.initiate_attack()
 			idle.set_deferred("visible", false)
 			status = Status.ATTACKING
 			current_attack = jab
+		elif Input.is_action_just_pressed("projectile"):
+			throw_gavel.initiate_attack()
+			idle.set_deferred("visible", false)
+			status = Status.ATTACKING
+			current_attack = throw_gavel
 
 
 func _physics_process(delta):

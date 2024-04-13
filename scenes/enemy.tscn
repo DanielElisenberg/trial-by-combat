@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://b8w3gj2eshog" path="res://scenes/Wrestler.tscn" id="1_27u8t"]
 [ext_resource type="Texture2D" uid="uid://doho5ev2h8m70" path="res://sprites/punching bag.png" id="1_lh8sg"]
-[ext_resource type="Script" path="res://scenes/enemy.gd" id="2_l4b6x"]
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="2_l4b6x"]
 [ext_resource type="Texture2D" uid="uid://hg23cca2fi5q" path="res://sprites/punching bag hit.png" id="3_ryk61"]
 [ext_resource type="PackedScene" uid="uid://krgajkm6wgc6" path="res://scenes/attack.tscn" id="4_bhxnr"]
 [ext_resource type="Texture2D" uid="uid://b6x2vgo35nou4" path="res://sprites/punching bag attack.png" id="5_fcdwq"]
@@ -39,10 +39,6 @@ position = Vector2(-148, -1)
 scale = Vector2(1.2, 1.2)
 texture = ExtResource("5_fcdwq")
 
-[node name="Hitstun" parent="." index="3"]
-scale = Vector2(1.2, 1.2)
-texture = ExtResource("3_ryk61")
-
 [node name="AttackTimer" type="Timer" parent="." index="4"]
 one_shot = true
 autostart = true
@@ -50,6 +46,10 @@ autostart = true
 [node name="StrafeTimer" type="Timer" parent="." index="5"]
 one_shot = true
 autostart = true
+
+[node name="Hitstun" parent="." index="6"]
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("3_ryk61")
 
 [connection signal="attack_finished" from="Attacks/Attack" to="." method="_on_attack_finished"]
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]

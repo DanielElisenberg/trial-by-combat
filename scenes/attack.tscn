@@ -10,5 +10,15 @@ script = ExtResource("1_s8ldi")
 [node name="AttackTimer" type="Timer" parent="."]
 one_shot = true
 
+[node name="WindupTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="HitboxTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="HitBox" type="CollisionShape2D" parent="."]
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
+[connection signal="timeout" from="WindupTimer" to="." method="_on_windup_timer_timeout"]
+[connection signal="timeout" from="HitboxTimer" to="." method="_on_hitbox_timer_timeout"]

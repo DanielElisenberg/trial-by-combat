@@ -1,0 +1,41 @@
+[gd_scene load_steps=8 format=3 uid="uid://cdgugrkb0ixjg"]
+
+[ext_resource type="PackedScene" uid="uid://o58i8w20fxs7" path="res://scenes/projectile.tscn" id="1_enykf"]
+[ext_resource type="Texture2D" uid="uid://da6mpmkohinvm" path="res://sprites/hammer.png" id="2_hqdtn"]
+[ext_resource type="Texture2D" uid="uid://dp7d80urcb2dq" path="res://sprites/hammer90.png" id="3_0ahwi"]
+[ext_resource type="Texture2D" uid="uid://7utglygdvcem" path="res://sprites/hammer180.png" id="4_lg3tf"]
+[ext_resource type="Texture2D" uid="uid://oip4heofheoq" path="res://sprites/hammer270.png" id="5_71slm"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_woq21"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_hqdtn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_0ahwi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_lg3tf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_71slm")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gfam2"]
+radius = 15.0
+
+[node name="GavelProjectile" instance=ExtResource("1_enykf")]
+collision_layer = 2
+collision_mask = 4
+
+[node name="Animation" parent="." index="0"]
+scale = Vector2(0.1, 0.1)
+sprite_frames = SubResource("SpriteFrames_woq21")
+
+[node name="Collision" parent="." index="1"]
+shape = SubResource("CircleShape2D_gfam2")
