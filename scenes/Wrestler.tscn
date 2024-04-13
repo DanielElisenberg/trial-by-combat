@@ -20,6 +20,9 @@ scale = Vector2(0.3, 0.3)
 texture = ExtResource("2_7cxl3")
 flip_h = true
 
+[node name="Blocking" type="Sprite2D" parent="."]
+visible = false
+
 [node name="Attacks" type="Node2D" parent="."]
 
 [node name="Hitstun" type="Sprite2D" parent="."]

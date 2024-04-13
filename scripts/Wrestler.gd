@@ -8,6 +8,7 @@ enum Status {IDLE, ATTACKING, STUNNED, BLOCKING}
 
 @onready var jab = $Attacks/Jab
 @onready var idle = $Idle
+@onready var blocking_sprite = $Blocking
 @onready var hitstun = $Hitstun
 @onready var hitstun_timer = $Hitstun/HitstunTimer
 var status: Status = Status.IDLE
@@ -31,12 +32,13 @@ func hit(hitstun_time, damage):
 		current_attack.disable()
 		current_attack = null
 	
-	status = Status.STUNNED
-	hitstun.set_deferred("visible", true)
-	idle.set_deferred("visible", false)
-	hitstun_timer.wait_time = hitstun_time
-	hitstun_timer.start()
-	emit_signal("damage_taken", damage)
+	if status != Status.BLOCKING:
+		status = Status.STUNNED
+		hitstun.set_deferred("visible", true)
+		idle.set_deferred("visible", false)
+		hitstun_timer.wait_time = hitstun_time
+		hitstun_timer.start()
+		emit_signal("damage_taken", damage)
 
 
 func _on_hitstun_timer_timeout():
