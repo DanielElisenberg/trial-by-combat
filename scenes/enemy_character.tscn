@@ -159,7 +159,7 @@ size = Vector2(16.5, 18)
 
 [node name="EnemyCharacter" type="CharacterBody2D"]
 collision_layer = 4
-collision_mask = 19
+collision_mask = 4115
 script = ExtResource("1_o63gp")
 
 [node name="Animations" type="AnimatedSprite2D" parent="."]
@@ -187,7 +187,7 @@ length = 0.7
 windup = 0.3
 hitbox_time = 0.2
 hitstun_length = 0.4
-knockback = Vector2(-600, -200)
+knockback = Vector2(-600, -300)
 
 [node name="HitBox" parent="Attacks/Jab" index="3"]
 position = Vector2(-19.5, -1.75)
@@ -220,7 +220,7 @@ windup = 0.6
 hitbox_time = 0.4
 hitstun_length = 0.6
 damage = 20.0
-knockback = Vector2(-1500, -300)
+knockback = Vector2(-1500, -500)
 
 [node name="HitBox" parent="Attacks/Kick" index="3"]
 position = Vector2(-20.25, 4)

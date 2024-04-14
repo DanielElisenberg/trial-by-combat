@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 
-const SPEED = 300.0
+const SPEED = 400.0
 const JUMP_VELOCITY = -400.0
 
 enum Status {IDLE, ATTACKING, STUNNED, BLOCKING}
@@ -71,7 +71,7 @@ func _physics_process(delta):
 	elif status == Status.ATTACKING:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 	else:
-		velocity.x = move_toward(velocity.x, 0, 50)
+		velocity.x = move_toward(velocity.x, 0, 75)
 	
 	if status == Status.STUNNED:
 		animated_sprite.play("hitstunned")

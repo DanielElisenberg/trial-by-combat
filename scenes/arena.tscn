@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://nc04gqnj5lct"]
+[gd_scene load_steps=12 format=3 uid="uid://nc04gqnj5lct"]
 
 [ext_resource type="Script" path="res://scripts/arena.gd" id="1_okel5"]
 [ext_resource type="Texture2D" uid="uid://slnivve5revd" path="res://sprites/backgrounds/fight_bg.png" id="2_sjyxi"]
@@ -7,6 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://be5issjair2mf" path="res://scenes/enemy_character.tscn" id="4_liu3o"]
 [ext_resource type="AudioStream" uid="uid://cbd607hngait1" path="res://sounds/trial_by_combat.mp3" id="6_5htii"]
 [ext_resource type="AudioStream" uid="uid://yh1wssknxt2e" path="res://sounds/sfx/sfx_fight.mp3" id="7_5wkl4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mq1db"]
+size = Vector2(39.5, 872.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2jsfy"]
 size = Vector2(1923, 20)
@@ -24,6 +27,14 @@ script = ExtResource("1_okel5")
 position = Vector2(969, 527)
 scale = Vector2(5.5, 5.5)
 texture = ExtResource("2_sjyxi")
+
+[node name="Enemy barrier" type="StaticBody2D" parent="."]
+collision_layer = 4096
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy barrier"]
+position = Vector2(898.75, 435.25)
+shape = SubResource("RectangleShape2D_mq1db")
 
 [node name="Bounds" type="StaticBody2D" parent="."]
 collision_layer = 16

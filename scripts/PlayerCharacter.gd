@@ -1,8 +1,8 @@
 extends CharacterBody2D
 
 
-const SPEED = 300.0
-const JUMP_VELOCITY = -900.0
+const SPEED = 400.0
+const JUMP_VELOCITY = -1400.0
 
 enum Status {IDLE, ATTACKING, STUNNED, BLOCKING}
 
@@ -70,7 +70,7 @@ func _physics_process(delta):
 			status = Status.IDLE
 			animations.play("idle")
 	else:
-		velocity.x = move_toward(velocity.x, 0, 100)
+		velocity.x = move_toward(velocity.x, 0, 75)
 
 	move_and_slide()
 
