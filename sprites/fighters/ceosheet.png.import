@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b5trv3s8rihgb"
-path="res://.godot/imported/muscular man block.png-9c94b4d23c3cf05d5e5b4d9dd7c496b0.ctex"
+uid="uid://cpl7u1bydym81"
+path="res://.godot/imported/ceosheet.png-460b541623624b4dfec2a3c29b676038.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/muscular man block.png"
-dest_files=["res://.godot/imported/muscular man block.png-9c94b4d23c3cf05d5e5b4d9dd7c496b0.ctex"]
+source_file="res://sprites/fighters/ceosheet.png"
+dest_files=["res://.godot/imported/ceosheet.png-460b541623624b4dfec2a3c29b676038.ctex"]
 
 [params]
 

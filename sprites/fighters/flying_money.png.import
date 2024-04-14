@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://hg23cca2fi5q"
-path="res://.godot/imported/punching bag hit.png-1df882767c123d817a91155e57d44bce.ctex"
+uid="uid://1r7n58vtj5bi"
+path="res://.godot/imported/flying_money.png-94827209aa5c588734a21587ca1b1263.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/punching bag hit.png"
-dest_files=["res://.godot/imported/punching bag hit.png-1df882767c123d817a91155e57d44bce.ctex"]
+source_file="res://sprites/fighters/flying_money.png"
+dest_files=["res://.godot/imported/flying_money.png-94827209aa5c588734a21587ca1b1263.ctex"]
 
 [params]
 
