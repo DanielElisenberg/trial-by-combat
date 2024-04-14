@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 
 const SPEED = 400.0
-const JUMP_VELOCITY = -400.0
+const JUMP_VELOCITY = -1300.0
 
 enum Status {IDLE, ATTACKING, STUNNED, BLOCKING, INACTIVE}
 
@@ -19,8 +19,9 @@ signal send_projectile(projectile)
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 
-@onready var bump = $Attacks/Bump
-@onready var throw_money = $Attacks/ThrowMoney
+@onready var spin_kick = $Attacks/SpinKick
+@onready var throw_vape = $Attacks/ThrowVape
+@onready var jump_kick = $Attacks/JumpKick
 @onready var animated_sprite: AnimatedSprite2D = $Animations
 @onready var attack_timer = $AttackTimer
 @onready var strafe_timer = $StrafeTimer
@@ -30,26 +31,22 @@ var direction = 0
 func _on_attack_timer_timeout():
 	if status == Status.INACTIVE:
 		return
-	if status == Status.IDLE:
-		initiate_throw_money()
+	if status != Status.STUNNED and is_on_floor():
+		var random_attack = randi_range(0, 1)
+		if random_attack == 0:
+			spin_kick.initiate_attack()
+			animated_sprite.play("spinkick")
+			status = Status.ATTACKING
+			current_attack = spin_kick
+		elif random_attack == 1:
+			throw_vape.initiate_attack()
+			animated_sprite.play("throw")
+			status = Status.ATTACKING
+			current_attack = throw_vape
+		attack_timer.start(randf_range(current_attack.length, 3))
 	else:
-		attack_timer.start(randf_range(0.1, 0.5))
+		attack_timer.start(randf_range(0.1, 1))
 
-
-func initiate_throw_money():
-	throw_money.initiate_attack()
-	animated_sprite.play("throw")
-	status = Status.ATTACKING
-	current_attack = throw_money
-	attack_timer.start(randf_range(1.5, 2.5))
-
-
-func initiate_bump():
-	bump.initiate_attack()
-	animated_sprite.play("bump")
-	status = Status.ATTACKING
-	current_attack = bump
-	attack_timer.start(randf_range(current_attack.length, 3))
 
 func reset(start_position):
 	if current_attack != null:
@@ -89,19 +86,27 @@ func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y += gravity * delta
 
-	if status == Status.IDLE:
+	if status != Status.STUNNED and status != Status.ATTACKING and is_on_floor():
 		if direction:
 			velocity.x = direction * SPEED
 			animated_sprite.play("strafe")
 		else:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 			animated_sprite.play("idle")
-	elif status == Status.ATTACKING:
+	elif status == Status.ATTACKING and is_on_floor():
+		if current_attack == jump_kick:
+			jump_kick.disable()
+			current_attack = null
+			status = Status.IDLE
+			animations.play("idle")
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 	elif status == Status.STUNNED:
 		velocity.x = move_toward(velocity.x, 0, 75)
-	elif status == Status.BLOCKING:
-		velocity.x = 0
+	elif status == Status.IDLE and not is_on_floor() and velocity.y > 0:
+		jump_kick.initiate_attack()
+		animated_sprite.play("jumpkick")
+		status = Status.ATTACKING
+		current_attack = jump_kick
 	
 	if status == Status.STUNNED:
 		animated_sprite.play("hitstunned")
@@ -111,7 +116,7 @@ func _physics_process(delta):
 func _on_attack_finished():
 	if status == Status.STUNNED:
 		animations.play("hitstunned")
-	elif status != Status.BLOCKING:
+	else:
 		status = Status.IDLE
 		current_attack = null
 		animations.play("idle")
@@ -129,23 +134,21 @@ func hit(hitstun_time, damage, knockback):
 		emit_signal("damage_taken", damage)
 		hitstun_sfx.play()
 		velocity = knockback
-	else:
-		emit_signal("damage_taken", damage / 5)
-		initiate_bump()
+	
+	emit_signal("damage_taken", damage / 5)
 
 
 func _on_hitstun_timeout():
-	if current_attack != null:
-		current_attack.disable()
-		current_attack = null
-	animations.play("block")
-	status = Status.BLOCKING
-	$BlockTimer.start(randf_range(0.5, 1.5))
+	animations.play("idle")
+	status = Status.IDLE
 
 
 func _on_send_projectile(projectile):
 	emit_signal("send_projectile", projectile)
 
 
-func _on_block_timer_timeout():
-	initiate_throw_money()
+func _on_jump_timer_timeout():
+	if status == Status.IDLE:
+		velocity.y = JUMP_VELOCITY
+		status = Status.IDLE
+		animations.play("jump")

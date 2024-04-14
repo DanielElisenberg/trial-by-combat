@@ -50,9 +50,11 @@ script = ExtResource("2_qj5a3")
 bob_speed = 70.0
 bob_distance = 50
 speed = 250.0
+damage = 5.0
 
 [node name="Animation" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_hnv7k")
+autoplay = "default"
 frame_progress = 0.716454
 
 [node name="Collision" parent="." index="1"]

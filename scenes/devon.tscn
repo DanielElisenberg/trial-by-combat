@@ -1,0 +1,262 @@
+[gd_scene load_steps=27 format=3 uid="uid://bmyw515iad88a"]
+
+[ext_resource type="Script" path="res://scripts/devon.gd" id="1_hq8mi"]
+[ext_resource type="Texture2D" uid="uid://b5ctnesh7ogs" path="res://sprites/fighters/devinsheet.png" id="2_0776t"]
+[ext_resource type="AudioStream" uid="uid://dwldr1fl0fk58" path="res://sounds/sfx/sfx_satan_hurt.mp3" id="3_txon6"]
+[ext_resource type="PackedScene" uid="uid://krgajkm6wgc6" path="res://scenes/attack.tscn" id="4_evep4"]
+[ext_resource type="AudioStream" uid="uid://d24j80ysdmhkm" path="res://sounds/sfx/sfx_satan_laugh.mp3" id="5_juuw6"]
+[ext_resource type="PackedScene" uid="uid://cpramelfm2ttu" path="res://scenes/vape.tscn" id="6_ct6go"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7l50e"]
+atlas = ExtResource("2_0776t")
+region = Rect2(110, 0, 55, 55)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_47frv"]
+atlas = ExtResource("2_0776t")
+region = Rect2(0, 0, 55, 55)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4wm86"]
+atlas = ExtResource("2_0776t")
+region = Rect2(55, 0, 55, 55)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1hky6"]
+atlas = ExtResource("2_0776t")
+region = Rect2(0, 165, 55, 55)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4khqa"]
+atlas = ExtResource("2_0776t")
+region = Rect2(55, 165, 55, 55)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7kfx2"]
+atlas = ExtResource("2_0776t")
+region = Rect2(0, 110, 55, 55)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0maw7"]
+atlas = ExtResource("2_0776t")
+region = Rect2(55, 110, 55, 55)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ntmf"]
+atlas = ExtResource("2_0776t")
+region = Rect2(110, 110, 55, 55)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yxego"]
+atlas = ExtResource("2_0776t")
+region = Rect2(165, 110, 55, 55)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qn8f5"]
+atlas = ExtResource("2_0776t")
+region = Rect2(220, 110, 55, 55)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_36nw6"]
+atlas = ExtResource("2_0776t")
+region = Rect2(0, 55, 55, 55)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fjksx"]
+atlas = ExtResource("2_0776t")
+region = Rect2(55, 55, 55, 55)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jp7wi"]
+atlas = ExtResource("2_0776t")
+region = Rect2(110, 55, 55, 55)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ya0ej"]
+atlas = ExtResource("2_0776t")
+region = Rect2(165, 55, 55, 55)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_64qek"]
+atlas = ExtResource("2_0776t")
+region = Rect2(0, 220, 55, 55)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sqd44"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7l50e")
+}],
+"loop": true,
+"name": &"hitstunned",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_47frv")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_4wm86")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1hky6")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4khqa")
+}],
+"loop": true,
+"name": &"jumpkick",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7kfx2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0maw7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ntmf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yxego")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qn8f5")
+}],
+"loop": true,
+"name": &"spinkick",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_36nw6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fjksx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jp7wi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ya0ej")
+}],
+"loop": true,
+"name": &"strafe",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_64qek")
+}],
+"loop": true,
+"name": &"throw",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_or4rs"]
+size = Vector2(22, 52)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_faucp"]
+size = Vector2(20, 21.25)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_eps8k"]
+radius = 3.16228
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qs4pp"]
+size = Vector2(16.5, 18)
+
+[node name="Devon" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 4115
+script = ExtResource("1_hq8mi")
+
+[node name="Animations" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 1)
+sprite_frames = SubResource("SpriteFrames_sqd44")
+animation = &"spinkick"
+frame_progress = 0.000136762
+
+[node name="Body" type="CollisionShape2D" parent="."]
+position = Vector2(7, -1)
+shape = SubResource("RectangleShape2D_or4rs")
+
+[node name="Hitstun" type="Node2D" parent="."]
+
+[node name="HitstunTimer" type="Timer" parent="Hitstun"]
+one_shot = true
+
+[node name="HitstunSFX" type="AudioStreamPlayer" parent="Hitstun"]
+stream = ExtResource("3_txon6")
+
+[node name="Attacks" type="Node2D" parent="."]
+
+[node name="SpinKick" parent="Attacks" instance=ExtResource("4_evep4")]
+visible = false
+collision_layer = 8
+collision_mask = 1
+length = 0.71
+windup = 0.28
+hitbox_time = 0.28
+hitstun_length = 0.4
+knockback = Vector2(-700, -300)
+
+[node name="HitBox" parent="Attacks/SpinKick" index="3"]
+position = Vector2(-14, 3.625)
+shape = SubResource("RectangleShape2D_faucp")
+
+[node name="SFX" parent="Attacks/SpinKick" index="4"]
+stream = ExtResource("5_juuw6")
+
+[node name="ThrowVape" parent="Attacks" instance=ExtResource("4_evep4")]
+collision_layer = 8
+collision_mask = 1
+length = 0.5
+hitbox_time = 0.5
+projectile = ExtResource("6_ct6go")
+throw_projectile = true
+
+[node name="HitBox" parent="Attacks/ThrowVape" index="3"]
+position = Vector2(-13, -6)
+shape = SubResource("CircleShape2D_eps8k")
+
+[node name="SFX" parent="Attacks/ThrowVape" index="4"]
+stream = ExtResource("5_juuw6")
+
+[node name="JumpKick" parent="Attacks" instance=ExtResource("4_evep4")]
+visible = false
+collision_layer = 8
+collision_mask = 1
+length = 2.0
+hitbox_time = 2.0
+hitstun_length = 0.6
+damage = 20.0
+knockback = Vector2(-800, -100)
+
+[node name="HitBox" parent="Attacks/JumpKick" index="3"]
+position = Vector2(-20.25, 4)
+shape = SubResource("RectangleShape2D_qs4pp")
+
+[node name="SFX" parent="Attacks/JumpKick" index="4"]
+stream = ExtResource("5_juuw6")
+
+[node name="AttackTimer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[node name="StrafeTimer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[node name="JumpTimer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[connection signal="timeout" from="Hitstun/HitstunTimer" to="." method="_on_hitstun_timeout"]
+[connection signal="attack_finished" from="Attacks/SpinKick" to="." method="_on_attack_finished"]
+[connection signal="attack_finished" from="Attacks/ThrowVape" to="." method="_on_attack_finished"]
+[connection signal="send_projectile" from="Attacks/ThrowVape" to="." method="_on_send_projectile"]
+[connection signal="attack_finished" from="Attacks/JumpKick" to="." method="_on_attack_finished"]
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
+[connection signal="timeout" from="StrafeTimer" to="." method="_on_strafe_timer_timeout"]
+[connection signal="timeout" from="JumpTimer" to="." method="_on_jump_timer_timeout"]
+
+[editable path="Attacks/SpinKick"]
+[editable path="Attacks/ThrowVape"]
+[editable path="Attacks/JumpKick"]

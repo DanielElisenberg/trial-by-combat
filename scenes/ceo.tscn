@@ -8,10 +8,10 @@
 [ext_resource type="PackedScene" uid="uid://rgdpxpaeny10" path="res://scenes/flying_money.tscn" id="6_udxvw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_or4rs"]
-size = Vector2(28, 52)
+size = Vector2(22, 52)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_faucp"]
-size = Vector2(16, 30.5)
+size = Vector2(20, 21.25)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_eps8k"]
 radius = 3.16228
@@ -25,6 +25,7 @@ script = ExtResource("1_7ej7h")
 position = Vector2(0, 4)
 sprite_frames = ExtResource("2_0sd2j")
 animation = &"idle"
+frame_progress = 0.260489
 
 [node name="Body" type="CollisionShape2D" parent="."]
 position = Vector2(7, -1)

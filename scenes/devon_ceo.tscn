@@ -1,0 +1,103 @@
+[gd_scene load_steps=13 format=3 uid="uid://cuptj2gj17jw5"]
+
+[ext_resource type="Script" path="res://scripts/arena.gd" id="1_x3aih"]
+[ext_resource type="Texture2D" uid="uid://slnivve5revd" path="res://sprites/backgrounds/fight_bg.png" id="2_ke4w1"]
+[ext_resource type="PackedScene" uid="uid://dpgss5cyimvpn" path="res://scenes/player_character.tscn" id="3_ekycc"]
+[ext_resource type="PackedScene" uid="uid://r5peab67hacc" path="res://scenes/health_bar.tscn" id="4_j7mu3"]
+[ext_resource type="FontFile" uid="uid://cldenxc5p1221" path="res://fonts/Pixelify_Sans/static/PixelifySans-Medium.ttf" id="5_oug58"]
+[ext_resource type="PackedScene" uid="uid://bmyw515iad88a" path="res://scenes/devon.tscn" id="6_srsxr"]
+[ext_resource type="PackedScene" uid="uid://cskky6nw8cvrg" path="res://scenes/flying_text.tscn" id="7_vqt87"]
+[ext_resource type="AudioStream" uid="uid://cbd607hngait1" path="res://sounds/trial_by_combat.mp3" id="8_gdunl"]
+[ext_resource type="AudioStream" uid="uid://yh1wssknxt2e" path="res://sounds/sfx/sfx_fight.mp3" id="9_bwmys"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2jsfy"]
+size = Vector2(1923, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rcbd3"]
+size = Vector2(18, 898)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ottia"]
+size = Vector2(18, 889.5)
+
+[node name="DevonCEO" type="Node2D"]
+script = ExtResource("1_x3aih")
+
+[node name="FightBg" type="Sprite2D" parent="."]
+position = Vector2(969, 527)
+scale = Vector2(5.5, 5.5)
+texture = ExtResource("2_ke4w1")
+
+[node name="Bounds" type="StaticBody2D" parent="."]
+collision_layer = 16
+collision_mask = 5
+
+[node name="Floor" type="CollisionShape2D" parent="Bounds"]
+position = Vector2(959, 881)
+shape = SubResource("RectangleShape2D_2jsfy")
+
+[node name="LeftWall" type="CollisionShape2D" parent="Bounds"]
+position = Vector2(-1, 439)
+shape = SubResource("RectangleShape2D_rcbd3")
+
+[node name="RightWall" type="CollisionShape2D" parent="Bounds"]
+position = Vector2(1919, 442.25)
+shape = SubResource("RectangleShape2D_ottia")
+
+[node name="Player" type="Node2D" parent="."]
+
+[node name="PlayerCharacter" parent="Player" instance=ExtResource("3_ekycc")]
+position = Vector2(426, 727)
+scale = Vector2(6, 6)
+
+[node name="PlayerHealthBar" parent="Player" instance=ExtResource("4_j7mu3")]
+position = Vector2(2, 0)
+flipped = 1
+
+[node name="PlayerPosition" type="Node2D" parent="Player"]
+position = Vector2(427, 726)
+
+[node name="PlayerScore" type="Label" parent="Player"]
+offset_left = 473.0
+offset_top = -1.0
+offset_right = 496.0
+offset_bottom = 22.0
+theme_override_fonts/font = ExtResource("5_oug58")
+theme_override_font_sizes/font_size = 26
+text = "0"
+
+[node name="Enemy" type="Node2D" parent="."]
+
+[node name="EnemyHealthBar" parent="Enemy" instance=ExtResource("4_j7mu3")]
+position = Vector2(1456, 0)
+
+[node name="EnemyPosition" type="Node2D" parent="Enemy"]
+position = Vector2(1530, 721)
+
+[node name="EnemyScore" type="Label" parent="Enemy"]
+offset_left = 1431.0
+offset_right = 1471.0
+offset_bottom = 28.0
+theme_override_fonts/font = ExtResource("5_oug58")
+theme_override_font_sizes/font_size = 26
+text = "0"
+
+[node name="EnemyCharacter" parent="Enemy" instance=ExtResource("6_srsxr")]
+position = Vector2(1530, 722)
+scale = Vector2(6, 6)
+
+[node name="FlyingText" parent="." instance=ExtResource("7_vqt87")]
+
+[node name="BattleMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_gdunl")
+autoplay = true
+
+[node name="FIGHT" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_bwmys")
+autoplay = true
+
+[connection signal="damage_taken" from="Player/PlayerCharacter" to="." method="_on_player_damage_taken"]
+[connection signal="send_projectile" from="Player/PlayerCharacter" to="." method="_on_send_projectile"]
+[connection signal="health_depleted" from="Player/PlayerHealthBar" to="." method="_on_player_health_bar_health_depleted"]
+[connection signal="health_depleted" from="Enemy/EnemyHealthBar" to="." method="_on_enemy_health_bar_health_depleted"]
+[connection signal="damage_taken" from="Enemy/EnemyCharacter" to="." method="_on_enemy_damage_taken"]
+[connection signal="send_projectile" from="Enemy/EnemyCharacter" to="." method="_on_send_projectile"]

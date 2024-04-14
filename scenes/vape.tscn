@@ -1,0 +1,53 @@
+[gd_scene load_steps=9 format=3 uid="uid://cpramelfm2ttu"]
+
+[ext_resource type="PackedScene" uid="uid://o58i8w20fxs7" path="res://scenes/projectile.tscn" id="1_osx04"]
+[ext_resource type="Texture2D" uid="uid://bt51h3dbcrcif" path="res://sprites/fighters/vape.png" id="2_clmbq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ly2f"]
+atlas = ExtResource("2_clmbq")
+region = Rect2(0, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_klywf"]
+atlas = ExtResource("2_clmbq")
+region = Rect2(20, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yq2jb"]
+atlas = ExtResource("2_clmbq")
+region = Rect2(40, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4cj1j"]
+atlas = ExtResource("2_clmbq")
+region = Rect2(60, 0, 20, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_aljof"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8ly2f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_klywf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yq2jb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4cj1j")
+}],
+"loop": true,
+"name": &"default",
+"speed": 7.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bbm47"]
+
+[node name="Vape" instance=ExtResource("1_osx04")]
+scale = Vector2(5, 5)
+speed = 400.0
+
+[node name="Animation" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_aljof")
+frame_progress = 0.454405
+
+[node name="Collision" parent="." index="1"]
+shape = SubResource("CircleShape2D_bbm47")
