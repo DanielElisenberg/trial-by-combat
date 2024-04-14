@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://byshmomdcx3dv"]
+
+[ext_resource type="Script" path="res://scripts/TextBox.gd" id="1_khkc1"]
+[ext_resource type="FontFile" uid="uid://bh4o4pc5pwotn" path="res://fonts/Pixelify_Sans/static/PixelifySans-Bold.ttf" id="2_im3af"]
+[ext_resource type="FontFile" uid="uid://cldmt3smtivah" path="res://fonts/Pixelify_Sans/static/PixelifySans-Regular.ttf" id="3_m7kre"]
+[ext_resource type="Texture2D" uid="uid://cal4a3dtvw4l2" path="res://sprites/portraits/judge.png" id="4_ncfae"]
+
+[node name="TextBox" type="Node2D"]
+script = ExtResource("1_khkc1")
+
+[node name="Name" type="Label" parent="."]
+offset_left = 341.0
+offset_top = 791.0
+offset_right = 520.0
+offset_bottom = 845.0
+theme_override_fonts/font = ExtResource("2_im3af")
+theme_override_font_sizes/font_size = 44
+text = "Warlock"
+
+[node name="Text" type="Label" parent="."]
+offset_left = 338.0
+offset_top = 880.0
+offset_right = 1444.0
+offset_bottom = 983.0
+theme_override_fonts/font = ExtResource("3_m7kre")
+theme_override_font_sizes/font_size = 41
+text = "This is a short text that should be possible to display... on one line! and if i write more it continues here"
+autowrap_mode = 2
+
+[node name="Profile" type="Sprite2D" parent="."]
+position = Vector2(1563, 899)
+scale = Vector2(10, 10)
+texture = ExtResource("4_ncfae")
