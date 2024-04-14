@@ -131,6 +131,7 @@ func hit(hitstun_time, damage, knockback):
 		velocity = knockback
 	else:
 		emit_signal("damage_taken", damage / 5)
+		$BlockTimer.stop()
 		initiate_bump()
 
 

@@ -83,6 +83,7 @@ one_shot = true
 autostart = true
 
 [node name="BlockTimer" type="Timer" parent="."]
+one_shot = true
 
 [connection signal="timeout" from="Hitstun/HitstunTimer" to="." method="_on_hitstun_timeout"]
 [connection signal="attack_finished" from="Attacks/Bump" to="." method="_on_attack_finished"]
