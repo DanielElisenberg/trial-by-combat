@@ -49,11 +49,12 @@ collision_mask = 12
 speed = 500.0
 direction = 1
 damage = 5.0
+hitstun = 0.3
 
 [node name="Animation" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_woq21")
 autoplay = "default"
-frame_progress = 0.119005
+frame_progress = 0.67539
 
 [node name="Collision" parent="." index="1"]
 shape = SubResource("CircleShape2D_gfam2")

@@ -48,6 +48,7 @@ collision_layer = 8
 collision_mask = 3
 speed = 500.0
 damage = 5.0
+hitstun = 0.3
 
 [node name="Animation" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_hbf2y")

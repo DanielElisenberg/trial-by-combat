@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 
 const SPEED = 400.0
-const JUMP_VELOCITY = -1400.0
+const JUMP_VELOCITY = -1300.0
 
 enum Status {IDLE, ATTACKING, STUNNED, BLOCKING}
 
@@ -20,6 +20,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 
 @onready var jab = $Attacks/Jab
+@onready var arial_kick = $Attacks/ArialKick
 @onready var throw_gavel = $Attacks/ThrowGavel
 @onready var animated_sprite = $AnimatedSprite
 
@@ -30,11 +31,21 @@ func _process(delta):
 			status = Status.ATTACKING
 			current_attack = jab
 			animations.play("jab")
+		elif Input.is_action_just_pressed("jab") and not is_on_floor():
+			arial_kick.initiate_attack()
+			status = Status.ATTACKING
+			current_attack = arial_kick
+			animations.play("flykick")
 		elif Input.is_action_just_pressed("projectile"):
 			throw_gavel.initiate_attack()
 			animations.play("throw")
 			status = Status.ATTACKING
 			current_attack = throw_gavel
+	if current_attack == arial_kick and is_on_floor():
+		current_attack.disable()
+		current_attack = null
+		status = Status.IDLE
+		animations.play("idle")
 
 
 func _physics_process(delta):
