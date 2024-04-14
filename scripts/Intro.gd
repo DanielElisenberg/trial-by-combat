@@ -15,8 +15,7 @@ func _process(delta):
 	if Input.is_action_just_pressed("ui_accept"):
 		script_index += 1
 		if script_index >= len(label_script):
-			# change scene here
-			pass
+			get_tree().change_scene_to_file("res://scenes/arena.tscn")
 		else:
 			label.text = label_script[script_index]
 		
