@@ -28,7 +28,7 @@ script = ExtResource("1_c4xu5")
 
 [node name="Animations" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("2_hteys")
-animation = &"gavelsmash"
+animation = &"idle"
 
 [node name="Body" type="CollisionShape2D" parent="."]
 position = Vector2(-3, 0)

@@ -24,8 +24,7 @@ script = ExtResource("1_7ej7h")
 [node name="Animations" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, 4)
 sprite_frames = ExtResource("2_0sd2j")
-animation = &"throw"
-frame_progress = 0.901568
+animation = &"idle"
 
 [node name="Body" type="CollisionShape2D" parent="."]
 position = Vector2(7, -1)

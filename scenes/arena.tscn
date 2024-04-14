@@ -57,6 +57,8 @@ shape = SubResource("RectangleShape2D_ottia")
 [node name="Player" type="Node2D" parent="."]
 
 [node name="PlayerCharacter" parent="Player" instance=ExtResource("4_5tkut")]
+position = Vector2(426, 728)
+scale = Vector2(6, 6)
 
 [node name="PlayerHealthBar" parent="Player" instance=ExtResource("3_p5doc")]
 position = Vector2(2, 0)
