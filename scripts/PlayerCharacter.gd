@@ -92,6 +92,8 @@ func hit(hitstun_time, damage):
 		animations.play("hitstunned")
 		hitstun_timer.start(hitstun_time)
 		emit_signal("damage_taken", damage)
+	else:
+		emit_signal("damage_taken", damage / 5)
 
 
 func _on_hitstun_timeout():

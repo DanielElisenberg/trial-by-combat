@@ -187,6 +187,7 @@ position = Vector2(-19.5, -1.75)
 shape = SubResource("RectangleShape2D_faucp")
 
 [node name="ThrowFireball" parent="Attacks" instance=ExtResource("2_4nidl")]
+visible = false
 collision_layer = 8
 collision_mask = 1
 windup = 0.4
@@ -199,7 +200,6 @@ position = Vector2(-18, -5)
 shape = SubResource("CircleShape2D_eps8k")
 
 [node name="Kick" parent="Attacks" instance=ExtResource("2_4nidl")]
-visible = false
 collision_layer = 8
 collision_mask = 1
 windup = 0.6
@@ -208,7 +208,7 @@ hitstun_length = 0.6
 damage = 20.0
 
 [node name="HitBox" parent="Attacks/Kick" index="3"]
-position = Vector2(-20.5, 4)
+position = Vector2(-23, 4)
 shape = SubResource("RectangleShape2D_qs4pp")
 
 [node name="AttackTimer" type="Timer" parent="."]

@@ -20,3 +20,7 @@ func _process(delta):
 func _on_body_entered(body):
 	body.hit(hitstun, damage)
 	queue_free()
+
+
+func _on_area_entered(area):
+	queue_free()

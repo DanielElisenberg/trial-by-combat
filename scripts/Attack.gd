@@ -51,7 +51,6 @@ func disable_hitbox():
 	hitbox.set_deferred("disabled", true)
 
 func _on_attack_timer_timeout():
-	print("sending 'attack_finished' signal")
 	emit_signal("attack_finished")
 	disable()
 
