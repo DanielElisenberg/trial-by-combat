@@ -48,6 +48,7 @@ collision_layer = 2
 collision_mask = 12
 speed = 500.0
 direction = 1
+damage = 5.0
 
 [node name="Animation" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_woq21")

@@ -5,6 +5,7 @@ extends Area2D
 @export var hitbox_time = 1.0
 @export var hitstun_length = 0.5
 @export var damage = 10.0
+@export var knockback = Vector2(0, 0)
 @export var projectile: PackedScene
 @export var throw_projectile: bool
 @onready var hitbox = $HitBox

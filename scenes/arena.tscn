@@ -12,10 +12,10 @@
 size = Vector2(1923, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rcbd3"]
-size = Vector2(18, 850)
+size = Vector2(18, 898)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ottia"]
-size = Vector2(18, 842.5)
+size = Vector2(18, 889.5)
 
 [node name="Arena" type="Node2D"]
 script = ExtResource("1_okel5")
@@ -30,23 +30,23 @@ collision_layer = 16
 collision_mask = 5
 
 [node name="Floor" type="CollisionShape2D" parent="Bounds"]
-position = Vector2(958.5, 832)
+position = Vector2(959, 881)
 shape = SubResource("RectangleShape2D_2jsfy")
 
 [node name="LeftWall" type="CollisionShape2D" parent="Bounds"]
-position = Vector2(-1, 415)
+position = Vector2(-1, 439)
 shape = SubResource("RectangleShape2D_rcbd3")
 
 [node name="RightWall" type="CollisionShape2D" parent="Bounds"]
-position = Vector2(1919, 418.75)
+position = Vector2(1919, 442.25)
 shape = SubResource("RectangleShape2D_ottia")
 
 [node name="Player" parent="." instance=ExtResource("4_5tkut")]
-position = Vector2(200, 678)
+position = Vector2(426, 725)
 scale = Vector2(6, 6)
 
 [node name="EnemyCharacter" parent="." instance=ExtResource("4_liu3o")]
-position = Vector2(1532, 671)
+position = Vector2(1529, 722)
 scale = Vector2(6, 6)
 
 [node name="PlayerHealthBar" parent="." instance=ExtResource("3_p5doc")]
@@ -58,7 +58,7 @@ position = Vector2(1456, 0)
 
 [node name="BattleMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_5htii")
-volume_db = 2.0
+volume_db = 1.0
 autoplay = true
 
 [node name="FIGHT" type="AudioStreamPlayer" parent="."]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=27 format=3 uid="uid://be5issjair2mf"]
 
-[ext_resource type="Script" path="res://scenes/enemy_character.gd" id="1_smt30"]
+[ext_resource type="Script" path="res://scripts/enemy_character.gd" id="1_o63gp"]
 [ext_resource type="Texture2D" uid="uid://o1obc3xwl2ao" path="res://sprites/fighters/satansheet.png" id="1_t4k4h"]
 [ext_resource type="PackedScene" uid="uid://krgajkm6wgc6" path="res://scenes/attack.tscn" id="2_4nidl"]
 [ext_resource type="PackedScene" uid="uid://dwvw24miusq1r" path="res://scenes/fireball.tscn" id="3_i2a5e"]
@@ -146,7 +146,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_or4rs"]
-size = Vector2(44, 52)
+size = Vector2(39, 52)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_faucp"]
 size = Vector2(15, 30.5)
@@ -155,19 +155,19 @@ size = Vector2(15, 30.5)
 radius = 3.16228
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qs4pp"]
-size = Vector2(11, 18)
+size = Vector2(16.5, 18)
 
 [node name="EnemyCharacter" type="CharacterBody2D"]
 collision_layer = 4
 collision_mask = 19
-script = ExtResource("1_smt30")
+script = ExtResource("1_o63gp")
 
 [node name="Animations" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_prwda")
 animation = &"throw"
 
 [node name="Body" type="CollisionShape2D" parent="."]
-position = Vector2(5, -1)
+position = Vector2(7.5, -1)
 shape = SubResource("RectangleShape2D_or4rs")
 
 [node name="Hitstun" type="Node2D" parent="."]
@@ -181,7 +181,6 @@ stream = ExtResource("3_ixxgo")
 [node name="Attacks" type="Node2D" parent="."]
 
 [node name="Jab" parent="Attacks" instance=ExtResource("2_4nidl")]
-visible = false
 collision_layer = 8
 collision_mask = 1
 length = 0.7
@@ -213,6 +212,7 @@ shape = SubResource("CircleShape2D_eps8k")
 stream = ExtResource("5_rb724")
 
 [node name="Kick" parent="Attacks" instance=ExtResource("2_4nidl")]
+visible = false
 collision_layer = 8
 collision_mask = 1
 windup = 0.6
@@ -221,7 +221,7 @@ hitstun_length = 0.6
 damage = 20.0
 
 [node name="HitBox" parent="Attacks/Kick" index="3"]
-position = Vector2(-23, 4)
+position = Vector2(-20.25, 4)
 shape = SubResource("RectangleShape2D_qs4pp")
 
 [node name="SFX" parent="Attacks/Kick" index="4"]
