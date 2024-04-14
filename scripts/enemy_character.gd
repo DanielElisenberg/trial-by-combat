@@ -4,12 +4,12 @@ extends CharacterBody2D
 const SPEED = 400.0
 const JUMP_VELOCITY = -400.0
 
-enum Status {IDLE, ATTACKING, STUNNED, BLOCKING}
+enum Status {IDLE, ATTACKING, STUNNED, BLOCKING, INACTIVE}
 
 @onready var animations: AnimatedSprite2D = $Animations
 @onready var hitstun_timer = $Hitstun/HitstunTimer
 @onready var hitstun_sfx = $Hitstun/HitstunSFX
-var status: Status = Status.IDLE
+var status: Status = Status.INACTIVE
 var current_attack = null
 
 signal damage_taken(damage)
@@ -29,6 +29,8 @@ var direction = 0
 
 
 func _on_attack_timer_timeout():
+	if status == Status.INACTIVE:
+		return
 	if status != Status.STUNNED:
 		var random_attack = randi_range(0, 2)
 		if random_attack == 0:
@@ -51,12 +53,40 @@ func _on_attack_timer_timeout():
 		attack_timer.start(randf_range(0.1, 1))
 
 
+func reset(start_position):
+	if current_attack != null:
+		current_attack.disable()
+		current_attack = null
+	status = Status.IDLE
+	animations.play("idle")
+	velocity.x = 0
+	hitstun_timer.stop()
+	attack_timer.start()
+	strafe_timer.start()
+	direction = 0
+	position = start_position
+
+func stop():
+	if current_attack != null:
+		current_attack.disable()
+		current_attack = null
+	animations.stop()
+	status = Status.INACTIVE
+	velocity.x = 0
+	hitstun_timer.stop()
+	attack_timer.stop()
+	strafe_timer.stop()
+	direction = 0
+	
+
 func _on_strafe_timer_timeout():
 	direction = randi_range(-1, 1)
 	strafe_timer.start(randf_range(0.5, 2))
 
 
 func _physics_process(delta):
+	if status == Status.INACTIVE:
+		return
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += gravity * delta

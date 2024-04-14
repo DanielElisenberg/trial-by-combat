@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://xjrc46yiavnt"]
+[gd_scene load_steps=3 format=3 uid="uid://cskky6nw8cvrg"]
 
 [ext_resource type="Script" path="res://scripts/flying_text.gd" id="1_s04k6"]
 [ext_resource type="FontFile" uid="uid://cldenxc5p1221" path="res://fonts/Pixelify_Sans/static/PixelifySans-Medium.ttf" id="2_aeabw"]

@@ -4,12 +4,12 @@ extends CharacterBody2D
 const SPEED = 400.0
 const JUMP_VELOCITY = -1300.0
 
-enum Status {IDLE, ATTACKING, STUNNED, BLOCKING}
+enum Status {IDLE, ATTACKING, STUNNED, BLOCKING, INACTIVE}
 
 @onready var animations: AnimatedSprite2D = $Animations
 @onready var hitstun_timer = $Hitstun/HitstunTimer
 @onready var hitstun_SFX = $Hitstun/HitstunSFX
-var status: Status = Status.IDLE
+var status: Status = Status.INACTIVE
 var current_attack = null
 
 signal damage_taken(damage)
@@ -29,6 +29,8 @@ var can_combo_jab = false
 @onready var animated_sprite = $AnimatedSprite
 
 func _process(delta):
+	if status == Status.INACTIVE:
+		return
 	if status != Status.STUNNED and status != Status.ATTACKING:
 		if Input.is_action_just_pressed("jab") and is_on_floor():
 			jab.initiate_attack()
@@ -52,6 +54,7 @@ func _process(delta):
 		if jabs_thrown == 1:
 			current_attack.disable()
 			current_attack.initiate_attack()
+			animations.play("jab")
 			animations.set_frame_and_progress(0, 0)
 			jabs_thrown += 1
 			can_combo_jab = false
@@ -72,7 +75,33 @@ func _process(delta):
 		animations.play("idle")
 
 
+func reset(start_position):
+	if current_attack != null:
+		current_attack.disable()
+		current_attack = null
+	status = Status.IDLE
+	jabs_thrown = 0
+	can_combo_jab = false
+	animations.play("idle")
+	velocity.x = 0
+	hitstun_timer.stop()
+	position = start_position
+
+
+func stop():
+	status = Status.INACTIVE
+	hitstun_timer.stop()
+	jabs_thrown = 0
+	can_combo_jab = false
+	animations.stop()
+	if current_attack != null:
+		current_attack.disable()
+		current_attack = null
+
+
 func _physics_process(delta):
+	if status == Status.INACTIVE:
+		return
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += gravity * delta
