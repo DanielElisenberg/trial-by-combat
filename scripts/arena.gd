@@ -50,5 +50,7 @@ func next_round():
 		flying_text.show_text('FIGHT!')
 	elif score.x >= 2:
 		flying_text.show_text('VICTORY!')
+		await flying_text.finished
+		get_tree().change_scene_to_file("res://scenes/arena_ceo.tscn")
 	else:
 		flying_text.show_text('DEFEAT!')

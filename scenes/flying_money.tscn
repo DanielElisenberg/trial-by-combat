@@ -1,43 +1,43 @@
 [gd_scene load_steps=10 format=3 uid="uid://rgdpxpaeny10"]
 
 [ext_resource type="PackedScene" uid="uid://o58i8w20fxs7" path="res://scenes/projectile.tscn" id="1_1cipd"]
-[ext_resource type="Script" path="res://scenes/flying_money.gd" id="2_qj5a3"]
-[ext_resource type="Texture2D" uid="uid://dd65215knhlrn" path="res://sprites/fighters/fireball.png" id="3_jdynm"]
+[ext_resource type="Script" path="res://scripts/flying_money.gd" id="2_qj5a3"]
+[ext_resource type="Texture2D" uid="uid://1r7n58vtj5bi" path="res://sprites/fighters/flying_money.png" id="3_xif7o"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_jaytu"]
-atlas = ExtResource("3_jdynm")
+[sub_resource type="AtlasTexture" id="AtlasTexture_a03d7"]
+atlas = ExtResource("3_xif7o")
 region = Rect2(0, 0, 20, 20)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_g45cb"]
-atlas = ExtResource("3_jdynm")
+[sub_resource type="AtlasTexture" id="AtlasTexture_xsc7e"]
+atlas = ExtResource("3_xif7o")
 region = Rect2(20, 0, 20, 20)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_x71ii"]
-atlas = ExtResource("3_jdynm")
+[sub_resource type="AtlasTexture" id="AtlasTexture_dw0ab"]
+atlas = ExtResource("3_xif7o")
 region = Rect2(40, 0, 20, 20)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_hvubk"]
-atlas = ExtResource("3_jdynm")
+[sub_resource type="AtlasTexture" id="AtlasTexture_11rqs"]
+atlas = ExtResource("3_xif7o")
 region = Rect2(60, 0, 20, 20)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_hnv7k"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_jaytu")
+"texture": SubResource("AtlasTexture_a03d7")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_g45cb")
+"texture": SubResource("AtlasTexture_xsc7e")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_x71ii")
+"texture": SubResource("AtlasTexture_dw0ab")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_hvubk")
+"texture": SubResource("AtlasTexture_11rqs")
 }],
 "loop": true,
 "name": &"default",
-"speed": 7.0
+"speed": 4.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_s565p"]
@@ -53,6 +53,7 @@ speed = 250.0
 
 [node name="Animation" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_hnv7k")
+frame_progress = 0.716454
 
 [node name="Collision" parent="." index="1"]
 shape = SubResource("CircleShape2D_s565p")
