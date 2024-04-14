@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dpgss5cyimvpn"]
+[gd_scene load_steps=12 format=3 uid="uid://dpgss5cyimvpn"]
 
 [ext_resource type="Script" path="res://scripts/PlayerCharacter.gd" id="1_c4xu5"]
 [ext_resource type="SpriteFrames" uid="uid://b7aqpjous2ewb" path="res://sprites/fighters/player.tres" id="2_hteys"]
@@ -19,13 +19,16 @@ radius = 4.12311
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g7smb"]
 size = Vector2(27, 35)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jq5q1"]
+size = Vector2(15, 20)
+
 [node name="PlayerCharacter" type="CharacterBody2D"]
 collision_mask = 21
 script = ExtResource("1_c4xu5")
 
 [node name="Animations" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("2_hteys")
-animation = &"flykick"
+animation = &"kick"
 
 [node name="Body" type="CollisionShape2D" parent="."]
 position = Vector2(-3, 0)
@@ -34,21 +37,24 @@ shape = SubResource("RectangleShape2D_wbuop")
 [node name="Attacks" type="Node2D" parent="."]
 
 [node name="Jab" parent="Attacks" instance=ExtResource("3_ovjoi")]
-visible = false
 collision_layer = 2
 collision_mask = 4
 length = 0.4
 windup = 0.2
 hitbox_time = 0.1
-hitstun_length = 0.3
+hitstun_length = 0.35
 damage = 5.0
-knockback = Vector2(500, -400)
+knockback = Vector2(300, -200)
 
-[node name="HitBox" parent="Attacks/Jab" index="3"]
+[node name="ComboTimer" type="Timer" parent="Attacks/Jab"]
+wait_time = 0.3
+one_shot = true
+
+[node name="HitBox" parent="Attacks/Jab" index="4"]
 position = Vector2(18.5, -1)
 shape = SubResource("RectangleShape2D_8tifg")
 
-[node name="SFX" parent="Attacks/Jab" index="4"]
+[node name="SFX" parent="Attacks/Jab" index="5"]
 stream = ExtResource("4_5rdj1")
 
 [node name="ThrowGavel" parent="Attacks" instance=ExtResource("3_ovjoi")]
@@ -69,18 +75,34 @@ shape = SubResource("CircleShape2D_xja0r")
 stream = ExtResource("4_5rdj1")
 
 [node name="ArialKick" parent="Attacks" instance=ExtResource("3_ovjoi")]
+visible = false
 collision_layer = 2
 collision_mask = 12
 length = 2.0
 hitbox_time = 2.0
 damage = 15.0
-knockback = Vector2(400, 0)
+knockback = Vector2(600, -400)
 
 [node name="HitBox" parent="Attacks/ArialKick" index="3"]
 position = Vector2(9.5, 11.5)
 shape = SubResource("RectangleShape2D_g7smb")
 
 [node name="SFX" parent="Attacks/ArialKick" index="4"]
+stream = ExtResource("4_5rdj1")
+
+[node name="Kick" parent="Attacks" instance=ExtResource("3_ovjoi")]
+collision_layer = 2
+collision_mask = 12
+length = 0.6
+windup = 0.2
+hitbox_time = 0.4
+damage = 15.0
+
+[node name="HitBox" parent="Attacks/Kick" index="3"]
+position = Vector2(18.5, -1)
+shape = SubResource("RectangleShape2D_jq5q1")
+
+[node name="SFX" parent="Attacks/Kick" index="4"]
 stream = ExtResource("4_5rdj1")
 
 [node name="Hitstun" type="Node2D" parent="."]
@@ -94,8 +116,10 @@ stream = ExtResource("5_y00ta")
 [connection signal="attack_finished" from="Attacks/Jab" to="." method="_on_attack_finished"]
 [connection signal="attack_finished" from="Attacks/ThrowGavel" to="." method="_on_attack_finished"]
 [connection signal="send_projectile" from="Attacks/ThrowGavel" to="." method="_on_send_projectile"]
+[connection signal="attack_finished" from="Attacks/Kick" to="." method="_on_attack_finished"]
 [connection signal="timeout" from="Hitstun/HitstunTimer" to="." method="_on_hitstun_timeout"]
 
 [editable path="Attacks/Jab"]
 [editable path="Attacks/ThrowGavel"]
 [editable path="Attacks/ArialKick"]
+[editable path="Attacks/Kick"]

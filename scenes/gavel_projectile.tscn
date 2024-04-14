@@ -54,7 +54,7 @@ hitstun = 0.3
 [node name="Animation" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_woq21")
 autoplay = "default"
-frame_progress = 0.67539
+frame_progress = 0.312046
 
 [node name="Collision" parent="." index="1"]
 shape = SubResource("CircleShape2D_gfam2")

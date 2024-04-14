@@ -20,6 +20,9 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 
 @onready var jab = $Attacks/Jab
+@onready var jab_combo_timer = $Attacks/Jab/ComboTimer
+var jabs_thrown = 0
+@onready var kick = $Attacks/Kick
 @onready var arial_kick = $Attacks/ArialKick
 @onready var throw_gavel = $Attacks/ThrowGavel
 @onready var animated_sprite = $AnimatedSprite
@@ -27,10 +30,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 func _process(delta):
 	if status != Status.STUNNED and status != Status.ATTACKING:
 		if Input.is_action_just_pressed("jab") and is_on_floor():
-			jab.initiate_attack()
-			status = Status.ATTACKING
-			current_attack = jab
-			animations.play("jab")
+			throw_jab()
 		elif Input.is_action_just_pressed("jab") and not is_on_floor():
 			arial_kick.initiate_attack()
 			status = Status.ATTACKING
@@ -41,11 +41,34 @@ func _process(delta):
 			animations.play("throw")
 			status = Status.ATTACKING
 			current_attack = throw_gavel
+	if current_attack == jab and Input.is_action_just_pressed("jab") and jab_combo_timer.is_stopped():
+		if jabs_thrown == 1:
+			current_attack.disable()
+			current_attack.initiate_attack()
+			animations.set_frame_and_progress(0, 0)
+			jabs_thrown += 1
+		elif jabs_thrown == 2:
+			current_attack.disable()
+			kick.initiate_attack()
+			status = Status.ATTACKING
+			current_attack = kick
+			animations.play("kick")
+			jabs_thrown = 0
+		
 	if current_attack == arial_kick and is_on_floor():
 		current_attack.disable()
 		current_attack = null
 		status = Status.IDLE
 		animations.play("idle")
+
+
+func throw_jab():
+	jab.initiate_attack()
+	status = Status.ATTACKING
+	current_attack = jab
+	animations.play("jab")
+	jab_combo_timer.start()
+	jabs_thrown += 1
 
 
 func _physics_process(delta):
