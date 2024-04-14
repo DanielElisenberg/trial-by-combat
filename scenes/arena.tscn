@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://nc04gqnj5lct"]
+[gd_scene load_steps=10 format=3 uid="uid://nc04gqnj5lct"]
 
 [ext_resource type="Script" path="res://scripts/arena.gd" id="1_okel5"]
 [ext_resource type="Texture2D" uid="uid://slnivve5revd" path="res://sprites/backgrounds/fight_bg.png" id="2_sjyxi"]
 [ext_resource type="PackedScene" uid="uid://r5peab67hacc" path="res://scenes/health_bar.tscn" id="3_p5doc"]
 [ext_resource type="PackedScene" uid="uid://dpgss5cyimvpn" path="res://scenes/player_character.tscn" id="4_5tkut"]
-[ext_resource type="PackedScene" uid="uid://be5issjair2mf" path="res://scenes/enemy_character.tscn" id="4_liu3o"]
+[ext_resource type="PackedScene" path="res://scenes/enemy_character.tscn" id="4_liu3o"]
+[ext_resource type="AudioStream" uid="uid://cbd607hngait1" path="res://sounds/trial_by_combat.mp3" id="6_5htii"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2jsfy"]
 size = Vector2(1923, 20)
@@ -53,6 +54,11 @@ flipped = 1
 
 [node name="EnemyHealthBar" parent="." instance=ExtResource("3_p5doc")]
 position = Vector2(1456, 0)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_5htii")
+volume_db = 3.0
+autoplay = true
 
 [connection signal="damage_taken" from="Player" to="." method="_on_player_damage_taken"]
 [connection signal="send_projectile" from="Player" to="." method="_on_send_projectile"]
