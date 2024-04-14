@@ -1,0 +1,232 @@
+[gd_scene load_steps=25 format=3 uid="uid://be5issjair2mf"]
+
+[ext_resource type="Script" path="res://scenes/enemy_character.gd" id="1_smt30"]
+[ext_resource type="Texture2D" uid="uid://o1obc3xwl2ao" path="res://sprites/fighters/satansheet.png" id="1_t4k4h"]
+[ext_resource type="PackedScene" uid="uid://krgajkm6wgc6" path="res://scenes/attack.tscn" id="2_4nidl"]
+[ext_resource type="PackedScene" uid="uid://dwvw24miusq1r" path="res://scenes/fireball.tscn" id="3_i2a5e"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x06vf"]
+atlas = ExtResource("1_t4k4h")
+region = Rect2(0, 220, 55, 55)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xwx30"]
+atlas = ExtResource("1_t4k4h")
+region = Rect2(0, 0, 55, 55)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0os8o"]
+atlas = ExtResource("1_t4k4h")
+region = Rect2(55, 0, 55, 55)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fwxop"]
+atlas = ExtResource("1_t4k4h")
+region = Rect2(0, 165, 55, 55)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t5rgp"]
+atlas = ExtResource("1_t4k4h")
+region = Rect2(55, 165, 55, 55)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_766ef"]
+atlas = ExtResource("1_t4k4h")
+region = Rect2(110, 165, 55, 55)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t1re0"]
+atlas = ExtResource("1_t4k4h")
+region = Rect2(0, 220, 55, 55)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_owio3"]
+atlas = ExtResource("1_t4k4h")
+region = Rect2(55, 220, 55, 55)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2yet0"]
+atlas = ExtResource("1_t4k4h")
+region = Rect2(110, 220, 55, 55)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lfpjt"]
+atlas = ExtResource("1_t4k4h")
+region = Rect2(0, 55, 55, 55)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5dkfh"]
+atlas = ExtResource("1_t4k4h")
+region = Rect2(55, 55, 55, 55)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nroo8"]
+atlas = ExtResource("1_t4k4h")
+region = Rect2(110, 55, 55, 55)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lki1o"]
+atlas = ExtResource("1_t4k4h")
+region = Rect2(165, 55, 55, 55)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aiv36"]
+atlas = ExtResource("1_t4k4h")
+region = Rect2(0, 110, 55, 55)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cc6ay"]
+atlas = ExtResource("1_t4k4h")
+region = Rect2(55, 110, 55, 55)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_prwda"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x06vf")
+}],
+"loop": true,
+"name": &"hitstunned",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xwx30")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_0os8o")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_fwxop")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t5rgp")
+}, {
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_766ef")
+}],
+"loop": true,
+"name": &"jab",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 5.0,
+"texture": SubResource("AtlasTexture_t1re0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_owio3")
+}, {
+"duration": 4.0,
+"texture": SubResource("AtlasTexture_2yet0")
+}],
+"loop": true,
+"name": &"kick",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lfpjt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5dkfh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nroo8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lki1o")
+}],
+"loop": true,
+"name": &"strafe",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_aiv36")
+}, {
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_cc6ay")
+}],
+"loop": true,
+"name": &"throw",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_or4rs"]
+size = Vector2(44, 52)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_faucp"]
+size = Vector2(15, 30.5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_eps8k"]
+radius = 3.16228
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qs4pp"]
+size = Vector2(11, 18)
+
+[node name="EnemyCharacter" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 19
+script = ExtResource("1_smt30")
+
+[node name="Animations" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_prwda")
+animation = &"throw"
+
+[node name="Body" type="CollisionShape2D" parent="."]
+position = Vector2(5, -1)
+shape = SubResource("RectangleShape2D_or4rs")
+
+[node name="Hitstun" type="Timer" parent="."]
+one_shot = true
+
+[node name="Attacks" type="Node2D" parent="."]
+
+[node name="Jab" parent="Attacks" instance=ExtResource("2_4nidl")]
+visible = false
+collision_layer = 8
+collision_mask = 1
+length = 0.7
+windup = 0.3
+hitbox_time = 0.2
+hitstun_length = 0.4
+
+[node name="HitBox" parent="Attacks/Jab" index="3"]
+position = Vector2(-19.5, -1.75)
+shape = SubResource("RectangleShape2D_faucp")
+
+[node name="ThrowFireball" parent="Attacks" instance=ExtResource("2_4nidl")]
+collision_layer = 8
+collision_mask = 1
+windup = 0.4
+hitbox_time = 0.6
+projectile = ExtResource("3_i2a5e")
+throw_projectile = true
+
+[node name="HitBox" parent="Attacks/ThrowFireball" index="3"]
+position = Vector2(-18, -5)
+shape = SubResource("CircleShape2D_eps8k")
+
+[node name="Kick" parent="Attacks" instance=ExtResource("2_4nidl")]
+visible = false
+collision_layer = 8
+collision_mask = 1
+windup = 0.6
+hitbox_time = 0.4
+hitstun_length = 0.6
+damage = 20.0
+
+[node name="HitBox" parent="Attacks/Kick" index="3"]
+position = Vector2(-20.5, 4)
+shape = SubResource("RectangleShape2D_qs4pp")
+
+[node name="AttackTimer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[node name="StrafeTimer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Hitstun" to="." method="_on_hitstun_timeout"]
+[connection signal="attack_finished" from="Attacks/Jab" to="." method="_on_attack_finished"]
+[connection signal="attack_finished" from="Attacks/ThrowFireball" to="." method="_on_attack_finished"]
+[connection signal="send_projectile" from="Attacks/ThrowFireball" to="." method="_on_send_projectile"]
+[connection signal="attack_finished" from="Attacks/Kick" to="." method="_on_attack_finished"]
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
+[connection signal="timeout" from="StrafeTimer" to="." method="_on_strafe_timer_timeout"]
+
+[editable path="Attacks/Jab"]
+[editable path="Attacks/ThrowFireball"]
+[editable path="Attacks/Kick"]

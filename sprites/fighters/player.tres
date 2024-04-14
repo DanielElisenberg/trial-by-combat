@@ -111,7 +111,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"jab",
-"speed": 7.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
