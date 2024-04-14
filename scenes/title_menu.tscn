@@ -1,21 +1,33 @@
-[gd_scene load_steps=4 format=3 uid="uid://g5h206tqgk8g"]
+[gd_scene load_steps=7 format=3 uid="uid://g5h206tqgk8g"]
 
 [ext_resource type="Script" path="res://scripts/title_menu.gd" id="1_0xdjc"]
-[ext_resource type="Texture2D" uid="uid://dl6srj7p8egnx" path="res://sprites/backgrounds/black_bg.png" id="2_8re38"]
+[ext_resource type="FontFile" uid="uid://bh4o4pc5pwotn" path="res://fonts/Pixelify_Sans/static/PixelifySans-Bold.ttf" id="3_44sft"]
 [ext_resource type="FontFile" uid="uid://cldmt3smtivah" path="res://fonts/Pixelify_Sans/static/PixelifySans-Regular.ttf" id="3_oa7op"]
+[ext_resource type="Texture2D" uid="uid://darmgmcg72ves" path="res://sprites/fighters/judgesheet.png" id="4_cfmhn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jwopw"]
+atlas = ExtResource("4_cfmhn")
+region = Rect2(55, 220, 55, 55)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jdgst"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jwopw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="TitleMenu" type="Node2D"]
 script = ExtResource("1_0xdjc")
 
-[node name="bg" type="Sprite2D" parent="."]
-texture = ExtResource("2_8re38")
-centered = false
-
 [node name="PlayLabel" type="Label" parent="."]
-offset_left = -1.0
-offset_top = 630.0
-offset_right = 1925.0
-offset_bottom = 734.0
+offset_left = 3.0
+offset_top = 715.0
+offset_right = 1929.0
+offset_bottom = 819.0
 theme_override_fonts/font = ExtResource("3_oa7op")
 theme_override_font_sizes/font_size = 80
 text = "Play"
@@ -23,12 +35,28 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ControlLabel" type="Label" parent="."]
-offset_left = -3.0
-offset_top = 785.0
-offset_right = 1923.0
-offset_bottom = 889.0
+offset_left = 1.0
+offset_top = 870.0
+offset_right = 1927.0
+offset_bottom = 974.0
 theme_override_fonts/font = ExtResource("3_oa7op")
 theme_override_font_sizes/font_size = 80
-text = "Control"
+text = "Controls"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="TitleLabel" type="Label" parent="."]
+offset_left = -5.0
+offset_top = 77.0
+offset_right = 1921.0
+offset_bottom = 181.0
+theme_override_fonts/font = ExtResource("3_44sft")
+theme_override_font_sizes/font_size = 150
+text = "TRIAL BY COMBAT"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(947, 461)
+scale = Vector2(8, 8)
+sprite_frames = SubResource("SpriteFrames_jdgst")
