@@ -46,6 +46,7 @@ func next_round():
 		$Player/PlayerHealthBar.reset()
 		$Enemy/EnemyCharacter.reset($Enemy/EnemyPosition.position)
 		$Enemy/EnemyHealthBar.reset()
+		$FIGHT.play()
 		flying_text.show_text('FIGHT!')
 	elif score.x >= 2:
 		flying_text.show_text('VICTORY!')
