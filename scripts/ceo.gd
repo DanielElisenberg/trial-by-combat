@@ -30,15 +30,26 @@ var direction = 0
 func _on_attack_timer_timeout():
 	if status == Status.INACTIVE:
 		return
-	if status != Status.STUNNED:
-		throw_money.initiate_attack()
-		animated_sprite.play("throw")
-		status = Status.ATTACKING
-		current_attack = throw_money
-		attack_timer.start(randf_range(current_attack.length, 3))
+	if status == Status.IDLE:
+		initiate_throw_money()
 	else:
-		attack_timer.start(randf_range(0.1, 1))
+		attack_timer.start(randf_range(0.1, 0.5))
 
+
+func initiate_throw_money():
+	throw_money.initiate_attack()
+	animated_sprite.play("throw")
+	status = Status.ATTACKING
+	current_attack = throw_money
+	attack_timer.start(randf_range(current_attack.length, 2))
+
+
+func initiate_bump():
+	bump.initiate_attack()
+	animated_sprite.play("bump")
+	status = Status.ATTACKING
+	current_attack = bump
+	attack_timer.start(randf_range(current_attack.length, 3))
 
 func reset(start_position):
 	if current_attack != null:
@@ -78,7 +89,7 @@ func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y += gravity * delta
 
-	if status != Status.STUNNED and status != Status.ATTACKING:
+	if status == Status.IDLE:
 		if direction:
 			velocity.x = direction * SPEED
 			animated_sprite.play("strafe")
@@ -87,8 +98,10 @@ func _physics_process(delta):
 			animated_sprite.play("idle")
 	elif status == Status.ATTACKING:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
-	else:
+	elif status == Status.STUNNED:
 		velocity.x = move_toward(velocity.x, 0, 75)
+	elif status == Status.BLOCKING:
+		velocity.x = 0
 	
 	if status == Status.STUNNED:
 		animated_sprite.play("hitstunned")
@@ -116,14 +129,20 @@ func hit(hitstun_time, damage, knockback):
 		emit_signal("damage_taken", damage)
 		hitstun_sfx.play()
 		velocity = knockback
-	
-	emit_signal("damage_taken", damage / 5)
+	else:
+		emit_signal("damage_taken", damage / 5)
+		initiate_bump()
 
 
 func _on_hitstun_timeout():
-	animations.play("idle")
-	status = Status.IDLE
+	animations.play("block")
+	status = Status.BLOCKING
+	$BlockTimer.start(randf_range(1.0, 2.0))
 
 
 func _on_send_projectile(projectile):
 	emit_signal("send_projectile", projectile)
+
+
+func _on_block_timer_timeout():
+	initiate_throw_money()
