@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://nc04gqnj5lct"]
+[gd_scene load_steps=13 format=3 uid="uid://nc04gqnj5lct"]
 
 [ext_resource type="Script" path="res://scripts/arena.gd" id="1_okel5"]
 [ext_resource type="Texture2D" uid="uid://slnivve5revd" path="res://sprites/backgrounds/fight_bg.png" id="2_sjyxi"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dpgss5cyimvpn" path="res://scenes/player_character.tscn" id="4_5tkut"]
 [ext_resource type="PackedScene" uid="uid://be5issjair2mf" path="res://scenes/enemy_character.tscn" id="4_liu3o"]
 [ext_resource type="AudioStream" uid="uid://cbd607hngait1" path="res://sounds/trial_by_combat.mp3" id="6_5htii"]
+[ext_resource type="PackedScene" uid="uid://xjrc46yiavnt" path="res://scenes/flying_text.tscn" id="6_nu61q"]
 [ext_resource type="AudioStream" uid="uid://yh1wssknxt2e" path="res://sounds/sfx/sfx_fight.mp3" id="7_5wkl4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mq1db"]
@@ -66,6 +67,8 @@ flipped = 1
 
 [node name="EnemyHealthBar" parent="." instance=ExtResource("3_p5doc")]
 position = Vector2(1456, 0)
+
+[node name="FlyingText" parent="." instance=ExtResource("6_nu61q")]
 
 [node name="BattleMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_5htii")

@@ -1,5 +1,12 @@
 extends Node2D
 
+@onready var flying_text = $FlyingText
+
+func _ready():
+	flying_text.show_text('ROUND ONE')
+	await flying_text.finished
+	flying_text.show_text('FIGHT!')
+
 
 func _on_player_damage_taken(damage):
 	$PlayerHealthBar.take_damage(damage)
