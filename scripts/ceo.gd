@@ -41,7 +41,7 @@ func initiate_throw_money():
 	animated_sprite.play("throw")
 	status = Status.ATTACKING
 	current_attack = throw_money
-	attack_timer.start(randf_range(1.5, 2.5))
+	attack_timer.start(randf_range(1.0, 2.0))
 
 
 func initiate_bump():

@@ -50,7 +50,7 @@ windup = 0.3
 hitbox_time = 0.2
 hitstun_length = 1.0
 damage = 15.0
-knockback = Vector2(-4000, -700)
+knockback = Vector2(-4000, -900)
 
 [node name="HitBox" parent="Attacks/Bump" index="3"]
 position = Vector2(-15, -1.75)
@@ -83,6 +83,10 @@ one_shot = true
 autostart = true
 
 [node name="BlockTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="BumpTimer" type="Timer" parent="."]
+wait_time = 0.2
 one_shot = true
 
 [connection signal="timeout" from="Hitstun/HitstunTimer" to="." method="_on_hitstun_timeout"]

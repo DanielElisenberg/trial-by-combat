@@ -24,3 +24,12 @@ func show_text(text: String):
 	await tween.finished
 	label.visible = false
 	emit_signal("finished")
+
+
+func show_permanent_text(text: String):
+	label.text = text
+	label.position = Vector2(-label.size.x, 200)
+	label.visible = true
+	
+	var tween = create_tween()
+	tween.tween_property(label, "position", Vector2(960-(label.size.x/2), label.position.y), 0.2)

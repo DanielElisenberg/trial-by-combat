@@ -36,21 +36,21 @@ animations = [{
 }],
 "loop": true,
 "name": &"default",
-"speed": 7.0
+"speed": 9.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bbm47"]
 
 [node name="Vape" instance=ExtResource("1_osx04")]
-scale = Vector2(4, 4)
+scale = Vector2(3, 3)
 collision_layer = 8
 collision_mask = 3
-speed = 400.0
+speed = 500.0
 
 [node name="Animation" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_aljof")
 autoplay = "default"
-frame_progress = 0.454405
+frame_progress = 0.539654
 
 [node name="Collision" parent="." index="1"]
 shape = SubResource("CircleShape2D_bbm47")

@@ -5,6 +5,7 @@ const round_number_text = {1: "ONE", 2: "TWO", 3: "THREE"}
 
 var score: Vector2 = Vector2(0, 0)
 var round = 0
+var game_finished = false
 
 func _ready():
 	next_round()
@@ -12,6 +13,8 @@ func _ready():
 func _process(delta):
 	$Player/PlayerScore.set_text(str(score.x))
 	$Enemy/EnemyScore.set_text(str(score.y))
+	if game_finished and Input.is_action_just_pressed("retry"):
+		get_tree().reload_current_scene()
 
 
 func _on_player_damage_taken(damage):
@@ -52,5 +55,9 @@ func next_round():
 		flying_text.show_text('VICTORY!')
 		await flying_text.finished
 		get_tree().change_scene_to_file("res://scenes/arena_ceo.tscn")
+		game_finished = true
 	else:
 		flying_text.show_text('DEFEAT!')
+		await flying_text.finished
+		flying_text.show_permanent_text('press space to restart!')
+		game_finished = true
