@@ -6,6 +6,7 @@ enum Direction {LEFT = -1, RIGHT = 1}
 @export var direction: Direction
 @export var damage = 10.0
 @export var hitstun = 0.1
+@export var knockback = Vector2(0, 0)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -18,7 +19,7 @@ func _process(delta):
 
 
 func _on_body_entered(body):
-	body.hit(hitstun, damage)
+	body.hit(hitstun, damage, knockback)
 	queue_free()
 
 

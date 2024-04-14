@@ -187,6 +187,7 @@ length = 0.7
 windup = 0.3
 hitbox_time = 0.2
 hitstun_length = 0.4
+knockback = Vector2(-600, -200)
 
 [node name="HitBox" parent="Attacks/Jab" index="3"]
 position = Vector2(-19.5, -1.75)
@@ -219,6 +220,7 @@ windup = 0.6
 hitbox_time = 0.4
 hitstun_length = 0.6
 damage = 20.0
+knockback = Vector2(-1500, -300)
 
 [node name="HitBox" parent="Attacks/Kick" index="3"]
 position = Vector2(-20.25, 4)

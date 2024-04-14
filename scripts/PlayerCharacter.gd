@@ -70,7 +70,7 @@ func _physics_process(delta):
 			status = Status.IDLE
 			animations.play("idle")
 	else:
-		velocity.x = 0
+		velocity.x = move_toward(velocity.x, 0, 100)
 
 	move_and_slide()
 
@@ -83,7 +83,7 @@ func _on_attack_finished():
 		animations.play("idle")
 
 
-func hit(hitstun_time, damage):
+func hit(hitstun_time, damage, knockback):
 	if status == Status.ATTACKING:
 		current_attack.disable()
 		current_attack = null
@@ -94,6 +94,7 @@ func hit(hitstun_time, damage):
 		hitstun_timer.start(hitstun_time)
 		hitstun_SFX.play()
 		emit_signal("damage_taken", damage)
+		velocity = knockback
 	else:
 		emit_signal("damage_taken", damage / 5)
 

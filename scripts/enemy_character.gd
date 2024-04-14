@@ -68,8 +68,10 @@ func _physics_process(delta):
 		else:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 			animated_sprite.play("idle")
+	elif status == Status.ATTACKING:
+		velocity.x = move_toward(velocity.x, 0, SPEED)
 	else:
-		velocity.x = 0
+		velocity.x = move_toward(velocity.x, 0, 50)
 	
 	if status == Status.STUNNED:
 		animated_sprite.play("hitstunned")
@@ -85,7 +87,7 @@ func _on_attack_finished():
 		animations.play("idle")
 
 
-func hit(hitstun_time, damage):
+func hit(hitstun_time, damage, knockback):
 	if status == Status.ATTACKING:
 		current_attack.disable()
 		current_attack = null
@@ -96,6 +98,7 @@ func hit(hitstun_time, damage):
 		hitstun_timer.start(hitstun_time)
 		emit_signal("damage_taken", damage)
 		hitstun_sfx.play()
+		velocity = knockback
 	
 	emit_signal("damage_taken", damage / 5)
 

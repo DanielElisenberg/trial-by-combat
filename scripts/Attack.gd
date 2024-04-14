@@ -57,7 +57,7 @@ func _on_attack_timer_timeout():
 
 
 func _on_body_entered(body):
-	body.hit(hitstun_length, damage)
+	body.hit(hitstun_length, damage, knockback)
 
 
 func _on_windup_timer_timeout():
