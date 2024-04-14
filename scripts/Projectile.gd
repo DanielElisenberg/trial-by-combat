@@ -11,12 +11,14 @@ enum Direction {LEFT = -1, RIGHT = 1}
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	var new_position = Vector2(position.x + delta * speed * direction, position.y)
+	process_projectile(delta, position)
+
+func process_projectile(delta, current_position):
+	var new_position = Vector2(current_position.x + delta * speed * direction, current_position.y)
 	if not get_viewport_rect().has_point(new_position):
 		queue_free()
 	else:
 		set_deferred("position", new_position)
-
 
 func _on_body_entered(body):
 	body.hit(hitstun, damage, knockback)
