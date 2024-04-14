@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://cut375p84uyty"]
+
+[ext_resource type="Script" path="res://scripts/Intro.gd" id="1_ntuy4"]
+[ext_resource type="Texture2D" uid="uid://dl6srj7p8egnx" path="res://sprites/backgrounds/black_bg.png" id="2_ewmh7"]
+[ext_resource type="FontFile" uid="uid://cldenxc5p1221" path="res://fonts/Pixelify_Sans/static/PixelifySans-Medium.ttf" id="3_8xy3d"]
+
+[node name="Intro" type="Node2D"]
+script = ExtResource("1_ntuy4")
+
+[node name="black_bg" type="Sprite2D" parent="."]
+position = Vector2(2.08165e-12, 2.08165e-12)
+texture = ExtResource("2_ewmh7")
+centered = false
+
+[node name="Label" type="Label" parent="."]
+offset_right = 1919.0
+offset_bottom = 1079.0
+theme_override_colors/font_color = Color(0.952941, 1, 0.764706, 1)
+theme_override_fonts/font = ExtResource("3_8xy3d")
+theme_override_font_sizes/font_size = 52
+text = "Somewhere in spacetime there is a courtroom"
+horizontal_alignment = 1
+vertical_alignment = 1
