@@ -51,6 +51,7 @@ damage = 5.0
 
 [node name="Animation" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_hbf2y")
+autoplay = "default"
 frame_progress = 0.88558
 
 [node name="Collision" parent="." index="1"]
