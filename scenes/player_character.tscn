@@ -46,16 +46,16 @@ hitstun_length = 0.4
 damage = 5.0
 knockback = Vector2(300, -200)
 
-[node name="ComboTimer" type="Timer" parent="Attacks/Jab"]
-wait_time = 0.3
-one_shot = true
-
-[node name="HitBox" parent="Attacks/Jab" index="4"]
+[node name="HitBox" parent="Attacks/Jab" index="3"]
 position = Vector2(18.5, -1)
 shape = SubResource("RectangleShape2D_8tifg")
 
-[node name="SFX" parent="Attacks/Jab" index="5"]
+[node name="SFX" parent="Attacks/Jab" index="4"]
 stream = ExtResource("4_5rdj1")
+
+[node name="ComboTimer" type="Timer" parent="Attacks/Jab"]
+wait_time = 0.3
+one_shot = true
 
 [node name="ThrowGavel" parent="Attacks" instance=ExtResource("3_ovjoi")]
 visible = false
