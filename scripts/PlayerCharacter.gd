@@ -23,7 +23,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var jab_combo_timer = $Attacks/Jab/ComboTimer
 var jabs_thrown = 0
 var can_combo_jab = false
-@onready var kick = $Attacks/Kick
+@onready var gavel_smash = $Attacks/GavelSmash
 @onready var arial_kick = $Attacks/ArialKick
 @onready var throw_gavel = $Attacks/ThrowGavel
 @onready var animated_sprite = $AnimatedSprite
@@ -58,10 +58,10 @@ func _process(delta):
 			jab_combo_timer.start()
 		elif jabs_thrown == 2:
 			current_attack.disable()
-			kick.initiate_attack()
+			gavel_smash.initiate_attack()
 			status = Status.ATTACKING
-			current_attack = kick
-			animations.play("kick")
+			current_attack = gavel_smash
+			animations.play("gavelsmash")
 			jabs_thrown = 0
 			can_combo_jab = false
 		
@@ -121,6 +121,8 @@ func _on_attack_finished():
 
 
 func hit(hitstun_time, damage, knockback):
+	can_combo_jab = false
+	jabs_thrown = 0
 	if status == Status.ATTACKING:
 		current_attack.disable()
 		current_attack = null
