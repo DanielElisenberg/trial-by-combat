@@ -1,9 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://dpgss5cyimvpn"]
+[gd_scene load_steps=10 format=3 uid="uid://dpgss5cyimvpn"]
 
 [ext_resource type="Script" path="res://scripts/PlayerCharacter.gd" id="1_c4xu5"]
 [ext_resource type="SpriteFrames" uid="uid://b7aqpjous2ewb" path="res://sprites/fighters/player.tres" id="2_hteys"]
 [ext_resource type="PackedScene" uid="uid://krgajkm6wgc6" path="res://scenes/attack.tscn" id="3_ovjoi"]
 [ext_resource type="PackedScene" uid="uid://cdgugrkb0ixjg" path="res://scenes/gavel_projectile.tscn" id="4_2c01j"]
+[ext_resource type="AudioStream" uid="uid://dligwpsdn26iu" path="res://sounds/sfx/sfx_judge_ohyeah.mp3" id="4_5rdj1"]
+[ext_resource type="AudioStream" uid="uid://v440mgd8m7rp" path="res://sounds/sfx/sfx_judge_hurt.mp3" id="5_y00ta"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wbuop"]
 size = Vector2(29, 48)
@@ -26,9 +28,6 @@ animation = &"jab"
 position = Vector2(-2.5, 0)
 shape = SubResource("RectangleShape2D_wbuop")
 
-[node name="Hitstun" type="Timer" parent="."]
-one_shot = true
-
 [node name="Attacks" type="Node2D" parent="."]
 
 [node name="Jab" parent="Attacks" instance=ExtResource("3_ovjoi")]
@@ -45,6 +44,9 @@ damage = 5.0
 position = Vector2(19, -1)
 shape = SubResource("RectangleShape2D_8tifg")
 
+[node name="SFX" parent="Attacks/Jab" index="4"]
+stream = ExtResource("4_5rdj1")
+
 [node name="ThrowGavel" parent="Attacks" instance=ExtResource("3_ovjoi")]
 collision_layer = 0
 collision_mask = 0
@@ -58,10 +60,21 @@ throw_projectile = true
 position = Vector2(14, 2)
 shape = SubResource("CircleShape2D_xja0r")
 
-[connection signal="timeout" from="Hitstun" to="." method="_on_hitstun_timeout"]
+[node name="SFX" parent="Attacks/ThrowGavel" index="4"]
+stream = ExtResource("4_5rdj1")
+
+[node name="Hitstun" type="Node2D" parent="."]
+
+[node name="HitstunTimer" type="Timer" parent="Hitstun"]
+one_shot = true
+
+[node name="HitstunSFX" type="AudioStreamPlayer" parent="Hitstun"]
+stream = ExtResource("5_y00ta")
+
 [connection signal="attack_finished" from="Attacks/Jab" to="." method="_on_attack_finished"]
 [connection signal="attack_finished" from="Attacks/ThrowGavel" to="." method="_on_attack_finished"]
 [connection signal="send_projectile" from="Attacks/ThrowGavel" to="." method="_on_send_projectile"]
+[connection signal="timeout" from="Hitstun/HitstunTimer" to="." method="_on_hitstun_timeout"]
 
 [editable path="Attacks/Jab"]
 [editable path="Attacks/ThrowGavel"]

@@ -11,6 +11,7 @@ extends Area2D
 @onready var timer = $AttackTimer
 @onready var windup_timer = $WindupTimer
 @onready var hitbox_timer = $HitboxTimer
+@onready var sfx = $SFX
 signal attack_finished
 signal send_projectile(projectile)
 
@@ -20,8 +21,7 @@ func _ready():
 
 
 func disable():
-	set_deferred("process_mode", PROCESS_MODE_DISABLED)
-	set_deferred("visible", false)
+	hitbox.set_deferred("process_mode", PROCESS_MODE_DISABLED)
 	disable_hitbox()
 	timer.stop()
 	windup_timer.stop()
@@ -29,8 +29,7 @@ func disable():
 
 
 func initiate_attack():
-	set_deferred("process_mode", PROCESS_MODE_INHERIT)
-	set_deferred("visible", true)
+	hitbox.set_deferred("process_mode", PROCESS_MODE_INHERIT)
 	timer.start(length)
 	if windup > 0:
 		windup_timer.start(windup)
@@ -39,6 +38,7 @@ func initiate_attack():
 		enable_hitbox()
 
 func enable_hitbox():
+	sfx.play()
 	if throw_projectile:
 		var new_projectile = projectile.instantiate()
 		new_projectile.set_position(to_global(hitbox.position))

@@ -1,9 +1,11 @@
-[gd_scene load_steps=25 format=3 uid="uid://be5issjair2mf"]
+[gd_scene load_steps=27 format=3 uid="uid://be5issjair2mf"]
 
 [ext_resource type="Script" path="res://scenes/enemy_character.gd" id="1_smt30"]
 [ext_resource type="Texture2D" uid="uid://o1obc3xwl2ao" path="res://sprites/fighters/satansheet.png" id="1_t4k4h"]
 [ext_resource type="PackedScene" uid="uid://krgajkm6wgc6" path="res://scenes/attack.tscn" id="2_4nidl"]
 [ext_resource type="PackedScene" uid="uid://dwvw24miusq1r" path="res://scenes/fireball.tscn" id="3_i2a5e"]
+[ext_resource type="AudioStream" uid="uid://dwldr1fl0fk58" path="res://sounds/sfx/sfx_satan_hurt.mp3" id="3_ixxgo"]
+[ext_resource type="AudioStream" uid="uid://d24j80ysdmhkm" path="res://sounds/sfx/sfx_satan_laugh.mp3" id="5_rb724"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x06vf"]
 atlas = ExtResource("1_t4k4h")
@@ -168,8 +170,13 @@ animation = &"throw"
 position = Vector2(5, -1)
 shape = SubResource("RectangleShape2D_or4rs")
 
-[node name="Hitstun" type="Timer" parent="."]
+[node name="Hitstun" type="Node2D" parent="."]
+
+[node name="HitstunTimer" type="Timer" parent="Hitstun"]
 one_shot = true
+
+[node name="HitstunSFX" type="AudioStreamPlayer" parent="Hitstun"]
+stream = ExtResource("3_ixxgo")
 
 [node name="Attacks" type="Node2D" parent="."]
 
@@ -186,6 +193,9 @@ hitstun_length = 0.4
 position = Vector2(-19.5, -1.75)
 shape = SubResource("RectangleShape2D_faucp")
 
+[node name="SFX" parent="Attacks/Jab" index="4"]
+stream = ExtResource("5_rb724")
+
 [node name="ThrowFireball" parent="Attacks" instance=ExtResource("2_4nidl")]
 visible = false
 collision_layer = 8
@@ -199,6 +209,9 @@ throw_projectile = true
 position = Vector2(-18, -5)
 shape = SubResource("CircleShape2D_eps8k")
 
+[node name="SFX" parent="Attacks/ThrowFireball" index="4"]
+stream = ExtResource("5_rb724")
+
 [node name="Kick" parent="Attacks" instance=ExtResource("2_4nidl")]
 collision_layer = 8
 collision_mask = 1
@@ -211,6 +224,9 @@ damage = 20.0
 position = Vector2(-23, 4)
 shape = SubResource("RectangleShape2D_qs4pp")
 
+[node name="SFX" parent="Attacks/Kick" index="4"]
+stream = ExtResource("5_rb724")
+
 [node name="AttackTimer" type="Timer" parent="."]
 one_shot = true
 autostart = true
@@ -219,7 +235,7 @@ autostart = true
 one_shot = true
 autostart = true
 
-[connection signal="timeout" from="Hitstun" to="." method="_on_hitstun_timeout"]
+[connection signal="timeout" from="Hitstun/HitstunTimer" to="." method="_on_hitstun_timeout"]
 [connection signal="attack_finished" from="Attacks/Jab" to="." method="_on_attack_finished"]
 [connection signal="attack_finished" from="Attacks/ThrowFireball" to="." method="_on_attack_finished"]
 [connection signal="send_projectile" from="Attacks/ThrowFireball" to="." method="_on_send_projectile"]

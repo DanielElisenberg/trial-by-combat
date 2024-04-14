@@ -7,7 +7,8 @@ const JUMP_VELOCITY = -400.0
 enum Status {IDLE, ATTACKING, STUNNED, BLOCKING}
 
 @onready var animations: AnimatedSprite2D = $Animations
-@onready var hitstun_timer = $Hitstun
+@onready var hitstun_timer = $Hitstun/HitstunTimer
+@onready var hitstun_sfx = $Hitstun/HitstunSFX
 var status: Status = Status.IDLE
 var current_attack = null
 
@@ -46,6 +47,8 @@ func _on_attack_timer_timeout():
 			status = Status.ATTACKING
 			current_attack = kick
 		attack_timer.start(randf_range(current_attack.length, 3))
+	else:
+		attack_timer.start(randf_range(0.1, 1))
 
 
 func _on_strafe_timer_timeout():
@@ -92,6 +95,9 @@ func hit(hitstun_time, damage):
 		animations.play("hitstunned")
 		hitstun_timer.start(hitstun_time)
 		emit_signal("damage_taken", damage)
+		hitstun_sfx.play()
+	
+	emit_signal("damage_taken", damage / 5)
 
 
 func _on_hitstun_timeout():
