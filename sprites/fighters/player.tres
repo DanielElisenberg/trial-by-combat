@@ -140,7 +140,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_f0pbw")
 }, {
-"duration": 4.0,
+"duration": 6.0,
 "texture": SubResource("AtlasTexture_c5ja7")
 }],
 "loop": true,

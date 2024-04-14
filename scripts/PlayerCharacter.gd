@@ -22,6 +22,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var jab = $Attacks/Jab
 @onready var jab_combo_timer = $Attacks/Jab/ComboTimer
 var jabs_thrown = 0
+var can_combo_jab = false
 @onready var kick = $Attacks/Kick
 @onready var arial_kick = $Attacks/ArialKick
 @onready var throw_gavel = $Attacks/ThrowGavel
@@ -30,7 +31,13 @@ var jabs_thrown = 0
 func _process(delta):
 	if status != Status.STUNNED and status != Status.ATTACKING:
 		if Input.is_action_just_pressed("jab") and is_on_floor():
-			throw_jab()
+			jab.initiate_attack()
+			status = Status.ATTACKING
+			current_attack = jab
+			animations.play("jab")
+			jab_combo_timer.start()
+			jabs_thrown += 1
+			can_combo_jab = false
 		elif Input.is_action_just_pressed("jab") and not is_on_floor():
 			arial_kick.initiate_attack()
 			status = Status.ATTACKING
@@ -41,12 +48,14 @@ func _process(delta):
 			animations.play("throw")
 			status = Status.ATTACKING
 			current_attack = throw_gavel
-	if current_attack == jab and Input.is_action_just_pressed("jab") and jab_combo_timer.is_stopped():
+	if current_attack == jab and Input.is_action_just_pressed("jab") and can_combo_jab:
 		if jabs_thrown == 1:
 			current_attack.disable()
 			current_attack.initiate_attack()
 			animations.set_frame_and_progress(0, 0)
 			jabs_thrown += 1
+			can_combo_jab = false
+			jab_combo_timer.start()
 		elif jabs_thrown == 2:
 			current_attack.disable()
 			kick.initiate_attack()
@@ -54,21 +63,13 @@ func _process(delta):
 			current_attack = kick
 			animations.play("kick")
 			jabs_thrown = 0
+			can_combo_jab = false
 		
 	if current_attack == arial_kick and is_on_floor():
 		current_attack.disable()
 		current_attack = null
 		status = Status.IDLE
 		animations.play("idle")
-
-
-func throw_jab():
-	jab.initiate_attack()
-	status = Status.ATTACKING
-	current_attack = jab
-	animations.play("jab")
-	jab_combo_timer.start()
-	jabs_thrown += 1
 
 
 func _physics_process(delta):
@@ -109,6 +110,8 @@ func _physics_process(delta):
 	move_and_slide()
 
 func _on_attack_finished():
+	can_combo_jab = false
+	jabs_thrown = 0
 	if status == Status.STUNNED:
 		animations.play("hitstunned")
 	else:
@@ -140,3 +143,7 @@ func _on_hitstun_timeout():
 
 func _on_send_projectile(projectile):
 	emit_signal("send_projectile", projectile)
+
+
+func _on_combo_timer_timeout():
+	can_combo_jab = true

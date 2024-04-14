@@ -42,7 +42,7 @@ collision_mask = 4
 length = 0.4
 windup = 0.2
 hitbox_time = 0.1
-hitstun_length = 0.4
+hitstun_length = 0.35
 damage = 5.0
 knockback = Vector2(300, -200)
 
@@ -93,9 +93,9 @@ stream = ExtResource("4_5rdj1")
 [node name="Kick" parent="Attacks" instance=ExtResource("3_ovjoi")]
 collision_layer = 2
 collision_mask = 12
-length = 0.8
+length = 0.6
 windup = 0.2
-hitbox_time = 0.5
+hitbox_time = 0.4
 damage = 15.0
 
 [node name="HitBox" parent="Attacks/Kick" index="3"]
