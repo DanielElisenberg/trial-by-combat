@@ -117,12 +117,17 @@ one_shot = true
 [node name="HitstunSFX" type="AudioStreamPlayer" parent="Hitstun"]
 stream = ExtResource("5_y00ta")
 
+[node name="ThrowComboTimer" type="Timer" parent="."]
+wait_time = 0.13
+one_shot = true
+
 [connection signal="attack_finished" from="Attacks/Jab" to="." method="_on_attack_finished"]
 [connection signal="timeout" from="Attacks/Jab/ComboTimer" to="." method="_on_combo_timer_timeout"]
 [connection signal="attack_finished" from="Attacks/ThrowGavel" to="." method="_on_attack_finished"]
 [connection signal="send_projectile" from="Attacks/ThrowGavel" to="." method="_on_send_projectile"]
 [connection signal="attack_finished" from="Attacks/GavelSmash" to="." method="_on_attack_finished"]
 [connection signal="timeout" from="Hitstun/HitstunTimer" to="." method="_on_hitstun_timeout"]
+[connection signal="timeout" from="ThrowComboTimer" to="." method="_on_throw_combo_timer_timeout"]
 
 [editable path="Attacks/Jab"]
 [editable path="Attacks/ThrowGavel"]

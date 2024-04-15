@@ -13,6 +13,10 @@ var status: Status = Status.INACTIVE
 var pausedStatus: Status = Status.INACTIVE
 var current_attack = null
 
+var throw_combo = ["left", "down", "right", "down", "jab"]
+var throw_combo_counter = 0
+@onready var throw_combo_timer: Timer = $ThrowComboTimer
+
 signal damage_taken(damage)
 signal send_projectile(projectile)
 
@@ -32,8 +36,20 @@ var can_combo_jab = false
 func _process(delta):
 	if status == Status.INACTIVE:
 		return
+	
 	if status != Status.STUNNED and status != Status.ATTACKING:
-		if Input.is_action_just_pressed("jab") and is_on_floor():
+		if Input.is_action_just_pressed(throw_combo[throw_combo_counter]):
+			throw_combo_counter += 1
+			if throw_combo_counter == throw_combo.size():
+				throw_combo_counter = 0
+				throw_gavel.initiate_attack()
+				animations.play("throw")
+				status = Status.ATTACKING
+				current_attack = throw_gavel
+				throw_combo_timer.stop()
+			else:
+				throw_combo_timer.start()
+		elif Input.is_action_just_pressed("jab") and is_on_floor():
 			jab.initiate_attack()
 			status = Status.ATTACKING
 			current_attack = jab
@@ -196,3 +212,7 @@ func _on_send_projectile(projectile):
 
 func _on_combo_timer_timeout():
 	can_combo_jab = true
+
+
+func _on_throw_combo_timer_timeout():
+	throw_combo_counter = 0
