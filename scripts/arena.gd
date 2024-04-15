@@ -13,6 +13,7 @@ var victory = false
 @export var next_fight: PackedScene
 var paused = false
 var music_progress = 0
+var control_scene: Node2D
 
 func _ready():
 	versus.exit_screen()
@@ -94,6 +95,8 @@ func pause():
 	$Enemy/EnemyCharacter.pause()
 	for projectile in $Projectiles.get_children():
 		projectile.pause()
+	control_scene = load("res://scenes/control_screen.tscn").instantiate()
+	add_child(control_scene)
 
 func stop():
 	$BattleMusic.stop()
@@ -109,3 +112,4 @@ func resume():
 	$Enemy/EnemyCharacter.resume()
 	for projectile in $Projectiles.get_children():
 		projectile.resume()
+	control_scene.queue_free()

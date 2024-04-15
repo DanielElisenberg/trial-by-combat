@@ -1,0 +1,49 @@
+[gd_scene load_steps=3 format=3 uid="uid://pw50xwse55ov"]
+
+[ext_resource type="Texture2D" uid="uid://dl6srj7p8egnx" path="res://sprites/backgrounds/black_bg.png" id="1_f4b30"]
+[ext_resource type="FontFile" uid="uid://cldenxc5p1221" path="res://fonts/Pixelify_Sans/static/PixelifySans-Medium.ttf" id="2_5ehxl"]
+
+[node name="ControlScreen" type="Node2D"]
+
+[node name="BackGround" type="Sprite2D" parent="."]
+position = Vector2(961, 538)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("1_f4b30")
+
+[node name="MoveList" type="Label" parent="."]
+offset_left = 327.0
+offset_top = 247.0
+offset_right = 651.0
+offset_bottom = 840.0
+theme_override_fonts/font = ExtResource("2_5ehxl")
+theme_override_font_sizes/font_size = 40
+text = "Jump:
+
+Strafe:
+
+Jab:
+
+Jump kick:
+
+Gavel smash:
+
+Gavel throw:"
+
+[node name="Instructions" type="Label" parent="."]
+offset_left = 710.0
+offset_top = 245.0
+offset_right = 1267.0
+offset_bottom = 838.0
+theme_override_fonts/font = ExtResource("2_5ehxl")
+theme_override_font_sizes/font_size = 40
+text = "Space or Up or W
+
+W/A or Left/right
+
+J or Left Mouse
+
+J or Left Mouse (in air)
+
+Jab + Jab + Jab
+
+Left + Down + Right + Down + Jab"
