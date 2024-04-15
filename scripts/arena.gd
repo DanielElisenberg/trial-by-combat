@@ -3,6 +3,7 @@ extends Node2D
 const round_number_text = {1: "ONE", 2: "TWO", 3: "THREE"}
 @onready var round_sound = {1: $roundSFX/ROUND_ONE, 2: $roundSFX/ROUND_TWO, 3: $roundSFX/FINAL_ROUND}
 @onready var flying_text = $FlyingText
+@onready var versus = $Versus
 
 var score: Vector2 = Vector2(0, 0)
 var round = 0
@@ -14,6 +15,8 @@ var paused = false
 var music_progress = 0
 
 func _ready():
+	versus.exit_screen()
+	await versus.finished
 	next_round()
 
 func _process(delta):

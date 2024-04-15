@@ -1,7 +1,7 @@
-[gd_scene load_steps=20 format=3 uid="uid://drgv0al1554d4"]
+[gd_scene load_steps=21 format=3 uid="uid://drgv0al1554d4"]
 
 [ext_resource type="Script" path="res://scripts/arena.gd" id="1_8envr"]
-[ext_resource type="PackedScene" path="res://scenes/courtroom_devin.tscn" id="2_5l52v"]
+[ext_resource type="PackedScene" uid="uid://ck0gtgkjb2bjx" path="res://scenes/courtroom_devin.tscn" id="2_5l52v"]
 [ext_resource type="Texture2D" uid="uid://slnivve5revd" path="res://sprites/backgrounds/fight_bg.png" id="2_lmkhx"]
 [ext_resource type="PackedScene" uid="uid://dpgss5cyimvpn" path="res://scenes/player_character.tscn" id="3_xqkcw"]
 [ext_resource type="PackedScene" uid="uid://r5peab67hacc" path="res://scenes/health_bar.tscn" id="4_oshug"]
@@ -15,6 +15,7 @@
 [ext_resource type="AudioStream" uid="uid://r2x0xl547ogc" path="res://sounds/sfx/round_one.mp3" id="13_rw1l0"]
 [ext_resource type="AudioStream" uid="uid://dfux6ifjmwjxp" path="res://sounds/sfx/round_two.mp3" id="14_l4h36"]
 [ext_resource type="AudioStream" uid="uid://cj2thne38xtrf" path="res://sounds/sfx/final_round.mp3" id="15_qm0yf"]
+[ext_resource type="PackedScene" uid="uid://tijbokynigwu" path="res://scenes/versus.tscn" id="16_lv3og"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mq1db"]
 size = Vector2(39.5, 872.5)
@@ -156,6 +157,10 @@ stream = ExtResource("15_qm0yf")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2.0
+
+[node name="Versus" parent="." instance=ExtResource("16_lv3og")]
+start_off_screen = false
+enemy = "CEO"
 
 [connection signal="damage_taken" from="Player/PlayerCharacter" to="." method="_on_player_damage_taken"]
 [connection signal="send_projectile" from="Player/PlayerCharacter" to="." method="_on_send_projectile"]

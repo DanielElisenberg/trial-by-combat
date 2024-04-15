@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://nc04gqnj5lct"]
+[gd_scene load_steps=21 format=3 uid="uid://nc04gqnj5lct"]
 
 [ext_resource type="Script" path="res://scripts/arena.gd" id="1_okel5"]
 [ext_resource type="PackedScene" uid="uid://ha6ft5xyab24" path="res://scenes/courtroom_ceo.tscn" id="2_g3xae"]
@@ -15,6 +15,7 @@
 [ext_resource type="AudioStream" uid="uid://r2x0xl547ogc" path="res://sounds/sfx/round_one.mp3" id="13_x5p41"]
 [ext_resource type="AudioStream" uid="uid://dfux6ifjmwjxp" path="res://sounds/sfx/round_two.mp3" id="14_2xykl"]
 [ext_resource type="AudioStream" uid="uid://cj2thne38xtrf" path="res://sounds/sfx/final_round.mp3" id="15_p2c5a"]
+[ext_resource type="PackedScene" uid="uid://tijbokynigwu" path="res://scenes/versus.tscn" id="16_t2jnb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mq1db"]
 size = Vector2(39.5, 872.5)
@@ -155,6 +156,10 @@ stream = ExtResource("14_2xykl")
 stream = ExtResource("15_p2c5a")
 
 [node name="Timer" type="Timer" parent="."]
+
+[node name="Versus" parent="." instance=ExtResource("16_t2jnb")]
+start_off_screen = false
+enemy = "Satan"
 
 [connection signal="damage_taken" from="Player/PlayerCharacter" to="." method="_on_player_damage_taken"]
 [connection signal="send_projectile" from="Player/PlayerCharacter" to="." method="_on_send_projectile"]

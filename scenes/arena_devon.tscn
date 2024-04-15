@@ -1,7 +1,8 @@
-[gd_scene load_steps=18 format=3 uid="uid://cuptj2gj17jw5"]
+[gd_scene load_steps=19 format=3 uid="uid://cuptj2gj17jw5"]
 
 [ext_resource type="Script" path="res://scripts/arena.gd" id="1_msr1w"]
 [ext_resource type="Texture2D" uid="uid://slnivve5revd" path="res://sprites/backgrounds/fight_bg.png" id="2_8160l"]
+[ext_resource type="PackedScene" uid="uid://tijbokynigwu" path="res://scenes/versus.tscn" id="2_nhcav"]
 [ext_resource type="PackedScene" uid="uid://dpgss5cyimvpn" path="res://scenes/player_character.tscn" id="3_uyqvy"]
 [ext_resource type="PackedScene" uid="uid://r5peab67hacc" path="res://scenes/health_bar.tscn" id="4_a4rr8"]
 [ext_resource type="FontFile" uid="uid://cldenxc5p1221" path="res://fonts/Pixelify_Sans/static/PixelifySans-Medium.ttf" id="5_pqqgj"]
@@ -143,6 +144,9 @@ stream = ExtResource("14_253oq")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2.0
+
+[node name="Versus" parent="." instance=ExtResource("2_nhcav")]
+start_off_screen = false
 
 [connection signal="damage_taken" from="Player/PlayerCharacter" to="." method="_on_player_damage_taken"]
 [connection signal="send_projectile" from="Player/PlayerCharacter" to="." method="_on_send_projectile"]

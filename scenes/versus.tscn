@@ -1,0 +1,127 @@
+[gd_scene load_steps=15 format=3 uid="uid://tijbokynigwu"]
+
+[ext_resource type="Texture2D" uid="uid://bl7qhbtw68uoy" path="res://sprites/backgrounds/versus_bg_c.png" id="1_go7cd"]
+[ext_resource type="Script" path="res://scripts/versus.gd" id="1_t5wme"]
+[ext_resource type="Texture2D" uid="uid://c2phd31ivylqc" path="res://sprites/courtscenes/getting_summoned.png" id="3_2utvo"]
+[ext_resource type="Texture2D" uid="uid://bq30vjudmxel2" path="res://sprites/backgrounds/bg_versus_r.png" id="3_8jp1i"]
+[ext_resource type="FontFile" uid="uid://cldmt3smtivah" path="res://fonts/Pixelify_Sans/static/PixelifySans-Regular.ttf" id="4_0usqa"]
+[ext_resource type="Texture2D" uid="uid://dxmplasi56eus" path="res://sprites/fighters/judgesheet.png" id="6_8qtsj"]
+[ext_resource type="Texture2D" uid="uid://dnrqoxfc4v173" path="res://sprites/backgrounds/bg_versus_l.png" id="6_aabg4"]
+[ext_resource type="FontFile" uid="uid://bh4o4pc5pwotn" path="res://fonts/Pixelify_Sans/static/PixelifySans-Bold.ttf" id="7_m7rbl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rk4gm"]
+atlas = ExtResource("3_2utvo")
+region = Rect2(275, 0, 55, 55)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5h8q2"]
+atlas = ExtResource("3_2utvo")
+region = Rect2(0, 0, 55, 55)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ywtnx"]
+atlas = ExtResource("3_2utvo")
+region = Rect2(550, 0, 55, 55)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_67tdt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rk4gm")
+}],
+"loop": true,
+"name": &"CEO",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5h8q2")
+}],
+"loop": true,
+"name": &"Devin",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ywtnx")
+}],
+"loop": true,
+"name": &"Satan",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3rseu"]
+atlas = ExtResource("6_8qtsj")
+region = Rect2(55, 220, 55, 55)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_noi45"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3rseu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Versus" type="Node2D"]
+script = ExtResource("1_t5wme")
+
+[node name="CSlide" type="Sprite2D" parent="."]
+texture = ExtResource("1_go7cd")
+centered = false
+
+[node name="RSlide" type="Node2D" parent="."]
+
+[node name="bg" type="Sprite2D" parent="RSlide"]
+texture = ExtResource("3_8jp1i")
+centered = false
+
+[node name="character" type="AnimatedSprite2D" parent="RSlide"]
+position = Vector2(1500, 602)
+scale = Vector2(11, 11)
+sprite_frames = SubResource("SpriteFrames_67tdt")
+animation = &"Devin"
+flip_h = true
+
+[node name="Label" type="Label" parent="RSlide"]
+offset_left = 919.0
+offset_top = 924.0
+offset_right = 1901.0
+offset_bottom = 1069.0
+theme_override_fonts/font = ExtResource("4_0usqa")
+theme_override_font_sizes/font_size = 120
+text = "Satan"
+horizontal_alignment = 1
+
+[node name="LSlide" type="Node2D" parent="."]
+
+[node name="bg" type="Sprite2D" parent="LSlide"]
+position = Vector2(2.08165e-12, 2.08165e-12)
+texture = ExtResource("6_aabg4")
+centered = false
+
+[node name="character" type="AnimatedSprite2D" parent="LSlide"]
+position = Vector2(403, 531)
+scale = Vector2(11, 11)
+sprite_frames = SubResource("SpriteFrames_noi45")
+
+[node name="Label" type="Label" parent="LSlide"]
+offset_left = 17.0
+offset_top = 3.0
+offset_right = 999.0
+offset_bottom = 148.0
+theme_override_fonts/font = ExtResource("4_0usqa")
+theme_override_font_sizes/font_size = 101
+text = "Judge Roundhouse"
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="."]
+offset_left = 454.0
+offset_top = 470.0
+offset_right = 1436.0
+offset_bottom = 650.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("7_m7rbl")
+theme_override_font_sizes/font_size = 150
+text = "VS"
+horizontal_alignment = 1
