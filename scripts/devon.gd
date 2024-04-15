@@ -49,6 +49,8 @@ func _on_attack_timer_timeout():
 
 
 func initiate_spin_kick():
+	if current_attack != null:
+		current_attack.disable
 	spin_kick.initiate_attack()
 	animated_sprite.play("spinkick")
 	status = Status.ATTACKING
@@ -57,6 +59,8 @@ func initiate_spin_kick():
 
 
 func initiate_throw():
+	if current_attack != null:
+		current_attack.disable
 	throw_vape.initiate_attack()
 	animated_sprite.play("throw")
 	status = Status.ATTACKING

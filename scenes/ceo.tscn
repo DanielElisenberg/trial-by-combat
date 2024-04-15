@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" path="res://scripts/ceo.gd" id="1_7ej7h"]
 [ext_resource type="SpriteFrames" uid="uid://bmbxa4qe3nm4y" path="res://sprites/fighters/ceo.tres" id="2_0sd2j"]
-[ext_resource type="AudioStream" uid="uid://dwldr1fl0fk58" path="res://sounds/sfx/sfx_satan_hurt.mp3" id="3_t6uss"]
+[ext_resource type="AudioStream" uid="uid://cftqwnffwppc6" path="res://sounds/sfx/ceo_hurt.mp3" id="3_8kw5l"]
 [ext_resource type="PackedScene" uid="uid://krgajkm6wgc6" path="res://scenes/attack.tscn" id="4_q8cp5"]
-[ext_resource type="AudioStream" uid="uid://d24j80ysdmhkm" path="res://sounds/sfx/sfx_satan_laugh.mp3" id="5_xmb0v"]
+[ext_resource type="AudioStream" uid="uid://bad4vhs1ax2sl" path="res://sounds/sfx/ceo_attack.mp3" id="5_01t07"]
 [ext_resource type="PackedScene" uid="uid://rgdpxpaeny10" path="res://scenes/flying_money.tscn" id="6_udxvw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_or4rs"]
@@ -37,7 +37,7 @@ shape = SubResource("RectangleShape2D_or4rs")
 one_shot = true
 
 [node name="HitstunSFX" type="AudioStreamPlayer" parent="Hitstun"]
-stream = ExtResource("3_t6uss")
+stream = ExtResource("3_8kw5l")
 
 [node name="Attacks" type="Node2D" parent="."]
 
@@ -58,7 +58,7 @@ position = Vector2(-15, -1.75)
 shape = SubResource("RectangleShape2D_faucp")
 
 [node name="SFX" parent="Attacks/Bump" index="4"]
-stream = ExtResource("5_xmb0v")
+stream = ExtResource("5_01t07")
 
 [node name="ThrowMoney" parent="Attacks" instance=ExtResource("4_q8cp5")]
 collision_layer = 8
@@ -73,7 +73,7 @@ position = Vector2(-12, -6)
 shape = SubResource("CircleShape2D_eps8k")
 
 [node name="SFX" parent="Attacks/ThrowMoney" index="4"]
-stream = ExtResource("5_xmb0v")
+stream = ExtResource("5_01t07")
 
 [node name="AttackTimer" type="Timer" parent="."]
 one_shot = true

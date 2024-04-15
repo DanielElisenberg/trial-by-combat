@@ -1,6 +1,7 @@
 extends Node2D
 
 const round_number_text = {1: "ONE", 2: "TWO", 3: "THREE"}
+@onready var round_sound = {1: $roundSFX/ROUND_ONE, 2: $roundSFX/ROUND_TWO, 3: $roundSFX/FINAL_ROUND}
 @onready var flying_text = $FlyingText
 
 var score: Vector2 = Vector2(0, 0)
@@ -44,6 +45,7 @@ func next_round():
 	$Enemy/EnemyCharacter.stop()
 	if score.x < 2 and score.y < 2:
 		round += 1
+		round_sound[round].play()
 		flying_text.show_text('ROUND ' + round_number_text[round])
 		await flying_text.finished
 		$Player/PlayerCharacter.reset($Player/PlayerPosition.position)
@@ -53,11 +55,13 @@ func next_round():
 		$FIGHT.play()
 		flying_text.show_text('FIGHT!')
 	elif score.x >= 2:
+		$VICTORY.play()
 		flying_text.show_text('VICTORY!')
 		await flying_text.finished
 		get_tree().change_scene_to_packed(next_fight)
 		game_finished = true
 	else:
+		$DEFEAT.play()
 		flying_text.show_text('DEFEAT!')
 		await flying_text.finished
 		flying_text.show_permanent_text('press space to retry!')

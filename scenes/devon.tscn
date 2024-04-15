@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" path="res://scripts/devon.gd" id="1_hq8mi"]
 [ext_resource type="Texture2D" uid="uid://b5ctnesh7ogs" path="res://sprites/fighters/devinsheet.png" id="2_0776t"]
-[ext_resource type="AudioStream" uid="uid://dwldr1fl0fk58" path="res://sounds/sfx/sfx_satan_hurt.mp3" id="3_txon6"]
+[ext_resource type="AudioStream" uid="uid://bm3m4ss7lla3t" path="res://sounds/sfx/devin_hurt.mp3" id="3_3va54"]
 [ext_resource type="PackedScene" uid="uid://krgajkm6wgc6" path="res://scenes/attack.tscn" id="4_evep4"]
-[ext_resource type="AudioStream" uid="uid://d24j80ysdmhkm" path="res://sounds/sfx/sfx_satan_laugh.mp3" id="5_juuw6"]
+[ext_resource type="AudioStream" uid="uid://dkwks276mqfj1" path="res://sounds/sfx/devin_attack.mp3" id="5_5hwdn"]
 [ext_resource type="PackedScene" uid="uid://cpramelfm2ttu" path="res://scenes/vape.tscn" id="6_ct6go"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7l50e"]
@@ -183,7 +183,7 @@ shape = SubResource("RectangleShape2D_or4rs")
 one_shot = true
 
 [node name="HitstunSFX" type="AudioStreamPlayer" parent="Hitstun"]
-stream = ExtResource("3_txon6")
+stream = ExtResource("3_3va54")
 
 [node name="Attacks" type="Node2D" parent="."]
 
@@ -202,7 +202,7 @@ position = Vector2(-14, 3.625)
 shape = SubResource("RectangleShape2D_faucp")
 
 [node name="SFX" parent="Attacks/SpinKick" index="4"]
-stream = ExtResource("5_juuw6")
+stream = ExtResource("5_5hwdn")
 
 [node name="ThrowVape" parent="Attacks" instance=ExtResource("4_evep4")]
 collision_layer = 8
@@ -217,7 +217,7 @@ position = Vector2(-13, -6)
 shape = SubResource("CircleShape2D_eps8k")
 
 [node name="SFX" parent="Attacks/ThrowVape" index="4"]
-stream = ExtResource("5_juuw6")
+stream = ExtResource("5_5hwdn")
 
 [node name="JumpKick" parent="Attacks" instance=ExtResource("4_evep4")]
 visible = false
@@ -235,7 +235,7 @@ position = Vector2(-20.25, 4)
 shape = SubResource("RectangleShape2D_qs4pp")
 
 [node name="SFX" parent="Attacks/JumpKick" index="4"]
-stream = ExtResource("5_juuw6")
+stream = ExtResource("5_5hwdn")
 
 [node name="AttackTimer" type="Timer" parent="."]
 one_shot = true
