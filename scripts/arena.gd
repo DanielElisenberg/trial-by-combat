@@ -6,6 +6,7 @@ const round_number_text = {1: "ONE", 2: "TWO", 3: "THREE"}
 var score: Vector2 = Vector2(0, 0)
 var round = 0
 var game_finished = false
+@export var next_fight: PackedScene
 
 func _ready():
 	next_round()
@@ -54,7 +55,7 @@ func next_round():
 	elif score.x >= 2:
 		flying_text.show_text('VICTORY!')
 		await flying_text.finished
-		get_tree().change_scene_to_file("res://scenes/arena_ceo.tscn")
+		get_tree().change_scene_to_packed(next_fight)
 		game_finished = true
 	else:
 		flying_text.show_text('DEFEAT!')
