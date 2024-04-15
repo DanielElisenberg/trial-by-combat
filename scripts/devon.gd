@@ -4,7 +4,7 @@ extends CharacterBody2D
 const SPEED = 500.0
 const JUMP_VELOCITY = -1200.0
 const active_time = 10
-const exhausted_time = 7
+const exhausted_time = 5
 
 enum Status {IDLE, ATTACKING, STUNNED, BLOCKING, AIRBORNE, INACTIVE}
 

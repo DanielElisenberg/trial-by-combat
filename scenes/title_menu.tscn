@@ -71,6 +71,7 @@ sprite_frames = SubResource("SpriteFrames_jdgst")
 
 [node name="BattleMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_u148c")
+volume_db = -3.0
 autoplay = true
 
 [node name="Selector" type="Sprite2D" parent="."]

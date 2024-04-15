@@ -134,6 +134,7 @@ text = "SATAN, A REAL JERK"
 
 [node name="BattleMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_5htii")
+volume_db = -3.0
 
 [node name="FIGHT" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_5wkl4")
