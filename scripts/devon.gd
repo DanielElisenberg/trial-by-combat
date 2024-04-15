@@ -4,7 +4,7 @@ extends CharacterBody2D
 const SPEED = 500.0
 const JUMP_VELOCITY = -1200.0
 const active_time = 10
-const exhausted_time = 5
+const exhausted_time = 7
 
 enum Status {IDLE, ATTACKING, STUNNED, BLOCKING, AIRBORNE, INACTIVE}
 
@@ -30,6 +30,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var attack_timer = $AttackTimer
 @onready var strafe_timer = $StrafeTimer
 var direction = -1
+var collided_with_wall = false
 
 
 func _on_attack_timer_timeout():
@@ -122,16 +123,23 @@ func _on_strafe_timer_timeout():
 
 
 func _physics_process(delta):
-	print(status)
+	print(is_on_wall())
 	if status == Status.INACTIVE:
 		return
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += gravity * delta
+	
+	if is_on_wall() and not collided_with_wall:
+		direction * -1
+	collided_with_wall = is_on_wall()
 
 	if current_attack == jump_kick and is_on_floor():
 		jump_kick.disable()
 		initiate_spin_kick()
+	elif status == Status.AIRBORNE and is_on_floor() and velocity.y >= 0:
+		status = Status.IDLE
+		animations.play("idle")
 	if status != Status.STUNNED and status != Status.AIRBORNE:
 		var current_speed = SPEED
 		if exhausted:
@@ -146,7 +154,7 @@ func _physics_process(delta):
 				animated_sprite.play("idle")
 	elif status == Status.STUNNED:
 		velocity.x = move_toward(velocity.x, 0, 75)
-	elif status == Status.AIRBORNE and velocity.y > 0:
+	elif status == Status.AIRBORNE and velocity.y > 0 and not exhausted:
 		jump_kick.initiate_attack()
 		animated_sprite.play("jumpkick")
 		current_attack = jump_kick
@@ -182,8 +190,7 @@ func hit(attacker, hitstun_time, damage, knockback):
 
 
 func _on_hitstun_timeout():
-	animations.play("idle")
-	status = Status.IDLE
+	initiate_spin_kick()
 
 
 func _on_send_projectile(projectile):
@@ -196,9 +203,13 @@ func _on_jump_timer_timeout():
 		velocity.y = JUMP_VELOCITY
 		if exhausted:
 			velocity.y /= 2
-		status = Status.IDLE
 		animations.play("jump")
 
 
 func _on_exhaustion_timer_timeout():
-	pass # Replace with function body.
+	if exhausted:
+		exhausted = false
+		$ExhaustionTimer.start(active_time)
+	else:
+		exhausted = true
+		$ExhaustionTimer.start(exhausted_time)
