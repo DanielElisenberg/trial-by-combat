@@ -184,7 +184,7 @@ func _on_attack_finished():
 		animations.play("idle")
 
 
-func hit(attacker, hitstun_time, damage, knockback):
+func hit(attacker, hitstun_time, damage, knockback, projectile):
 	if status == Status.ATTACKING:
 		current_attack.disable()
 		current_attack = null

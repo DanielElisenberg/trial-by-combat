@@ -72,7 +72,7 @@ func next_round():
 		$VICTORY.play()
 		flying_text.show_text('VICTORY!')
 		await flying_text.finished
-		$Timer.start(2)
+		$Timer.start(1.5)
 		await $Timer.timeout
 		get_tree().change_scene_to_packed(next_fight)
 	else:

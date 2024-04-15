@@ -147,7 +147,7 @@ func _on_attack_finished():
 		animations.play("idle")
 
 
-func hit(attacker, hitstun_time, damage, knockback):
+func hit(attacker, hitstun_time, damage, knockback, projectile):
 	if status == Status.ATTACKING:
 		current_attack.disable()
 		current_attack = null
@@ -159,6 +159,8 @@ func hit(attacker, hitstun_time, damage, knockback):
 		emit_signal("damage_taken", damage)
 		hitstun_sfx.play()
 		velocity = knockback
+	elif projectile:
+		initiate_throw_money()
 	else:
 		emit_signal("damage_taken", damage / 5)
 		$BlockTimer.stop()

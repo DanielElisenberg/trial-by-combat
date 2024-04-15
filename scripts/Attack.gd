@@ -91,7 +91,7 @@ func _on_body_entered(body):
 		await freeze_timer.timeout
 		attacking_entity.resume()
 		body.resume()
-	body.hit(attacking_entity, hitstun_length, damage, knockback)
+	body.hit(attacking_entity, hitstun_length, damage, knockback, false)
 
 
 func _on_windup_timer_timeout():
