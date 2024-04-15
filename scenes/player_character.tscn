@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dpgss5cyimvpn"]
+[gd_scene load_steps=13 format=3 uid="uid://dpgss5cyimvpn"]
 
 [ext_resource type="Script" path="res://scripts/PlayerCharacter.gd" id="1_c4xu5"]
 [ext_resource type="SpriteFrames" uid="uid://b7aqpjous2ewb" path="res://sprites/fighters/player.tres" id="2_hteys"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cdgugrkb0ixjg" path="res://scenes/gavel_projectile.tscn" id="4_2c01j"]
 [ext_resource type="AudioStream" uid="uid://dligwpsdn26iu" path="res://sounds/sfx/sfx_judge_ohyeah.mp3" id="4_5rdj1"]
 [ext_resource type="AudioStream" uid="uid://v440mgd8m7rp" path="res://sounds/sfx/sfx_judge_hurt.mp3" id="5_y00ta"]
+[ext_resource type="AudioStream" uid="uid://b5r3h8p2w6u23" path="res://sounds/sfx/judge_hey.mp3" id="6_jrcfh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wbuop"]
 size = Vector2(28, 48)
@@ -52,7 +53,7 @@ position = Vector2(18.5, -1)
 shape = SubResource("RectangleShape2D_8tifg")
 
 [node name="SFX" parent="Attacks/Jab" index="4"]
-stream = ExtResource("4_5rdj1")
+stream = ExtResource("6_jrcfh")
 
 [node name="ComboTimer" type="Timer" parent="Attacks/Jab"]
 wait_time = 0.3
@@ -89,7 +90,7 @@ position = Vector2(9.5, 11.5)
 shape = SubResource("RectangleShape2D_g7smb")
 
 [node name="SFX" parent="Attacks/ArialKick" index="4"]
-stream = ExtResource("4_5rdj1")
+stream = ExtResource("6_jrcfh")
 
 [node name="GavelSmash" parent="Attacks" instance=ExtResource("3_ovjoi")]
 collision_layer = 2

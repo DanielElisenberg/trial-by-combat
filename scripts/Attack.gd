@@ -74,6 +74,10 @@ func _on_attack_timer_timeout():
 
 
 func _on_body_entered(body):
+	if randi_range(0, 1):
+		$HitOne.play()
+	else:
+		$HitTwo.play()
 	if freeze_frame_length > 0:
 		attacking_entity.pause()
 		body.pause()

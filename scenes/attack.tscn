@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://krgajkm6wgc6"]
+[gd_scene load_steps=4 format=3 uid="uid://krgajkm6wgc6"]
 
 [ext_resource type="Script" path="res://scripts/Attack.gd" id="1_s8ldi"]
+[ext_resource type="AudioStream" uid="uid://r2tc011gx22o" path="res://sounds/sfx/hit_one.mp3" id="2_800ho"]
+[ext_resource type="AudioStream" uid="uid://brf2d6csbxo6t" path="res://sounds/sfx/hit_two.mp3" id="3_s0xrs"]
 
 [node name="Attack" type="Area2D"]
 collision_layer = 10
@@ -21,6 +23,14 @@ one_shot = true
 [node name="SFX" type="AudioStreamPlayer" parent="."]
 
 [node name="FreezeTimer" type="Timer" parent="."]
+
+[node name="HitOne" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_800ho")
+volume_db = 1.0
+
+[node name="HitTwo" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_s0xrs")
+volume_db = 1.0
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
