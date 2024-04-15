@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dxmplasi56eus"
-path="res://.godot/imported/judgesheet.png-5f3963c4964caae54646303da4169afb.ctex"
+uid="uid://ba6fhck0lsywo"
+path="res://.godot/imported/courtroom.png-a90fba07ff0adc06109bc6b9df00530f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/fighters/judgesheet.png"
-dest_files=["res://.godot/imported/judgesheet.png-5f3963c4964caae54646303da4169afb.ctex"]
+source_file="res://sprites/backgrounds/courtroom.png"
+dest_files=["res://.godot/imported/courtroom.png-a90fba07ff0adc06109bc6b9df00530f.ctex"]
 
 [params]
 
