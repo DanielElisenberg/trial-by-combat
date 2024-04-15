@@ -28,10 +28,12 @@ func initiate_scene():
 	timer.start(1)
 	await timer.timeout
 	text_box.display("Judge Roundhouse", "Let's get one more over with before lunch!")
+	text_box.show_continue()
 	can_interact = true
 	await advance
 	
 	text_box.display("Warlock", "This next one is almost too evil to comprehend, sir!")
+	text_box.show_continue()
 	can_interact = true
 	await advance
 	
@@ -44,6 +46,7 @@ func initiate_scene():
 	timer.start(2)
 	await timer.timeout
 	text_box.display("Warlock", "ARGH! The evil is too intense!!")
+	text_box.show_continue()
 	can_interact = true
 	await advance
 	
@@ -54,6 +57,7 @@ func initiate_scene():
 	timer.start(1)
 	await timer.timeout
 	text_box.display("Judge Roundhouse", "You CONSISTENTLY double park, AND ALWAYS use speaker phone on public transport!?")
+	text_box.show_continue()
 	can_interact = true
 	await advance
 	
@@ -66,17 +70,22 @@ func initiate_scene():
 	text_box.display("Devin", "Whatever, bro!")
 	timer.start(1)
 	await timer.timeout
+	text_box.show_continue()
 	can_interact = true
 	await advance
 
 	text_box.display("Warlock", "Wow... What a monster")
-	timer.start(2)
-	await timer.timeout
+	text_box.show_continue()
+	can_interact = true
+	await advance
+	
 	text_box.display("Judge Roundhouse", "...")
+	text_box.show_continue()
 	can_interact = true
 	await advance
 	
 	text_box.display("Judge Roundhouse", "TRIAL BY COMBAT!")
+	text_box.show_continue()
 	can_interact = true
 	await advance
 	bgm.stop()

@@ -26,3 +26,15 @@ vertical_alignment = 1
 [node name="bgm" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_6uron")
 autoplay = true
+
+[node name="space_to_continue" type="Label" parent="."]
+offset_left = 1127.0
+offset_top = 1010.0
+offset_right = 2312.0
+offset_bottom = 1073.0
+theme_override_colors/font_color = Color(0.952941, 1, 0.764706, 1)
+theme_override_fonts/font = ExtResource("3_8xy3d")
+theme_override_font_sizes/font_size = 30
+text = "Press space to continue"
+horizontal_alignment = 1
+vertical_alignment = 1

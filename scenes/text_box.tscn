@@ -1,12 +1,21 @@
-[gd_scene load_steps=5 format=3 uid="uid://byshmomdcx3dv"]
+[gd_scene load_steps=6 format=3 uid="uid://byshmomdcx3dv"]
 
 [ext_resource type="Script" path="res://scripts/TextBox.gd" id="1_khkc1"]
+[ext_resource type="Texture2D" uid="uid://dl6srj7p8egnx" path="res://sprites/backgrounds/black_bg.png" id="2_74ihw"]
 [ext_resource type="FontFile" uid="uid://bh4o4pc5pwotn" path="res://fonts/Pixelify_Sans/static/PixelifySans-Bold.ttf" id="2_im3af"]
 [ext_resource type="FontFile" uid="uid://cldmt3smtivah" path="res://fonts/Pixelify_Sans/static/PixelifySans-Regular.ttf" id="3_m7kre"]
-[ext_resource type="Texture2D" uid="uid://cal4a3dtvw4l2" path="res://sprites/portraits/judge.png" id="4_ncfae"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_j5egm"]
+load_path = "res://.godot/imported/judge.png-f58bdcfad926f6b32f3fa16f32ed389c.ctex"
 
 [node name="TextBox" type="Node2D"]
 script = ExtResource("1_khkc1")
+
+[node name="bg" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.227451)
+position = Vector2(997.75, 933)
+scale = Vector2(0.78151, 0.288889)
+texture = ExtResource("2_74ihw")
 
 [node name="Name" type="Label" parent="."]
 offset_left = 341.0
@@ -30,4 +39,15 @@ autowrap_mode = 2
 [node name="Profile" type="Sprite2D" parent="."]
 position = Vector2(1563, 899)
 scale = Vector2(10, 10)
-texture = ExtResource("4_ncfae")
+texture = SubResource("CompressedTexture2D_j5egm")
+
+[node name="Continue" type="Label" parent="."]
+visible = false
+offset_left = 1368.0
+offset_top = 1028.0
+offset_right = 1744.0
+offset_bottom = 1083.0
+theme_override_fonts/font = ExtResource("3_m7kre")
+theme_override_font_sizes/font_size = 30
+text = "press space to continue"
+autowrap_mode = 2

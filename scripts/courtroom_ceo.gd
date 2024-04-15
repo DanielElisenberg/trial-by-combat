@@ -48,11 +48,13 @@ func initiate_scene():
 	warlock.play("default")
 	timer.start(1)
 	await timer.timeout
-	text_box.display("Judge Roundhouse", "Your companies make billions. You profit from others suffering. Your greed knows no bounds.")
+	text_box.display("Judge Roundhouse", "Your companies make billions. You profit from the suffering of others. Your greed knows no bounds.")
+	text_box.show_continue()
 	can_interact = true
 	await advance
 	
 	text_box.display("CEO", "I'm just a capitalist! I am doing my job!")
+	text_box.show_continue()
 	can_interact = true
 	await advance
 
@@ -60,14 +62,17 @@ func initiate_scene():
 	timer.start(2)
 	await timer.timeout
 	text_box.display("Judge Roundhouse", "You run a plastic straw factory... AS A NON PROFIT!")
+	text_box.show_continue()
 	can_interact = true
 	await advance
 	
 	text_box.display("CEO", "Everyone needs a hobby!")
+	text_box.show_continue()
 	can_interact = true
 	await advance
 
 	text_box.display("Judge Roundhouse", "I have heard enough! TRIAL BY COMBAT!")
+	text_box.show_continue()
 	can_interact = true
 	await advance
 	bgm.stop()
