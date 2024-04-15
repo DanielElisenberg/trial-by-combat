@@ -3,9 +3,11 @@ extends Node2D
 @onready var cslide = $CSlide
 @onready var rslide = $RSlide
 @onready var rslide_character = $RSlide/character
+@onready var rslide_label = $RSlide/Label
 @onready var lslide = $LSlide
 @onready var label = $Label
-
+@onready var audio = $AudioStreamPlayer
+@onready var audio2 = $AudioStreamPlayer2
 
 @export var start_off_screen: bool = true
 @export var enemy: String = "Devin"
@@ -13,7 +15,7 @@ extends Node2D
 signal finished
 
 func _ready():
-	label.text = enemy
+	rslide_label.text = enemy
 	rslide_character.play(enemy)
 	if start_off_screen:
 		label.visible = false
@@ -23,6 +25,7 @@ func _ready():
 
 
 func enter_screen():
+	audio.play()
 	var tween = create_tween()
 	tween.tween_property(lslide, "position", Vector2(0,0), 0.5)
 	await tween.finished
@@ -32,11 +35,12 @@ func enter_screen():
 	tween = create_tween()
 	tween.tween_property(cslide, "position", Vector2(0,0), 0.2)
 	await tween.finished
-	
+	await audio.finished
 	label.visible = true
 	emit_signal("finished")
 
 func exit_screen():
+	audio2.play()
 	label.visible = false
 	var tween = create_tween()
 	tween.tween_property(cslide, "position", Vector2(0,-1080), 0.2)

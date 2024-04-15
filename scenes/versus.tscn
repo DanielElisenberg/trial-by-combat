@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://tijbokynigwu"]
+[gd_scene load_steps=17 format=3 uid="uid://tijbokynigwu"]
 
 [ext_resource type="Texture2D" uid="uid://bl7qhbtw68uoy" path="res://sprites/backgrounds/versus_bg_c.png" id="1_go7cd"]
 [ext_resource type="Script" path="res://scripts/versus.gd" id="1_t5wme"]
@@ -8,6 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://dxmplasi56eus" path="res://sprites/fighters/judgesheet.png" id="6_8qtsj"]
 [ext_resource type="Texture2D" uid="uid://dnrqoxfc4v173" path="res://sprites/backgrounds/bg_versus_l.png" id="6_aabg4"]
 [ext_resource type="FontFile" uid="uid://bh4o4pc5pwotn" path="res://fonts/Pixelify_Sans/static/PixelifySans-Bold.ttf" id="7_m7rbl"]
+[ext_resource type="AudioStream" uid="uid://d075011w27hkw" path="res://sounds/versus_jingle_start.mp3" id="9_7upw4"]
+[ext_resource type="AudioStream" uid="uid://c8y4i441c8hax" path="res://sounds/versus_jingle_end.mp3" id="10_yiash"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rk4gm"]
 atlas = ExtResource("3_2utvo")
@@ -125,3 +127,9 @@ theme_override_fonts/font = ExtResource("7_m7rbl")
 theme_override_font_sizes/font_size = 150
 text = "VS"
 horizontal_alignment = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_7upw4")
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_yiash")

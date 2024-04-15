@@ -5,6 +5,7 @@ extends Node2D
 @onready var text_box = $TextBox
 @onready var timer = $Timer
 @onready var versus = $Versus
+@onready var bgm = $bgm
 
 var can_interact = false
 
@@ -71,11 +72,9 @@ func initiate_scene():
 	text_box.display("Judge Roundhouse", "PREPARE FOR JUSTICE! TRIAL BY COMBAT!")
 	can_interact = true
 	await advance
-
+	bgm.stop()
 	versus.enter_screen()
 	await versus.finished
-	timer.start(1.5)
-	await timer.timeout
 
 	get_tree().change_scene_to_file("res://scenes/arena.tscn")
 	
