@@ -37,10 +37,6 @@ func initiate_attack():
 	hitbox.set_deferred("process_mode", PROCESS_MODE_INHERIT)
 	timer.start(length)
 	sfx.play()
-	if randi_range(0, 1):
-		$SwipeOne.play()
-	else:
-		$SwipeTwo.play()
 	if windup > 0:
 		windup_timer.start(windup)
 		disable_hitbox()
@@ -48,6 +44,11 @@ func initiate_attack():
 		enable_hitbox()
 
 func enable_hitbox():
+	if not throw_projectile:
+		if randi_range(0, 1):
+			$SwipeOne.play()
+		else:
+			$SwipeTwo.play()
 	if throw_projectile:
 		var new_projectile = projectile.instantiate()
 		new_projectile.set_position(to_global(hitbox.position))
