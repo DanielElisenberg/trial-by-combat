@@ -2,11 +2,11 @@
 
 [ext_resource type="Texture2D" uid="uid://ba6fhck0lsywo" path="res://sprites/backgrounds/courtroom.png" id="1_j6pui"]
 [ext_resource type="Script" path="res://scripts/courtroom_devin.gd" id="1_j78rv"]
-[ext_resource type="PackedScene" uid="uid://cnbl6ra6bh6mc" path="res://scenes/warlock.tscn" id="2_53ydx"]
-[ext_resource type="PackedScene" uid="uid://okqnfgow3d3a" path="res://scenes/summoning_ring.tscn" id="3_x87h7"]
-[ext_resource type="PackedScene" uid="uid://byshmomdcx3dv" path="res://scenes/text_box.tscn" id="4_noygb"]
+[ext_resource type="PackedScene" path="res://scenes/warlock.tscn" id="2_53ydx"]
+[ext_resource type="PackedScene" path="res://scenes/summoning_ring.tscn" id="3_x87h7"]
+[ext_resource type="PackedScene" path="res://scenes/text_box.tscn" id="4_noygb"]
 [ext_resource type="AudioStream" uid="uid://bgnd3ptkli7ew" path="res://sounds/a_courtroom_somewhere.mp3" id="6_0krxw"]
-[ext_resource type="PackedScene" uid="uid://tijbokynigwu" path="res://scenes/versus.tscn" id="6_qcd74"]
+[ext_resource type="PackedScene" path="res://scenes/versus.tscn" id="6_qcd74"]
 
 [node name="courtroom_devin" type="Node2D"]
 position = Vector2(750, 2.08165e-12)

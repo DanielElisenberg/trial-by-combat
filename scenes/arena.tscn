@@ -15,7 +15,7 @@
 [ext_resource type="AudioStream" uid="uid://r2x0xl547ogc" path="res://sounds/sfx/round_one.mp3" id="13_x5p41"]
 [ext_resource type="AudioStream" uid="uid://dfux6ifjmwjxp" path="res://sounds/sfx/round_two.mp3" id="14_2xykl"]
 [ext_resource type="AudioStream" uid="uid://cj2thne38xtrf" path="res://sounds/sfx/final_round.mp3" id="15_p2c5a"]
-[ext_resource type="PackedScene" uid="uid://tijbokynigwu" path="res://scenes/versus.tscn" id="16_t2jnb"]
+[ext_resource type="PackedScene" path="res://scenes/versus.tscn" id="16_t2jnb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mq1db"]
 size = Vector2(39.5, 872.5)
