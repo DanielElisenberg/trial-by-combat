@@ -18,6 +18,7 @@ extends Area2D
 var attacking_entity
 signal attack_finished
 signal send_projectile(projectile)
+var did_damage = false
 
 
 func _ready():
@@ -33,6 +34,7 @@ func disable():
 
 
 func initiate_attack():
+	did_damage = false
 	timer.set_paused(false)
 	windup_timer.set_paused(false)
 	hitbox_timer.set_paused(false)
@@ -80,18 +82,20 @@ func _on_attack_timer_timeout():
 
 
 func _on_body_entered(body):
-	if randi_range(0, 1):
-		$HitOne.play()
-	else:
-		$HitTwo.play()
-	if freeze_frame_length > 0:
-		attacking_entity.pause()
-		body.pause()
-		freeze_timer.start(freeze_frame_length)
-		await freeze_timer.timeout
-		attacking_entity.resume()
-		body.resume()
-	body.hit(attacking_entity, hitstun_length, damage, knockback, false)
+	if not did_damage:
+		if randi_range(0, 1):
+			$HitOne.play()
+		else:
+			$HitTwo.play()
+		if freeze_frame_length > 0:
+			attacking_entity.pause()
+			body.pause()
+			freeze_timer.start(freeze_frame_length)
+			await freeze_timer.timeout
+			attacking_entity.resume()
+			body.resume()
+		body.hit(attacking_entity, hitstun_length, damage, knockback, false)
+		did_damage = true
 
 
 func _on_windup_timer_timeout():
