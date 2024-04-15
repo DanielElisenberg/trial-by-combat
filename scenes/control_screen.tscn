@@ -54,6 +54,7 @@ Jab + Jab + Jab
 Left + Down + Right + Down + Jab"
 
 [node name="Instructions" type="Label" parent="Instructions"]
+layout_mode = 0
 offset_left = -517.0
 offset_top = -136.0
 offset_right = 1019.0

@@ -14,7 +14,7 @@ func _process(delta):
 		if Input.is_action_just_pressed("down"):
 			choice = "controls"
 			selector.position = controls_position
-		elif Input.is_action_just_pressed("ui_up"):
+		elif Input.is_action_just_pressed("up"):
 			choice = "play"
 			selector.position = play_position
 		elif Input.is_action_just_pressed("ui_accept"):
