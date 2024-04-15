@@ -158,6 +158,16 @@ stream = ExtResource("15_p2c5a")
 
 [node name="Timer" type="Timer" parent="."]
 
+[node name="Info" type="Label" parent="."]
+offset_left = 2.0
+offset_top = -3.0
+offset_right = 1920.0
+offset_bottom = 70.0
+theme_override_fonts/font = ExtResource("5_5dco0")
+theme_override_font_sizes/font_size = 40
+text = "ESC for controls"
+horizontal_alignment = 1
+
 [node name="Versus" parent="." instance=ExtResource("16_t2jnb")]
 start_off_screen = false
 enemy = "Satan"

@@ -80,7 +80,7 @@ func next_round():
 		await $Timer.timeout
 		get_tree().change_scene_to_packed(next_fight)
 	else:
-		pause()
+		stop()
 		$DEFEAT.play()
 		flying_text.show_text('DEFEAT!')
 		await flying_text.finished
