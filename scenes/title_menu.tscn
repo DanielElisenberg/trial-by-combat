@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/title_menu.gd" id="1_0xdjc"]
 [ext_resource type="FontFile" uid="uid://bh4o4pc5pwotn" path="res://fonts/Pixelify_Sans/static/PixelifySans-Bold.ttf" id="3_44sft"]
 [ext_resource type="FontFile" uid="uid://cldmt3smtivah" path="res://fonts/Pixelify_Sans/static/PixelifySans-Regular.ttf" id="3_oa7op"]
-[ext_resource type="Texture2D" uid="uid://darmgmcg72ves" path="res://sprites/fighters/judgesheet.png" id="4_cfmhn"]
+[ext_resource type="Texture2D" uid="uid://dxmplasi56eus" path="res://sprites/fighters/judgesheet.png" id="4_cfmhn"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jwopw"]
 atlas = ExtResource("4_cfmhn")

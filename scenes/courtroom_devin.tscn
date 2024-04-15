@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://ck0gtgkjb2bjx"]
+
+[ext_resource type="Texture2D" uid="uid://ba6fhck0lsywo" path="res://sprites/backgrounds/courtroom.png" id="1_j6pui"]
+[ext_resource type="Script" path="res://scripts/courtroom_devin.gd" id="1_j78rv"]
+[ext_resource type="PackedScene" uid="uid://cnbl6ra6bh6mc" path="res://scenes/warlock.tscn" id="2_53ydx"]
+[ext_resource type="PackedScene" uid="uid://okqnfgow3d3a" path="res://scenes/summoning_ring.tscn" id="3_x87h7"]
+[ext_resource type="PackedScene" uid="uid://byshmomdcx3dv" path="res://scenes/text_box.tscn" id="4_noygb"]
+
+[node name="courtroom_devin" type="Node2D"]
+position = Vector2(750, 2.08165e-12)
+script = ExtResource("1_j78rv")
+
+[node name="bg" type="Sprite2D" parent="."]
+position = Vector2(-777, -207)
+scale = Vector2(4.5, 4.5)
+texture = ExtResource("1_j6pui")
+centered = false
+
+[node name="Warlock" parent="." instance=ExtResource("2_53ydx")]
+position = Vector2(1715, 661)
+scale = Vector2(4.5, 4.5)
+
+[node name="SummoningRing" parent="." instance=ExtResource("3_x87h7")]
+position = Vector2(919, 718)
+scale = Vector2(4.5, 4.5)
+
+[node name="TextBox" parent="." instance=ExtResource("4_noygb")]
+
+[node name="Timer" type="Timer" parent="."]

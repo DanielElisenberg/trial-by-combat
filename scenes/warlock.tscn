@@ -1,0 +1,67 @@
+[gd_scene load_steps=9 format=3 uid="uid://cnbl6ra6bh6mc"]
+
+[ext_resource type="Texture2D" uid="uid://bbdjnbrt0kisa" path="res://sprites/courtscenes/warlocksheet.png" id="1_fxc2r"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hktlm"]
+atlas = ExtResource("1_fxc2r")
+region = Rect2(0, 0, 55, 55)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5y2s8"]
+atlas = ExtResource("1_fxc2r")
+region = Rect2(55, 0, 55, 55)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nd6pk"]
+atlas = ExtResource("1_fxc2r")
+region = Rect2(110, 0, 55, 55)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uarr1"]
+atlas = ExtResource("1_fxc2r")
+region = Rect2(275, 0, 55, 55)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_np5m8"]
+atlas = ExtResource("1_fxc2r")
+region = Rect2(220, 0, 55, 55)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5scul"]
+atlas = ExtResource("1_fxc2r")
+region = Rect2(165, 0, 55, 55)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ue2qd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hktlm")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_5y2s8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nd6pk")
+}],
+"loop": true,
+"name": &"raised_hands",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uarr1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_np5m8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5scul")
+}],
+"loop": true,
+"name": &"summoning",
+"speed": 9.0
+}]
+
+[node name="Warlock" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_ue2qd")
+autoplay = "default"
