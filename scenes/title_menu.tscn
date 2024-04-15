@@ -1,10 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://g5h206tqgk8g"]
+[gd_scene load_steps=11 format=3 uid="uid://g5h206tqgk8g"]
 
 [ext_resource type="Script" path="res://scripts/title_menu.gd" id="1_0xdjc"]
+[ext_resource type="Texture2D" uid="uid://dv0bfhia56pla" path="res://sprites/backgrounds/titlebg.png" id="2_l1jlx"]
 [ext_resource type="FontFile" uid="uid://bh4o4pc5pwotn" path="res://fonts/Pixelify_Sans/static/PixelifySans-Bold.ttf" id="3_44sft"]
 [ext_resource type="FontFile" uid="uid://cldmt3smtivah" path="res://fonts/Pixelify_Sans/static/PixelifySans-Regular.ttf" id="3_oa7op"]
 [ext_resource type="Texture2D" uid="uid://dxmplasi56eus" path="res://sprites/fighters/judgesheet.png" id="4_cfmhn"]
 [ext_resource type="AudioStream" uid="uid://cbd607hngait1" path="res://sounds/trial_by_combat.mp3" id="5_u148c"]
+[ext_resource type="Texture2D" uid="uid://n3eo26wmtk1j" path="res://sprites/UI/selector.png" id="7_fp87m"]
+[ext_resource type="PackedScene" uid="uid://pw50xwse55ov" path="res://scenes/control_screen.tscn" id="8_kebmd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jwopw"]
 atlas = ExtResource("4_cfmhn")
@@ -24,11 +27,15 @@ animations = [{
 [node name="TitleMenu" type="Node2D"]
 script = ExtResource("1_0xdjc")
 
+[node name="bg" type="Sprite2D" parent="."]
+texture = ExtResource("2_l1jlx")
+centered = false
+
 [node name="PlayLabel" type="Label" parent="."]
-offset_left = 3.0
-offset_top = 715.0
-offset_right = 1929.0
-offset_bottom = 819.0
+offset_left = 1.0
+offset_top = 776.0
+offset_right = 1927.0
+offset_bottom = 880.0
 theme_override_fonts/font = ExtResource("3_oa7op")
 theme_override_font_sizes/font_size = 80
 text = "Play"
@@ -36,10 +43,10 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ControlLabel" type="Label" parent="."]
-offset_left = 1.0
-offset_top = 870.0
-offset_right = 1927.0
-offset_bottom = 974.0
+offset_left = -1.0
+offset_top = 912.0
+offset_right = 1925.0
+offset_bottom = 1016.0
 theme_override_fonts/font = ExtResource("3_oa7op")
 theme_override_font_sizes/font_size = 80
 text = "Controls"
@@ -58,10 +65,17 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(947, 461)
-scale = Vector2(8, 8)
+position = Vector2(962, 520)
+scale = Vector2(10, 10)
 sprite_frames = SubResource("SpriteFrames_jdgst")
 
 [node name="BattleMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_u148c")
 autoplay = true
+
+[node name="Selector" type="Sprite2D" parent="."]
+position = Vector2(964, 833)
+texture = ExtResource("7_fp87m")
+
+[node name="ControlScreen" parent="." instance=ExtResource("8_kebmd")]
+visible = false
