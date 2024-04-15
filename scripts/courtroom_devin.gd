@@ -58,7 +58,7 @@ func initiate_scene():
 	text_box.display("Devin", "Whatever!")
 	timer.start(1)
 	await timer.timeout
-	text_box.display("Devin", "Whatever! It is a prank, bro!")
+	text_box.display("Devin", "Whatever! It's just a prank, bro!")
 	timer.start(2)
 	await timer.timeout
 	text_box.display("Devin", "Whatever, bro!")
