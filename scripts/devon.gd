@@ -74,6 +74,9 @@ func reset(start_position):
 	hitstun_timer.stop()
 	attack_timer.start()
 	strafe_timer.start()
+	$JumpTimer.start()
+	exhausted = false
+	$ExhaustionTimer.start()
 	direction = 0
 	position = start_position
 
@@ -87,7 +90,10 @@ func stop():
 	hitstun_timer.stop()
 	attack_timer.stop()
 	strafe_timer.stop()
+	$JumpTimer.stop()
 	direction = 0
+	exhausted = false
+	$ExhaustionTimer.stop()
 
 
 func pause():
@@ -137,6 +143,7 @@ func _physics_process(delta):
 	if current_attack == jump_kick and is_on_floor():
 		jump_kick.disable()
 		initiate_spin_kick()
+		
 	elif status == Status.AIRBORNE and is_on_floor() and velocity.y >= 0:
 		status = Status.IDLE
 		animations.play("idle")
@@ -190,7 +197,8 @@ func hit(attacker, hitstun_time, damage, knockback):
 
 
 func _on_hitstun_timeout():
-	initiate_spin_kick()
+	if not exhausted:
+		initiate_spin_kick()
 
 
 func _on_send_projectile(projectile):
@@ -204,6 +212,9 @@ func _on_jump_timer_timeout():
 		if exhausted:
 			velocity.y /= 2
 		animations.play("jump")
+		$JumpTimer.start(2)
+	else:
+		$JumpTimer.start(0.1)
 
 
 func _on_exhaustion_timer_timeout():

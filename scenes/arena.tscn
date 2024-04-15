@@ -1,7 +1,7 @@
 [gd_scene load_steps=15 format=3 uid="uid://nc04gqnj5lct"]
 
 [ext_resource type="Script" path="res://scripts/arena.gd" id="1_okel5"]
-[ext_resource type="PackedScene" path="res://scenes/courtroom_ceo.tscn" id="2_g3xae"]
+[ext_resource type="PackedScene" uid="uid://tn2f2gkawrf8" path="res://scenes/courtroom_ceo.tscn" id="2_g3xae"]
 [ext_resource type="Texture2D" uid="uid://slnivve5revd" path="res://sprites/backgrounds/fight_bg.png" id="2_sjyxi"]
 [ext_resource type="PackedScene" uid="uid://r5peab67hacc" path="res://scenes/health_bar.tscn" id="3_p5doc"]
 [ext_resource type="PackedScene" uid="uid://dpgss5cyimvpn" path="res://scenes/player_character.tscn" id="4_5tkut"]
