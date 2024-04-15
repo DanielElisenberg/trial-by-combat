@@ -51,9 +51,9 @@ func _on_player_health_bar_health_depleted():
 	next_round()
 
 func next_round():
-	if game_started:
-		pause()
 	game_started = false
+	$Player/PlayerCharacter.stop()
+	$Enemy/EnemyCharacter.stop()
 	if score.x < 2 and score.y < 2:
 		round += 1
 		round_sound[round].play()
@@ -67,6 +67,7 @@ func next_round():
 			projectile.queue_free()
 		$FIGHT.play()
 		flying_text.show_text('FIGHT!')
+		$BattleMusic.play()
 		game_started = true
 	elif score.x >= 2:
 		$VICTORY.play()
@@ -76,15 +77,14 @@ func next_round():
 		await $Timer.timeout
 		get_tree().change_scene_to_packed(next_fight)
 	else:
+		pause()
 		$DEFEAT.play()
 		flying_text.show_text('DEFEAT!')
 		await flying_text.finished
 		flying_text.show_permanent_text('press space to retry!')
 		game_finished = true
-	$BattleMusic.play()
 
 func pause():
-	print("pause")
 	paused = true
 	music_progress = $BattleMusic.get_playback_position()
 	$BattleMusic.stop()
@@ -93,8 +93,14 @@ func pause():
 	for projectile in $Projectiles.get_children():
 		projectile.pause()
 
+func stop():
+	$BattleMusic.stop()
+	$Player/PlayerCharacter.stop()
+	$Enemy/EnemyCharacter.stop()
+	for projectile in $Projectiles.get_children():
+		projectile.pause()
+
 func resume():
-	print("resume")
 	paused = false
 	$BattleMusic.play(music_progress)
 	$Player/PlayerCharacter.resume()

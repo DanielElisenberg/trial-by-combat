@@ -62,6 +62,11 @@ func reset(start_position):
 	hitstun_timer.stop()
 	attack_timer.start()
 	strafe_timer.start()
+	$BlockTimer.stop()
+	hitstun_timer.set_paused(false)
+	attack_timer.set_paused(false)
+	strafe_timer.set_paused(false)
+	$BlockTimer.set_paused(false)
 	direction = 0
 	position = start_position
 
@@ -75,6 +80,7 @@ func stop():
 	hitstun_timer.stop()
 	attack_timer.stop()
 	strafe_timer.stop()
+	$BlockTimer.stop()
 	direction = 0
 
 

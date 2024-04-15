@@ -26,7 +26,6 @@ func _ready():
 
 
 func disable():
-	hitbox.set_deferred("process_mode", PROCESS_MODE_DISABLED)
 	disable_hitbox()
 	timer.stop()
 	windup_timer.stop()
@@ -34,7 +33,9 @@ func disable():
 
 
 func initiate_attack():
-	hitbox.set_deferred("process_mode", PROCESS_MODE_INHERIT)
+	timer.set_paused(false)
+	windup_timer.set_paused(false)
+	hitbox_timer.set_paused(false)
 	timer.start(length)
 	sfx.play()
 	if windup > 0:

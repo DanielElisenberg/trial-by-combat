@@ -124,8 +124,9 @@ func resume():
 
 
 func _on_strafe_timer_timeout():
-	direction = randi_range(-1, 1)
-	if direction == 0 and not exhausted:
+	if exhausted:
+		direction = randi_range(0, 1)
+	else:
 		direction = randi_range(0, 1)
 		if direction == 0:
 			direction = -1
