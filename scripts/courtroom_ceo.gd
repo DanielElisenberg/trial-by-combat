@@ -73,6 +73,5 @@ func initiate_scene():
 	bgm.stop()
 	versus.enter_screen()
 	await versus.finished
-	await timer.timeout
 	get_tree().change_scene_to_file("res://scenes/arena_ceo.tscn")
 	
