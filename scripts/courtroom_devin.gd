@@ -8,7 +8,7 @@ extends Node2D
 var can_interact = false
 
 signal advance
- 
+
 func _ready():
 	initiate_scene()
 

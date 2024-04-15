@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://cxq5t0gxu8inp"]
+[gd_scene load_steps=7 format=3 uid="uid://cxq5t0gxu8inp"]
 
 [ext_resource type="Texture2D" uid="uid://ba6fhck0lsywo" path="res://sprites/backgrounds/courtroom.png" id="1_c22x3"]
 [ext_resource type="Script" path="res://scenes/courtroom_satan.gd" id="1_sme03"]
 [ext_resource type="PackedScene" uid="uid://cnbl6ra6bh6mc" path="res://scenes/warlock.tscn" id="2_1kldv"]
 [ext_resource type="PackedScene" uid="uid://okqnfgow3d3a" path="res://scenes/summoning_ring.tscn" id="3_l4cpl"]
 [ext_resource type="PackedScene" uid="uid://byshmomdcx3dv" path="res://scenes/text_box.tscn" id="5_r4gwd"]
+[ext_resource type="AudioStream" uid="uid://bgnd3ptkli7ew" path="res://sounds/a_courtroom_somewhere.mp3" id="6_cjq4g"]
 
 [node name="CourtroomSatan" type="Node2D"]
 position = Vector2(750, 2.08165e-12)
@@ -27,3 +28,7 @@ scale = Vector2(4.5, 4.5)
 [node name="TextBox" parent="." instance=ExtResource("5_r4gwd")]
 
 [node name="Timer" type="Timer" parent="."]
+
+[node name="bgm" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_cjq4g")
+autoplay = true

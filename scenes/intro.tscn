@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://cut375p84uyty"]
+[gd_scene load_steps=5 format=3 uid="uid://cut375p84uyty"]
 
 [ext_resource type="Script" path="res://scripts/Intro.gd" id="1_ntuy4"]
 [ext_resource type="Texture2D" uid="uid://dl6srj7p8egnx" path="res://sprites/backgrounds/black_bg.png" id="2_ewmh7"]
 [ext_resource type="FontFile" uid="uid://cldenxc5p1221" path="res://fonts/Pixelify_Sans/static/PixelifySans-Medium.ttf" id="3_8xy3d"]
+[ext_resource type="AudioStream" uid="uid://dk1yrng1cmnxw" path="res://sounds/intro.mp3" id="4_6uron"]
 
 [node name="Intro" type="Node2D"]
 script = ExtResource("1_ntuy4")
@@ -21,3 +22,7 @@ theme_override_font_sizes/font_size = 52
 text = "Somewhere in spacetime there is a courtroom"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="bgm" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_6uron")
+autoplay = true
