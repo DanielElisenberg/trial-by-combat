@@ -14,10 +14,10 @@ func _process(delta):
 		if Input.is_action_just_pressed("down"):
 			choice = "controls"
 			selector.position = controls_position
-		if Input.is_action_just_pressed("jump"):
+		elif Input.is_action_just_pressed("ui_up"):
 			choice = "play"
 			selector.position = play_position
-		if Input.is_action_just_pressed("ui_accept"):
+		elif Input.is_action_just_pressed("ui_accept"):
 			if choice == "play":
 				get_tree().change_scene_to_file("res://scenes/intro.tscn")
 			else:
