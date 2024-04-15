@@ -28,15 +28,18 @@ func initiate_scene():
 	timer.start(1)
 	await timer.timeout
 	text_box.display("Judge Roundhouse", "Summon our first defendant, warlock")
+	text_box.show_continue()
 	can_interact = true
 	await advance
 	
 	text_box.display("Warlock", "We've got some real big fish biting today, sir.")
+	text_box.show_continue()
 	can_interact = true
 	await advance
 	
 	warlock.play("raised_hands")
 	text_box.display("Warlock", "I will summon the first miscreant")
+	text_box.show_continue()
 	can_interact = true
 	await advance
 	
@@ -54,22 +57,27 @@ func initiate_scene():
 	timer.start(1)
 	await timer.timeout
 	text_box.display("Judge Roundhouse", "Satan, Father of lies, King of the bottomless pit... A REAL jerk.")
+	text_box.show_continue()
 	can_interact = true
 	await advance
 	
 	text_box.display("Judge Roundhouse", "You have been summoned to this court to answer for your crimes!")
+	text_box.show_continue()
 	can_interact = true
 	await advance
 
 	text_box.display("Judge Roundhouse", "How do you plead?")
+	text_box.show_continue()
 	can_interact = true
 	await advance
 	
 	text_box.display("Satan", "I am just a bad boy hehe")
+	text_box.show_continue()
 	can_interact = true
 	await advance
 
 	text_box.display("Judge Roundhouse", "PREPARE FOR JUSTICE! TRIAL BY COMBAT!")
+	text_box.show_continue()
 	can_interact = true
 	await advance
 	bgm.stop()

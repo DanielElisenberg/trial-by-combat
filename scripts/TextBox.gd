@@ -3,6 +3,8 @@ extends Node2D
 @onready var name_tag = $Name
 @onready var text = $Text
 @onready var profile = $Profile
+@onready var continue_text = $Continue
+
 var judge_portrait = preload("res://sprites/portraits/judge.png")
 var warlock_portrait = preload("res://sprites/portraits/warlock.png")
 var ceo_portrait = preload("res://sprites/portraits/ceo.png")
@@ -15,6 +17,7 @@ func _ready():
 
 
 func display(name: String, display_text: String):
+	continue_text.visible = false
 	name_tag.text = name
 	text.text = display_text
 	if name == 'Judge Roundhouse':
@@ -35,6 +38,9 @@ func display(name: String, display_text: String):
 	else:
 		profile.visible = false
 	visible = true
+
+func show_continue():
+	continue_text.visible = true
 
 func remove():
 	visible = false

@@ -10,7 +10,6 @@ const label_script = [
 ]
 var script_index = 0
 
-
 func _process(delta):
 	if Input.is_action_just_pressed("ui_accept"):
 		script_index += 1

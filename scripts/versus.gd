@@ -35,8 +35,8 @@ func enter_screen():
 	tween = create_tween()
 	tween.tween_property(cslide, "position", Vector2(0,0), 0.2)
 	await tween.finished
-	await audio.finished
 	label.visible = true
+	await audio.finished
 	emit_signal("finished")
 
 func exit_screen():
