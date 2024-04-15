@@ -7,6 +7,7 @@ enum Direction {LEFT = -1, RIGHT = 1}
 @export var damage = 10.0
 @export var hitstun = 0.1
 @export var knockback = Vector2(0, 0)
+var entity_sent_from: Node2D
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -21,7 +22,7 @@ func process_projectile(delta, current_position):
 		set_deferred("position", new_position)
 
 func _on_body_entered(body):
-	body.hit(hitstun, damage, knockback)
+	body.hit(entity_sent_from, hitstun, damage, knockback)
 	queue_free()
 
 

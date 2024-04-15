@@ -49,6 +49,7 @@ length = 0.6
 windup = 0.3
 hitbox_time = 0.2
 hitstun_length = 1.0
+freeze_frame_length = 0.3
 damage = 15.0
 knockback = Vector2(-4000, -900)
 
@@ -84,6 +85,9 @@ autostart = true
 
 [node name="BlockTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="FreezeTimer" type="Timer" parent="."]
+wait_time = 0.1
 
 [connection signal="timeout" from="Hitstun/HitstunTimer" to="." method="_on_hitstun_timeout"]
 [connection signal="attack_finished" from="Attacks/Bump" to="." method="_on_attack_finished"]

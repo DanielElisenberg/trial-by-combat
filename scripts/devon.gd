@@ -10,6 +10,7 @@ enum Status {IDLE, ATTACKING, STUNNED, BLOCKING, INACTIVE}
 @onready var hitstun_timer = $Hitstun/HitstunTimer
 @onready var hitstun_sfx = $Hitstun/HitstunSFX
 var status: Status = Status.INACTIVE
+var paused_status: Status = Status.INACTIVE
 var current_attack = null
 
 signal damage_taken(damage)
@@ -72,7 +73,30 @@ func stop():
 	attack_timer.stop()
 	strafe_timer.stop()
 	direction = 0
-	
+
+
+func pause():
+	paused_status = status
+	status = Status.INACTIVE
+	hitstun_timer.set_paused(true)
+	attack_timer.set_paused(true)
+	strafe_timer.set_paused(true)
+	$JumpTimer.set_paused(true)
+	animations.pause()
+	if current_attack != null:
+		current_attack.pause()
+
+
+func resume():
+	status = paused_status
+	hitstun_timer.set_paused(false)
+	attack_timer.set_paused(false)
+	strafe_timer.set_paused(false)
+	$JumpTimer.set_paused(false)
+	animations.play()
+	if current_attack != null:
+		current_attack.resume()
+
 
 func _on_strafe_timer_timeout():
 	direction = randi_range(-1, 1)
@@ -122,7 +146,7 @@ func _on_attack_finished():
 		animations.play("idle")
 
 
-func hit(hitstun_time, damage, knockback):
+func hit(attacker, hitstun_time, damage, knockback):
 	if status == Status.ATTACKING:
 		current_attack.disable()
 		current_attack = null
