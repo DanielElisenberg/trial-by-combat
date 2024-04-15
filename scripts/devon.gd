@@ -199,6 +199,9 @@ func hit(attacker, hitstun_time, damage, knockback):
 func _on_hitstun_timeout():
 	if not exhausted:
 		initiate_spin_kick()
+	else:
+		status = Status.IDLE
+		animated_sprite.play("idle")
 
 
 func _on_send_projectile(projectile):

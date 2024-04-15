@@ -19,7 +19,7 @@ func _draw():
 		var x = health_bar_rectangle.size.x * health_percentage
 		if flipped:
 			x = health_bar_rectangle.size.x * (1 - health_percentage)
-		draw_line(Vector2(x, 0), Vector2(x, missing_health_rect.size.y), Color.FIREBRICK, 2, false)
+		draw_line(Vector2(x, 0), Vector2(x, missing_health_rect.size.y), Color.FIREBRICK, 3, false)
 
 func set_health_percentage(percentage):
 	health_percentage = percentage
