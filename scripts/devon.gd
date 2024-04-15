@@ -2,9 +2,11 @@ extends CharacterBody2D
 
 
 const SPEED = 500.0
-const JUMP_VELOCITY = -1300.0
+const JUMP_VELOCITY = -1200.0
+const active_time = 10
+const exhausted_time = 5
 
-enum Status {IDLE, ATTACKING, STUNNED, BLOCKING, INACTIVE}
+enum Status {IDLE, ATTACKING, STUNNED, BLOCKING, AIRBORNE, INACTIVE}
 
 @onready var animations: AnimatedSprite2D = $Animations
 @onready var hitstun_timer = $Hitstun/HitstunTimer
@@ -12,6 +14,7 @@ enum Status {IDLE, ATTACKING, STUNNED, BLOCKING, INACTIVE}
 var status: Status = Status.INACTIVE
 var paused_status: Status = Status.INACTIVE
 var current_attack = null
+var exhausted = false
 
 signal damage_taken(damage)
 signal send_projectile(projectile)
@@ -26,27 +29,38 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var animated_sprite: AnimatedSprite2D = $Animations
 @onready var attack_timer = $AttackTimer
 @onready var strafe_timer = $StrafeTimer
-var direction = 0
+var direction = -1
 
 
 func _on_attack_timer_timeout():
 	if status == Status.INACTIVE:
 		return
-	if status != Status.STUNNED and is_on_floor():
-		var random_attack = randi_range(0, 1)
+	if status == Status.IDLE and is_on_floor():
+		var random_attack = randi_range(0, 3)
 		if random_attack == 0:
-			spin_kick.initiate_attack()
-			animated_sprite.play("spinkick")
-			status = Status.ATTACKING
-			current_attack = spin_kick
-		elif random_attack == 1:
-			throw_vape.initiate_attack()
-			animated_sprite.play("throw")
-			status = Status.ATTACKING
-			current_attack = throw_vape
-		attack_timer.start(randf_range(current_attack.length, 3))
+			initiate_throw()
+		elif random_attack > 0 and not exhausted:
+			initiate_spin_kick()
+		elif exhausted:
+			attack_timer.start(randf_range(0.5, 1))
 	else:
-		attack_timer.start(randf_range(0.1, 1))
+		attack_timer.start(randf_range(0.1, 0.5))
+
+
+func initiate_spin_kick():
+	spin_kick.initiate_attack()
+	animated_sprite.play("spinkick")
+	status = Status.ATTACKING
+	current_attack = spin_kick
+	attack_timer.start(randf_range(current_attack.length, 1))
+
+
+func initiate_throw():
+	throw_vape.initiate_attack()
+	animated_sprite.play("throw")
+	status = Status.ATTACKING
+	current_attack = throw_vape
+	attack_timer.start(randf_range(current_attack.length, 1))
 
 
 func reset(start_position):
@@ -100,36 +114,41 @@ func resume():
 
 func _on_strafe_timer_timeout():
 	direction = randi_range(-1, 1)
-	strafe_timer.start(randf_range(0.5, 2))
+	if direction == 0 and not exhausted:
+		direction = randi_range(0, 1)
+		if direction == 0:
+			direction = -1
+	strafe_timer.start(randf_range(0.5, 1))
 
 
 func _physics_process(delta):
+	print(status)
 	if status == Status.INACTIVE:
 		return
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += gravity * delta
 
-	if status != Status.STUNNED and status != Status.ATTACKING and is_on_floor():
+	if current_attack == jump_kick and is_on_floor():
+		jump_kick.disable()
+		initiate_spin_kick()
+	if status != Status.STUNNED and status != Status.AIRBORNE:
+		var current_speed = SPEED
+		if exhausted:
+			current_speed /= 2
 		if direction:
-			velocity.x = direction * SPEED
-			animated_sprite.play("strafe")
+			velocity.x = direction * current_speed
+			if status == Status.IDLE:
+				animated_sprite.play("strafe")
 		else:
-			velocity.x = move_toward(velocity.x, 0, SPEED)
-			animated_sprite.play("idle")
-	elif status == Status.ATTACKING and is_on_floor():
-		if current_attack == jump_kick:
-			jump_kick.disable()
-			current_attack = null
-			status = Status.IDLE
-			animations.play("idle")
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+			velocity.x = move_toward(velocity.x, 0, current_speed)
+			if status == Status.IDLE:
+				animated_sprite.play("idle")
 	elif status == Status.STUNNED:
 		velocity.x = move_toward(velocity.x, 0, 75)
-	elif status == Status.IDLE and not is_on_floor() and velocity.y > 0:
+	elif status == Status.AIRBORNE and velocity.y > 0:
 		jump_kick.initiate_attack()
 		animated_sprite.play("jumpkick")
-		status = Status.ATTACKING
 		current_attack = jump_kick
 	
 	if status == Status.STUNNED:
@@ -173,6 +192,13 @@ func _on_send_projectile(projectile):
 
 func _on_jump_timer_timeout():
 	if status == Status.IDLE:
+		status = Status.AIRBORNE
 		velocity.y = JUMP_VELOCITY
+		if exhausted:
+			velocity.y /= 2
 		status = Status.IDLE
 		animations.play("jump")
+
+
+func _on_exhaustion_timer_timeout():
+	pass # Replace with function body.
