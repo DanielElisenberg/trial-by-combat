@@ -59,5 +59,5 @@ func next_round():
 	else:
 		flying_text.show_text('DEFEAT!')
 		await flying_text.finished
-		flying_text.show_permanent_text('press space to restart!')
+		flying_text.show_permanent_text('press space to retry!')
 		game_finished = true

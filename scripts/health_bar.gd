@@ -1,15 +1,16 @@
-extends Node2D
+extends Sprite2D
 
 @export var health = 100.0
 @export_flags("flipped") var flipped
 var remaining_health
-@onready var missing_health = $BackGround/Bar/MissingHealth
+@onready var missing_health = $MissingHealth
 
 signal health_depleted
 
 func _ready():
 	remaining_health = health
 	missing_health.flipped = flipped
+	missing_health.set_reference_rect($ReferenceRect)
 
 func take_damage(damage: float):
 	if remaining_health == 0:

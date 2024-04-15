@@ -49,41 +49,65 @@ shape = SubResource("RectangleShape2D_ottia")
 position = Vector2(426, 727)
 scale = Vector2(6, 6)
 
-[node name="PlayerHealthBar" parent="Player" instance=ExtResource("4_a4rr8")]
-position = Vector2(2, 0)
-flipped = 1
-
 [node name="PlayerPosition" type="Node2D" parent="Player"]
 position = Vector2(427, 726)
 
+[node name="PlayerHealthBar" parent="Player" instance=ExtResource("4_a4rr8")]
+position = Vector2(2, 0)
+scale = Vector2(2, 2)
+
 [node name="PlayerScore" type="Label" parent="Player"]
-offset_left = 473.0
+offset_left = 607.0
 offset_top = -1.0
-offset_right = 496.0
-offset_bottom = 22.0
+offset_right = 643.0
+offset_bottom = 72.0
 theme_override_fonts/font = ExtResource("5_pqqgj")
-theme_override_font_sizes/font_size = 26
+theme_override_font_sizes/font_size = 60
 text = "0"
 
-[node name="Enemy" type="Node2D" parent="."]
+[node name="PlayerName" type="Label" parent="Player"]
+offset_left = 17.0
+offset_top = 72.0
+offset_right = 247.0
+offset_bottom = 145.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_pqqgj")
+theme_override_font_sizes/font_size = 25
+text = "JUDGE ROUNDHOUSE"
 
-[node name="EnemyHealthBar" parent="Enemy" instance=ExtResource("4_a4rr8")]
-position = Vector2(1456, 0)
+[node name="Enemy" type="Node2D" parent="."]
 
 [node name="EnemyPosition" type="Node2D" parent="Enemy"]
 position = Vector2(1530, 721)
 
-[node name="EnemyScore" type="Label" parent="Enemy"]
-offset_left = 1431.0
-offset_right = 1471.0
-offset_bottom = 28.0
-theme_override_fonts/font = ExtResource("5_pqqgj")
-theme_override_font_sizes/font_size = 26
-text = "0"
-
 [node name="EnemyCharacter" parent="Enemy" instance=ExtResource("6_8ed1n")]
 position = Vector2(1530, 722)
 scale = Vector2(6, 6)
+
+[node name="EnemyHealthBar" parent="Enemy" instance=ExtResource("4_a4rr8")]
+position = Vector2(1319, 0)
+scale = Vector2(2, 2)
+flip_h = true
+flipped = 1
+
+[node name="EnemyScore" type="Label" parent="Enemy"]
+offset_left = 1291.0
+offset_top = -2.0
+offset_right = 1331.0
+offset_bottom = 71.0
+theme_override_fonts/font = ExtResource("5_pqqgj")
+theme_override_font_sizes/font_size = 60
+text = "0"
+
+[node name="EnemyName" type="Label" parent="Enemy"]
+offset_left = 1689.0
+offset_top = 71.0
+offset_right = 1919.0
+offset_bottom = 144.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_pqqgj")
+theme_override_font_sizes/font_size = 25
+text = "DEVON, A MONSTER"
 
 [node name="FlyingText" parent="." instance=ExtResource("7_oqk3j")]
 
@@ -98,6 +122,6 @@ autoplay = true
 [connection signal="damage_taken" from="Player/PlayerCharacter" to="." method="_on_player_damage_taken"]
 [connection signal="send_projectile" from="Player/PlayerCharacter" to="." method="_on_send_projectile"]
 [connection signal="health_depleted" from="Player/PlayerHealthBar" to="." method="_on_player_health_bar_health_depleted"]
-[connection signal="health_depleted" from="Enemy/EnemyHealthBar" to="." method="_on_enemy_health_bar_health_depleted"]
 [connection signal="damage_taken" from="Enemy/EnemyCharacter" to="." method="_on_enemy_damage_taken"]
 [connection signal="send_projectile" from="Enemy/EnemyCharacter" to="." method="_on_send_projectile"]
+[connection signal="health_depleted" from="Enemy/EnemyHealthBar" to="." method="_on_enemy_health_bar_health_depleted"]

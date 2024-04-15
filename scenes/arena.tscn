@@ -62,19 +62,29 @@ scale = Vector2(6, 6)
 
 [node name="PlayerHealthBar" parent="Player" instance=ExtResource("3_p5doc")]
 position = Vector2(2, 0)
-flipped = 1
+scale = Vector2(2, 2)
 
 [node name="PlayerPosition" type="Node2D" parent="Player"]
 position = Vector2(427, 726)
 
 [node name="PlayerScore" type="Label" parent="Player"]
-offset_left = 473.0
+offset_left = 607.0
 offset_top = -1.0
-offset_right = 496.0
-offset_bottom = 22.0
+offset_right = 643.0
+offset_bottom = 72.0
 theme_override_fonts/font = ExtResource("5_5dco0")
-theme_override_font_sizes/font_size = 26
+theme_override_font_sizes/font_size = 60
 text = "0"
+
+[node name="PlayerName" type="Label" parent="Player"]
+offset_left = 17.0
+offset_top = 72.0
+offset_right = 247.0
+offset_bottom = 145.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_5dco0")
+theme_override_font_sizes/font_size = 25
+text = "JUDGE ROUNDHOUSE"
 
 [node name="Enemy" type="Node2D" parent="."]
 
@@ -83,18 +93,32 @@ position = Vector2(1529, 722)
 scale = Vector2(6, 6)
 
 [node name="EnemyHealthBar" parent="Enemy" instance=ExtResource("3_p5doc")]
-position = Vector2(1456, 0)
+position = Vector2(1319, 0)
+scale = Vector2(2, 2)
+flip_h = true
+flipped = 1
 
 [node name="EnemyPosition" type="Node2D" parent="Enemy"]
 position = Vector2(1530, 721)
 
 [node name="EnemyScore" type="Label" parent="Enemy"]
-offset_left = 1431.0
-offset_right = 1471.0
-offset_bottom = 28.0
+offset_left = 1291.0
+offset_top = -2.0
+offset_right = 1331.0
+offset_bottom = 71.0
 theme_override_fonts/font = ExtResource("5_5dco0")
-theme_override_font_sizes/font_size = 26
+theme_override_font_sizes/font_size = 60
 text = "0"
+
+[node name="EnemyName" type="Label" parent="Enemy"]
+offset_left = 1675.0
+offset_top = 71.0
+offset_right = 1905.0
+offset_bottom = 144.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_5dco0")
+theme_override_font_sizes/font_size = 25
+text = "SATAN, A REAL JERK"
 
 [node name="FlyingText" parent="." instance=ExtResource("6_nu61q")]
 
