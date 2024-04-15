@@ -134,7 +134,6 @@ func _on_strafe_timer_timeout():
 
 
 func _physics_process(delta):
-	print(is_on_wall())
 	if status == Status.INACTIVE:
 		return
 	# Add the gravity.

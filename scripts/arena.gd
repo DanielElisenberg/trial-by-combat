@@ -22,7 +22,6 @@ func _process(delta):
 	if game_finished and Input.is_action_just_pressed("retry"):
 		get_tree().reload_current_scene()
 	if game_started and Input.is_action_just_pressed("escape"):
-		print("escape pressed")
 		if paused:
 			resume()
 		else:
