@@ -6,8 +6,12 @@ const round_number_text = {1: "ONE", 2: "TWO", 3: "THREE"}
 
 var score: Vector2 = Vector2(0, 0)
 var round = 0
+var game_started = false
 var game_finished = false
+var victory = false
 @export var next_fight: PackedScene
+var paused = false
+var music_progress = 0
 
 func _ready():
 	next_round()
@@ -17,6 +21,12 @@ func _process(delta):
 	$Enemy/EnemyScore.set_text(str(score.y))
 	if game_finished and Input.is_action_just_pressed("retry"):
 		get_tree().reload_current_scene()
+	if game_started and Input.is_action_just_pressed("escape"):
+		print("escape pressed")
+		if paused:
+			resume()
+		else:
+			pause()
 
 
 func _on_player_damage_taken(damage):
@@ -28,7 +38,7 @@ func _on_enemy_damage_taken(damage):
 
 
 func _on_send_projectile(projectile):
-	add_child(projectile)
+	$Projectiles.add_child(projectile)
 
 
 func _on_enemy_health_bar_health_depleted():
@@ -41,8 +51,9 @@ func _on_player_health_bar_health_depleted():
 	next_round()
 
 func next_round():
-	$Player/PlayerCharacter.stop()
-	$Enemy/EnemyCharacter.stop()
+	if game_started:
+		pause()
+	game_started = false
 	if score.x < 2 and score.y < 2:
 		round += 1
 		round_sound[round].play()
@@ -52,17 +63,41 @@ func next_round():
 		$Player/PlayerHealthBar.reset()
 		$Enemy/EnemyCharacter.reset($Enemy/EnemyPosition.position)
 		$Enemy/EnemyHealthBar.reset()
+		for projectile in $Projectiles.get_children():
+			projectile.queue_free()
 		$FIGHT.play()
 		flying_text.show_text('FIGHT!')
+		game_started = true
 	elif score.x >= 2:
 		$VICTORY.play()
 		flying_text.show_text('VICTORY!')
 		await flying_text.finished
+		$Timer.start(2)
+		await $Timer.timeout
 		get_tree().change_scene_to_packed(next_fight)
-		game_finished = true
 	else:
 		$DEFEAT.play()
 		flying_text.show_text('DEFEAT!')
 		await flying_text.finished
 		flying_text.show_permanent_text('press space to retry!')
 		game_finished = true
+	$BattleMusic.play()
+
+func pause():
+	print("pause")
+	paused = true
+	music_progress = $BattleMusic.get_playback_position()
+	$BattleMusic.stop()
+	$Player/PlayerCharacter.pause()
+	$Enemy/EnemyCharacter.pause()
+	for projectile in $Projectiles.get_children():
+		projectile.pause()
+
+func resume():
+	print("resume")
+	paused = false
+	$BattleMusic.play(music_progress)
+	$Player/PlayerCharacter.resume()
+	$Enemy/EnemyCharacter.resume()
+	for projectile in $Projectiles.get_children():
+		projectile.resume()

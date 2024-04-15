@@ -62,11 +62,6 @@ func _process(delta):
 			status = Status.ATTACKING
 			current_attack = arial_kick
 			animations.play("flykick")
-		elif Input.is_action_just_pressed("projectile"):
-			throw_gavel.initiate_attack()
-			animations.play("throw")
-			status = Status.ATTACKING
-			current_attack = throw_gavel
 	if current_attack == jab and Input.is_action_just_pressed("jab") and can_combo_jab:
 		if jabs_thrown == 1:
 			current_attack.disable()

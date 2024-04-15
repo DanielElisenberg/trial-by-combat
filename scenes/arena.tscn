@@ -1,7 +1,7 @@
 [gd_scene load_steps=20 format=3 uid="uid://nc04gqnj5lct"]
 
 [ext_resource type="Script" path="res://scripts/arena.gd" id="1_okel5"]
-[ext_resource type="PackedScene" uid="uid://tn2f2gkawrf8" path="res://scenes/courtroom_ceo.tscn" id="2_g3xae"]
+[ext_resource type="PackedScene" uid="uid://ha6ft5xyab24" path="res://scenes/courtroom_ceo.tscn" id="2_g3xae"]
 [ext_resource type="Texture2D" uid="uid://slnivve5revd" path="res://sprites/backgrounds/fight_bg.png" id="2_sjyxi"]
 [ext_resource type="PackedScene" uid="uid://r5peab67hacc" path="res://scenes/health_bar.tscn" id="3_p5doc"]
 [ext_resource type="PackedScene" uid="uid://dpgss5cyimvpn" path="res://scenes/player_character.tscn" id="4_5tkut"]
@@ -127,11 +127,12 @@ theme_override_fonts/font = ExtResource("5_5dco0")
 theme_override_font_sizes/font_size = 25
 text = "SATAN, A REAL JERK"
 
+[node name="Projectiles" type="Node2D" parent="."]
+
 [node name="FlyingText" parent="." instance=ExtResource("6_nu61q")]
 
 [node name="BattleMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_5htii")
-autoplay = true
 
 [node name="FIGHT" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_5wkl4")
@@ -152,6 +153,8 @@ stream = ExtResource("14_2xykl")
 
 [node name="FINAL_ROUND" type="AudioStreamPlayer" parent="roundSFX"]
 stream = ExtResource("15_p2c5a")
+
+[node name="Timer" type="Timer" parent="."]
 
 [connection signal="damage_taken" from="Player/PlayerCharacter" to="." method="_on_player_damage_taken"]
 [connection signal="send_projectile" from="Player/PlayerCharacter" to="." method="_on_send_projectile"]
