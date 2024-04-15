@@ -6,6 +6,7 @@
 [node name="ControlScreen" type="Node2D"]
 
 [node name="BackGround" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.831373)
 position = Vector2(961, 538)
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("1_f4b30")
@@ -20,6 +21,8 @@ theme_override_font_sizes/font_size = 40
 text = "Jump:
 
 Strafe:
+
+Block:
 
 Jab:
 
@@ -38,7 +41,9 @@ theme_override_fonts/font = ExtResource("2_5ehxl")
 theme_override_font_sizes/font_size = 40
 text = "Space or Up or W
 
-W/A or Left/right
+W/A or Left/Right
+
+K or Right mouse
 
 J or Left Mouse
 
@@ -47,3 +52,13 @@ J or Left Mouse (in air)
 Jab + Jab + Jab
 
 Left + Down + Right + Down + Jab"
+
+[node name="Instructions" type="Label" parent="Instructions"]
+offset_left = -517.0
+offset_top = -136.0
+offset_right = 1019.0
+offset_bottom = -51.0
+theme_override_fonts/font = ExtResource("2_5ehxl")
+theme_override_font_sizes/font_size = 70
+text = "CONTROLS"
+horizontal_alignment = 1
