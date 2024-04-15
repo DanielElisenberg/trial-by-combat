@@ -1,0 +1,72 @@
+[gd_scene load_steps=9 format=3 uid="uid://cdmjg2yc42evx"]
+
+[ext_resource type="Texture2D" uid="uid://dv0bfhia56pla" path="res://sprites/backgrounds/titlebg.png" id="1_atyyq"]
+[ext_resource type="Script" path="res://scripts/ending_screen.gd" id="1_mscmi"]
+[ext_resource type="FontFile" uid="uid://cldmt3smtivah" path="res://fonts/Pixelify_Sans/static/PixelifySans-Regular.ttf" id="2_41a26"]
+[ext_resource type="FontFile" uid="uid://bh4o4pc5pwotn" path="res://fonts/Pixelify_Sans/static/PixelifySans-Bold.ttf" id="3_pmecf"]
+[ext_resource type="Texture2D" uid="uid://dxmplasi56eus" path="res://sprites/fighters/judgesheet.png" id="4_4qabx"]
+[ext_resource type="AudioStream" uid="uid://cbd607hngait1" path="res://sounds/trial_by_combat.mp3" id="5_b7mew"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jwopw"]
+atlas = ExtResource("4_4qabx")
+region = Rect2(55, 220, 55, 55)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_84vdc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jwopw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="EndingScreen" type="Node2D"]
+script = ExtResource("1_mscmi")
+
+[node name="bg" type="Sprite2D" parent="."]
+texture = ExtResource("1_atyyq")
+centered = false
+
+[node name="PlayLabel" type="Label" parent="."]
+offset_left = 1.0
+offset_top = 776.0
+offset_right = 1927.0
+offset_bottom = 880.0
+theme_override_fonts/font = ExtResource("2_41a26")
+theme_override_font_sizes/font_size = 80
+text = "Thank you for playing \"Trial by Combat\"."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ControlLabel" type="Label" parent="."]
+offset_left = -1.0
+offset_top = 912.0
+offset_right = 1925.0
+offset_bottom = 1016.0
+theme_override_fonts/font = ExtResource("2_41a26")
+theme_override_font_sizes/font_size = 64
+text = "Press space to return to main menu"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TitleLabel" type="Label" parent="."]
+offset_left = -5.0
+offset_top = 77.0
+offset_right = 1921.0
+offset_bottom = 181.0
+theme_override_fonts/font = ExtResource("3_pmecf")
+theme_override_font_sizes/font_size = 150
+text = "YOU DEFEATED EVIL"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(962, 520)
+scale = Vector2(10, 10)
+sprite_frames = SubResource("SpriteFrames_84vdc")
+
+[node name="BattleMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_b7mew")
+autoplay = true
