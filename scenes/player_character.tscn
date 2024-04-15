@@ -118,7 +118,7 @@ one_shot = true
 stream = ExtResource("5_y00ta")
 
 [node name="ThrowComboTimer" type="Timer" parent="."]
-wait_time = 0.13
+wait_time = 0.15
 one_shot = true
 
 [connection signal="attack_finished" from="Attacks/Jab" to="." method="_on_attack_finished"]
