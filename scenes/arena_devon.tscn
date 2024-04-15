@@ -140,6 +140,8 @@ stream = ExtResource("13_5an7q")
 [node name="FINAL_ROUND" type="AudioStreamPlayer" parent="roundSFX"]
 stream = ExtResource("14_253oq")
 
+[node name="Projectiles" type="Node2D" parent="."]
+
 [connection signal="damage_taken" from="Player/PlayerCharacter" to="." method="_on_player_damage_taken"]
 [connection signal="send_projectile" from="Player/PlayerCharacter" to="." method="_on_send_projectile"]
 [connection signal="health_depleted" from="Player/PlayerHealthBar" to="." method="_on_player_health_bar_health_depleted"]
