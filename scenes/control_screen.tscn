@@ -41,7 +41,7 @@ theme_override_fonts/font = ExtResource("2_5ehxl")
 theme_override_font_sizes/font_size = 40
 text = "Space or Up or W
 
-W/A or Left/Right
+A/D or Left/Right
 
 K or Right mouse
 

@@ -107,6 +107,7 @@ func pause():
 	attack_timer.set_paused(true)
 	strafe_timer.set_paused(true)
 	$JumpTimer.set_paused(true)
+	$ExhaustionTimer.set_paused(true)
 	animations.pause()
 	if current_attack != null:
 		current_attack.pause()
@@ -118,6 +119,7 @@ func resume():
 	attack_timer.set_paused(false)
 	strafe_timer.set_paused(false)
 	$JumpTimer.set_paused(false)
+	$ExhaustionTimer.set_paused(false)
 	animations.play()
 	if current_attack != null:
 		current_attack.resume()
