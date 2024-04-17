@@ -3,6 +3,7 @@
 This is our submission for Ludum Dare 55, made with [godot](https://godotengine.org/) using GDScript.
 
 ## Ludum Dare 55
+The theme for the game jam was: "Summoning".
 All assets made during the 72 hour game jam. Including sounds, music, art, code and ideas.
 
 [Ludum Dare page](https://ldjam.com/events/ludum-dare/55/trial-by-combat/edit)
