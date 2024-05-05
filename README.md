@@ -20,3 +20,15 @@ All assets made during the 72 hour game jam. Including sounds, music, art, code 
 - Jump kick: J or Left Mouse (mid-air)
 - Gavel smash: Jab + Jab + Jab
 - Gavel throw: Left + Down + Right + Down + Jab
+
+## Results
+| | |
+| --- | --- |
+| **Overall**: | 145th |
+| **Fun**: | 93rd |
+| **Innovation**: | 611th |
+| **Theme**: | 557th |
+| **Graphics**: | 342nd |
+| **Audio**: | 99th |
+| **Humor**: | 15th |
+| **Mood**: | 283rd |
